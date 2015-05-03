@@ -5,7 +5,6 @@
 !.gitignore
 !.vimrc
 !.tmux.conf
-# etc...
 
 # ...even if they are in subdirectories
 !*/
