@@ -5,5 +5,6 @@
 !.gitignore
 !.vimrc
 !.tmux.conf
+!.bashrc
 
 
