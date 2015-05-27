@@ -9,3 +9,5 @@
 !.bash_profile
 !.pryrc
 !.bash_history
+!.gitconfig
+!.gitignore_global

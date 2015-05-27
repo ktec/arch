@@ -1,0 +1,10 @@
+[push]
+	default = simple
+[user]
+	name = Keith Salisbury
+	email = keith.salisbury@alliants.com
+[color]
+  ui = true
+[core]
+  editor = vim
+	excludesfile = /Users/keithsalisbury/.gitignore_global

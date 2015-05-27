@@ -90,3 +90,9 @@ export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ 
 
 # Default Git enabled root prompt (for use with "sudo -s")
 # export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
+
+# Aliases - http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+alias c='clear'
+alias vi=vim
+alias edit='vim'
+
