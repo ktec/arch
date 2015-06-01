@@ -95,4 +95,5 @@ export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ 
 alias c='clear'
 alias vi=vim
 alias edit='vim'
+alias be="bundle exec "
 
