@@ -8,3 +8,8 @@
 [core]
   editor = vim
 	excludesfile = /Users/keithsalisbury/.gitignore_global
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
