@@ -97,3 +97,6 @@ alias vi=vim
 alias edit='vim'
 alias be="bundle exec "
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
