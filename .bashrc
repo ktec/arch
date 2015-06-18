@@ -95,7 +95,8 @@ export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ 
 alias c='clear'
 alias vi=vim
 alias edit='vim'
-alias be="bundle exec "
+alias be='bundle exec '
+alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 
 
 ### Added by the Heroku Toolbelt
