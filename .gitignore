@@ -1,14 +1,18 @@
 # Ignore everything
 *
 
-# But not these files...
-!.gitignore
-!.vimrc
-!.tmux.conf
+# Except these...
+
 !.bashrc
 !.bash_profile
-!.pryrc
 !.bash_history
+
+!.gitignore
 !.gitconfig
 !.gitignore_global
+
+!.vimrc
+!.tmux.conf
+
+!.pryrc
 !.inputrc
