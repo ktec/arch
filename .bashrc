@@ -1,8 +1,14 @@
+# Keith's BashRC
+
 
 # set history and size to unlimited, but ignore duplicates, ensure write on terminal close
-export HISTCONTROL=erasedups
-export HISTSIZE=
-export HISTFILESIZE=
+# Note that you don't need to, and indeed should not, export HISTIGNORE.
+# This is a bash internal variable, not an environment variable
+HISTCONTROL=erasedups
+HISTSIZE=
+HISTFILESIZE=
+HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*"
+#HISTIGNORE=$'*([\t ])+([-%+,./0-9\:@A-Z_a-z])*([\t ])' # ignore single word commands
 shopt -s histappend
 
 # source chruby to enable changing ruby versions
@@ -80,7 +86,20 @@ find_git_dirty() {
   fi
 }
 
-PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
+clean_history() {
+  local exit_status=$?
+  # If the exit status was 127, the command was not found. Let's remove it from history
+  local number=$(history | tail -n 1 | awk '{print $1}')
+  if [ -n "$number" ]; then
+      if [ $exit_status -eq 127 ] && ([ -z $HISTLASTENTRY ] || [ $HISTLASTENTRY -lt $number ]); then
+          history -d $number
+      else
+          HISTLASTENTRY=$number
+      fi
+  fi
+}
+
+PROMPT_COMMAND="find_git_branch; find_git_dirty; clean_history; $PROMPT_COMMAND"
 
 # Default Git enabled prompt with dirty state
 export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
