@@ -2,7 +2,7 @@
 
 ## Overview
 
-These dotfile are designed differently to most. 
+These dotfiles are designed differently to most. 
 
 The strategy means your `~` directory is actually a git repo, and you ignore EVERYTHING EXCEPT the files you want git to manage. Checkout the `.gitingore` file for details. This strategy works extremely well for me, but might not suit everyone. Please investigate careful before choosing this approach for your own system.
 
