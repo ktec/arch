@@ -7,9 +7,14 @@
   ui = true
 [core]
   editor = vim
-	excludesfile = /Users/keithsalisbury/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [alias]
 	co = checkout
 	br = branch
 	ci = commit
+  s  = status
 	st = status
+  a  = add -p
+  i  = add -i
+[commit]
+  template = ~/.commitmessage
