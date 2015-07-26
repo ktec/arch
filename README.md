@@ -16,3 +16,7 @@ For ruby, we do this:
 
 * [chruby](https://github.com/postmodern/chruby)
 * [ruby-install](https://github.com/postmodern/ruby-install)
+
+## Usage
+
+I'm testing various strategies at the moment. Previously I have been working in master but now I maintain a local working branch called 'w' and submit PR's to master when I make changes.
