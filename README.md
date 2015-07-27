@@ -20,3 +20,17 @@ For ruby, we do this:
 ## Usage
 
 I'm testing various strategies at the moment. Previously I have been working in master but now I maintain a local working branch called 'w' and submit PR's to master when I make changes.
+
+## Installation
+
+Getting this on your machine is still wip, however something like this worked for me:
+
+```
+git clone --bare $URL .git
+git config core.bare false
+git fetch -p
+git reset --hard origin/master
+```
+
+I'm not sure we need all these commands, but its a tough one to test until I have virtual machines up and running to test this properly.
+
