@@ -34,3 +34,13 @@ git reset --hard origin/master
 
 I'm not sure we need all these commands, but its a tough one to test until I have virtual machines up and running to test this properly.
 
+Some other stuff:
+
+```
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
+Then open `vim` and type `:VundleInstall`
+
+
+
