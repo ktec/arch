@@ -1,13 +1,6 @@
 " ############################################################################ "
-"                         vimrc by Bryan Yap
+"                         vimrc by Keith
 " ############################################################################ "
-"
-" taken inspiration from:
-"
-" - https://github.com/skwp/dotfiles
-" - https://github.com/bryankennedy/vimrc/blob/master/vimrc
-" - and many, many more...
-"
 
 " Vundle
 set nocompatible              " be iMproved, required
@@ -15,6 +8,7 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -27,7 +21,6 @@ Plugin 'scrooloose/nerdtree'                    " A tree explorer plugin for vim
 Plugin 'tpope/vim-surround'                     " quoting/parenthesizing made simple
 Plugin 'kien/ctrlp.vim'                         " Fuzzy file, buffer, mru, tag, etc finder
 Plugin 'altercation/vim-colors-solarized'       " Precision colorscheme for vim
-Plugin 'wting/rust.vim'                         " Vim support for Rust file detection and syntax highlighting
 Plugin 'bling/vim-airline'                      " Lean & mean status/tabline for vim that’s light as air
 Plugin 'mattn/emmet-vim'                        " Emmet for Vim
 Plugin 'othree/html5.vim'                       " HTML5 autocomplete and syntax
@@ -49,6 +42,7 @@ Plugin 'matchit.zip'                            " Extend % matching to support m
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -99,11 +93,11 @@ set fillchars+=vert:\ |                         " Remove the ugly vertical split
 
 syntax enable                                   " Enable syntax highlighting
 set encoding=utf-8
-set t_Co=256
-set term=xterm-256color
+"set t_Co=256
+"set term=xterm-256color
 set termencoding=utf-8
-set background=dark
-colorscheme solarized
+"set background=dark
+"colorscheme solarized
 highlight clear SignColumn
 
 set wildmode=longest,list                       " Tab completion shows the list of potential matches
@@ -300,10 +294,6 @@ nnoremap <Leader>RR :! bundle exec rspec %<CR>|                           " Run 
 " ====[ JavaScript Helpers ]====
 nnoremap <Leader>KK :! karma start --single-run<CR>|                      " Run the karma start task with the single run option
 nnoremap <Leader>KR :! karma run<CR>|                                     " Run the karma run task
-
-" ====[ Rust Helpers ]====
-nnoremap <Leader>CC :! cargo build<CR>|                                   " Executes cargo build
-nnoremap <Leader>CA :! cargo test<CR>|                                    " Executes cargo test
 
 " ====[ Teaching Aids ]====
 noremap <Left> :throw " Vim Tip #1: Use “h” to navigate left"<CR>
