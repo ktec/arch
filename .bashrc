@@ -124,6 +124,7 @@ alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=
 alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 alias g='git'
 alias gs='git status'
+alias la='ls -la'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
