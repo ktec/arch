@@ -122,6 +122,8 @@ alias edit='vim'
 alias be='bundle exec '
 alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias g='git'
+alias gs='git status'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
