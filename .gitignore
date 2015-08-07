@@ -12,6 +12,7 @@
 !.commitmessage
 
 !.vimrc
+!.vim/colors
 !.tmux.conf
 
 !.pryrc

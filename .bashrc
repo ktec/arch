@@ -125,6 +125,8 @@ alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 
 alias g='git'
 alias gs='git status'
 alias la='ls -la'
+alias ..='cd ../'
+alias ...='cd ../../'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
