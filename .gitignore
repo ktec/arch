@@ -12,8 +12,9 @@
 !.commitmessage
 
 !.vimrc
+!.vim/colors
 !.tmux.conf
 
 !.pryrc
 !.inputrc
-!test/keith
+!.gemrc

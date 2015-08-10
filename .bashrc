@@ -16,8 +16,12 @@ if [[ -f /usr/local/share/chruby/chruby.sh ]]; then
   source /usr/local/share/chruby/chruby.sh
   source /usr/local/share/chruby/auto.sh # chruby will check the current and parent directories for a .ruby-version file
 else
-  echo "Ain't got no chruby"
+  echo "You Ain't got no chruby"
 fi
+
+# Path
+
+export PATH="/usr/local/bin:/usr/local/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 
 # colours
 # Regular
@@ -118,6 +122,11 @@ alias edit='vim'
 alias be='bundle exec '
 alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias g='git'
+alias gs='git status'
+alias la='ls -la'
+alias ..='cd ../'
+alias ...='cd ../../'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

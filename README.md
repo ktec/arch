@@ -29,7 +29,7 @@ Getting this on your machine is still wip, however something like this worked fo
 git clone --bare $URL .git
 git config core.bare false
 git fetch -p
-git reset --hard origin/master
+git reset --hard
 ```
 
 I'm not sure we need all these commands, but its a tough one to test until I have virtual machines up and running to test this properly.
