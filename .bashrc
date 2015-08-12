@@ -127,6 +127,7 @@ alias gs='git status'
 alias la='ls -la'
 alias ..='cd ../'
 alias ...='cd ../../'
+alias gwip='git commit -m "wip"'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
