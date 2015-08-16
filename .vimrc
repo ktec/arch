@@ -123,6 +123,8 @@ autocmd BufRead,BufNewFile *eslintrc,*jshintrc,*bowerrc set filetype=json
 autocmd BufRead,BufNewFile *Guardfile,*pryrc set filetype=ruby
 autocmd BufRead,BufNewFile *Procfile set filetype=yaml
 autocmd BufRead,BufNewFile *Makefile set noexpandtab
+" Add ES6 syntax highlighting for .es6 files
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
 " ############################################################################ "
 "                             Custom Functions

@@ -128,6 +128,7 @@ alias la='ls -la'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias gwip='git commit -m "wip"'
+alias grep_all="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
