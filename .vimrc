@@ -39,6 +39,7 @@ Plugin 'nginx.vim'                              " Nginx config syntax highlighti
 Plugin 'pangloss/vim-javascript'                " Improves JavaScript syntax and indenting
 Plugin 'mxw/vim-jsx'                            " Syntax highlighting and indenting for jsx
 Plugin 'matchit.zip'                            " Extend % matching to support more than one character
+Plugin 'elixir-lang/vim-elixir'                 " Syntax highlighting for Elixir
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -81,7 +82,7 @@ set nowrap                                      " No line wrapping
 set backspace=indent,eol,start                  " Fix backspace for insert mode
 set confirm                                     " Require confirmation before closing
 set cursorline                                  " Highlight the current line
-let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
+" let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
 
 hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=darkgrey
 hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=darkgrey
@@ -93,12 +94,12 @@ set fillchars+=vert:\ |                         " Remove the ugly vertical split
 
 syntax enable                                   " Enable syntax highlighting
 set encoding=utf-8
-set t_Co=256
-set term=xterm-256color
+" set t_Co=256
+" set term=xterm-256color
 set termencoding=utf-8
-set background=dark
 colorscheme solarized
-"highlight clear SignColumn
+" set background=dark
+" highlight clear SignColumn
 
 set wildmode=longest,list                       " Tab completion shows the list of potential matches
 

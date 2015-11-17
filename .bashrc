@@ -1,5 +1,19 @@
-# Keith's BashRC
+# =============================================================== #
+#
+# PERSONAL $HOME/.bashrc FILE for bash-3.0 (or later)
+# By Keith Salisbury
+#
+# Last modified: Wed Sep 23 14:43:47 GMT 2015
 
+#  This file is normally read by interactive shells only.
+#+ Here is the place to define your aliases, functions and
+#+ other interactive features like your prompt.
+#
+#  This bashrc file is a bit overcrowded.
+#  Remember, it is just just an example.
+#  Tailor it to your needs.
+#
+# =============================================================== #
 
 # set history and size to unlimited, but ignore duplicates, ensure write on terminal close
 # Note that you don't need to, and indeed should not, export HISTIGNORE.
@@ -7,67 +21,102 @@
 HISTCONTROL=erasedups
 HISTSIZE=
 HISTFILESIZE=
-HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*"
-#HISTIGNORE=$'*([\t ])+([-%+,./0-9\:@A-Z_a-z])*([\t ])' # ignore single word commands
+# HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*"
+# HISTIGNORE=$'*([\t ])+([-%+,./0-9\:@A-Z_a-z])*([\t ])' # ignore single word commands
 shopt -s histappend
+export EDITOR='vim'
 
-# source chruby to enable changing ruby versions
-if [[ -f /usr/local/share/chruby/chruby.sh ]]; then
-  source /usr/local/share/chruby/chruby.sh
-  source /usr/local/share/chruby/auto.sh # chruby will check the current and parent directories for a .ruby-version file
-else
-  echo "You Ain't got no chruby"
-fi
+#============================================================
+#
+#  EXTERNAL SOURCES
+#
+#============================================================
 
-# Path
+# source in some utility files
+[ -f $HOME/.colours ] && source $HOME/.colours
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh # added by travis gem
+[ -f $HOME/.bin/tmuxinator.bash ] && source $HOME/.bin/tmuxinator.bash
 
-export PATH="./bin:/usr/local/bin:/usr/local/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+[ -f /usr/local/share/chruby/chruby.sh ] && source /usr/local/share/chruby/chruby.sh
+[ -f /usr/local/share/chruby/auto.sh ] && source /usr/local/share/chruby/auto.sh
 
-# colours
-# Regular
-txtblk="$(tput setaf 0 2>/dev/null || echo '\e[0;30m')"  # Black
-txtred="$(tput setaf 1 2>/dev/null || echo '\e[0;31m')"  # Red
-txtgrn="$(tput setaf 2 2>/dev/null || echo '\e[0;32m')"  # Green
-txtylw="$(tput setaf 3 2>/dev/null || echo '\e[0;33m')"  # Yellow
-txtblu="$(tput setaf 4 2>/dev/null || echo '\e[0;34m')"  # Blue
-txtpur="$(tput setaf 5 2>/dev/null || echo '\e[0;35m')"  # Purple
-txtcyn="$(tput setaf 6 2>/dev/null || echo '\e[0;36m')"  # Cyan
-txtwht="$(tput setaf 7 2>/dev/null || echo '\e[0;37m')"  # White
+#============================================================
+#
+#  ALIASES AND FUNCTIONS
+#
+#============================================================
 
-# Bold
-bldblk="$(tput setaf 0 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;30m')"  # Black
-bldred="$(tput setaf 1 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;31m')"  # Red
-bldgrn="$(tput setaf 2 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;32m')"  # Green
-bldylw="$(tput setaf 3 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;33m')"  # Yellow
-bldblu="$(tput setaf 4 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;34m')"  # Blue
-bldpur="$(tput setaf 5 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;35m')"  # Purple
-bldcyn="$(tput setaf 6 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;36m')"  # Cyan
-bldwht="$(tput setaf 7 2>/dev/null)$(tput bold 2>/dev/null || echo '\e[1;37m')"  # White
+#-------------------
+# Personnal Aliases
+#-------------------
 
-# Underline
-undblk="$(tput setaf 0 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;30m')"  # Black
-undred="$(tput setaf 1 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;31m')"  # Red
-undgrn="$(tput setaf 2 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;32m')"  # Green
-undylw="$(tput setaf 3 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;33m')"  # Yellow
-undblu="$(tput setaf 4 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;34m')"  # Blue
-undpur="$(tput setaf 5 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;35m')"  # Purple
-undcyn="$(tput setaf 6 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;36m')"  # Cyan
-undwht="$(tput setaf 7 2>/dev/null)$(tput smul 2>/dev/null || echo '\e[4;37m')"  # White
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i' # -> Prevents accidentally clobbering files.
+alias mkdir='mkdir -p'
 
-# Background
-bakblk="$(tput setab 0 2>/dev/null || echo '\e[40m')"  # Black
-bakred="$(tput setab 1 2>/dev/null || echo '\e[41m')"  # Red
-bakgrn="$(tput setab 2 2>/dev/null || echo '\e[42m')"  # Green
-bakylw="$(tput setab 3 2>/dev/null || echo '\e[43m')"  # Yellow
-bakblu="$(tput setab 4 2>/dev/null || echo '\e[44m')"  # Blue
-bakpur="$(tput setab 5 2>/dev/null || echo '\e[45m')"  # Purple
-bakcyn="$(tput setab 6 2>/dev/null || echo '\e[46m')"  # Cyan
-bakwht="$(tput setab 7 2>/dev/null || echo '\e[47m')"  # White
+alias h='history'
+alias j='jobs -l'
+alias which='type -a'
+alias ..='cd ..'
 
-# Reset
-txtrst="$(tput sgr 0 2>/dev/null || echo '\e[0m')"  # Text Reset
+# Pretty-print of some PATH variables:
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 
-# git prompt
+alias du='du -kh'    # Makes a more readable output.
+alias df='df -kTh'
+
+alias ..='cd ../'
+alias ...='cd ../../'
+alias c='clear'
+alias vi=vim
+alias edit='vim'
+alias be='bundle exec '
+alias ta='tmux attach -t'
+alias tm='tm'
+
+#-------------------------------------------------------------
+# The 'ls' family (this assumes you use a recent GNU ls).
+#-------------------------------------------------------------
+# Add colors for filetype and  human-readable sizes by default on 'ls':
+# alias ls='ls -h --color'
+# alias lx='ls -lXB'         #  Sort by extension.
+alias lk='ls -lSr'         #  Sort by size, biggest last.
+# alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
+# alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
+alias lt='ls -ltr'         #  Sort by date, most recent last.
+# alias la='ls -la'
+#
+# # The ubiquitous 'll': directories first, with alphanumeric sorting:
+# alias ll="ls -lv --group-directories-first"
+# alias lm='ll |more'        #  Pipe through 'more'
+# alias lr='ll -R'           #  Recursive ls.
+# alias la='ll -A'           #  Show hidden files.
+# alias tree='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
+
+#============================================================
+#
+#  Git
+#
+#============================================================
+
+# Aliases - http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+alias g='git'
+alias gs='git status'
+alias gwip='git add .; git commit -m wip'
+alias save_game='git add . && git commit -m wip'
+alias new_quest='git checkout -b'
+alias publish_game='git push'
+
+alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
+alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias gbgrep="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
+
+alias greset='git co master; git fetch -p; git reset --hard origin/master'
+alias gco='git checkout'
+alias grbm='git fetch -p;git rebase origin/master; git push -f'
+
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
   local branch
@@ -103,6 +152,12 @@ clean_history() {
   fi
 }
 
+#============================================================
+#
+#  PROMPT
+#
+#============================================================
+
 PROMPT_COMMAND="find_git_branch; find_git_dirty; clean_history; $PROMPT_COMMAND"
 
 # Default Git enabled prompt with dirty state
@@ -115,20 +170,20 @@ export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 # Default Git enabled root prompt (for use with "sudo -s")
 # export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 
-# Aliases - http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
-alias c='clear'
-alias vi=vim
-alias edit='vim'
-alias be='bundle exec '
-alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
-alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
-alias g='git'
-alias gs='git status'
-alias la='ls -la'
-alias ..='cd ../'
-alias ...='cd ../../'
-alias gwip='git commit -m "wip"'
-alias grep_all="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
+#============================================================
+#
+#  PATH
+#
+#============================================================
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
+export PATH="/usr/local/share/npm/bin:$PATH" # Make Grunt cli work!???
+export GOPATH="$HOME/code/go/"
+# export PATH=$PATH:$GOPATH/bin
+export PATH="./bin:$PATH"
+
+# brew install bash-completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
