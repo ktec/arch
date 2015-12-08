@@ -16,7 +16,12 @@
 	st = status
   a  = add -p
   i  = add -i
-	g = grep --break --heading --line-number
+  g  = grep --break --heading --line-number
+  d  = diff
+  l  = log
+  ll = log -p
+  lt = log trunk
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 [commit]
   template = ~/.commitmessage
 [grep]
