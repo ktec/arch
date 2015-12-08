@@ -115,7 +115,7 @@ alias gbgrep="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <r
 
 alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias gco='git checkout'
-alias grbm='git fetch -p;git rebase origin/master; git push -f'
+alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
 
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
