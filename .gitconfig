@@ -1,24 +1,24 @@
 [push]
-	default = current
+  default = current
 [user]
-	name = Keith Salisbury
-	email = keith.salisbury@alliants.com
+  name = Keith Salisbury
+  email = keith.salisbury@alliants.com
 [color]
   ui = true
 [core]
   editor = vim
-	excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
+  co = checkout
+  br = branch
+  ci = commit
   s  = status
-	st = status
+  st = status
   a  = add -p
   i  = add -i
-	g = grep --break --heading --line-number
+  g = grep --break --heading --line-number
 [commit]
   template = ~/.commitmessage
 [grep]
-	extendRegexp = true
-	lineNumber = true
+  extendRegexp = true
+  lineNumber = true
