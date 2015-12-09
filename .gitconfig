@@ -1,5 +1,3 @@
-[push]
-	default = upstream
 [user]
 	name = Keith Salisbury
 	email = keith.salisbury@alliants.com
@@ -8,6 +6,8 @@
 [core]
   editor = vim
 	excludesfile = ~/.gitignore_global
+[push]
+	default = current
 [alias]
 	co = checkout
 	br = branch
