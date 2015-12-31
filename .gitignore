@@ -19,3 +19,5 @@
 !.inputrc
 !.gemrc
 !.railsrc
+
+!.cabal/config

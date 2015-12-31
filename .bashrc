@@ -182,6 +182,7 @@ export PATH="/usr/local/share/npm/bin:$PATH" # Make Grunt cli work!???
 export GOPATH="$HOME/code/go/"
 # export PATH=$PATH:$GOPATH/bin
 export PATH="./bin:$PATH"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # brew install bash-completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
