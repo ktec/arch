@@ -10,6 +10,7 @@
 	default = current
 [alias]
 	co = checkout
+  cp = cherry-pick
 	br = branch
 	ci = commit
   s  = status

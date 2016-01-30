@@ -75,6 +75,7 @@ alias edit='vim'
 alias be='bundle exec '
 alias ta='tmux attach -t'
 alias tm='tm'
+alias ts='tmux ls'
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls).
@@ -112,9 +113,10 @@ alias publish_game='git push'
 alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 alias gbgrep="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
-
+alias gbd="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master.."
 alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias gco='git checkout'
+alias gcp='git cherry-pick'
 alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
 
 find_git_branch() {
@@ -176,7 +178,7 @@ export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 #
 #============================================================
 
-export PATH="/usr/local/bin:/usr/local/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
 export PATH="/usr/local/share/npm/bin:$PATH" # Make Grunt cli work!???
 export GOPATH="$HOME/code/go/"
@@ -188,3 +190,6 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
+# ...
+. $HOME/.asdf/asdf.sh
