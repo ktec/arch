@@ -76,6 +76,9 @@ alias be='bundle exec '
 alias ta='tmux attach -t'
 alias tm='tm'
 alias ts='tmux ls'
+alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pg_stop="pg_ctl -D /usr/local/var/postgres stop"
+alias pg_restart="pg_ctl -D /usr/local/var/postgres -m i -l /usr/local/var/postgres/server.log restart"
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls).
