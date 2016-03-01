@@ -20,7 +20,6 @@ Plugin 'tpope/vim-fugitive'                     " Git plugin
 Plugin 'scrooloose/nerdtree'                    " A tree explorer plugin for vim
 Plugin 'tpope/vim-surround'                     " quoting/parenthesizing made simple
 Plugin 'kien/ctrlp.vim'                         " Fuzzy file, buffer, mru, tag, etc finder
-Plugin 'altercation/vim-colors-solarized'       " Precision colorscheme for vim
 Plugin 'bling/vim-airline'                      " Lean & mean status/tabline for vim that’s light as air
 Plugin 'mattn/emmet-vim'                        " Emmet for Vim
 Plugin 'othree/html5.vim'                       " HTML5 autocomplete and syntax
@@ -33,7 +32,6 @@ Plugin 'cespare/vim-toml'                       " Syntax highlighting for TOML f
 Plugin 'Shougo/neocomplete.vim'                 " Code completion engine
 Plugin 'tpope/vim-endwise'                      " Wisely add “end” in Ruby
 Plugin 'Raimondi/delimitMate'                   " Add closing delimiters automagically
-Plugin 'groenewege/vim-less'                    " Syntax highlighting for LESS
 Plugin 'christoomey/vim-tmux-navigator'         " Seamless navigation between tmux panes and splits
 Plugin 'nginx.vim'                              " Nginx config syntax highlighting
 Plugin 'pangloss/vim-javascript'                " Improves JavaScript syntax and indenting
@@ -62,7 +60,6 @@ filetype plugin indent on    " required
 "                           General Configurations
 " ############################################################################ "
 
-
 set hlsearch                                    " Highlight all search results
 set incsearch                                   " Searches for strings incrementally
 set scrolloff=3                                 " Give a margin around searches and movement
@@ -82,7 +79,7 @@ set nowrap                                      " No line wrapping
 set backspace=indent,eol,start                  " Fix backspace for insert mode
 set confirm                                     " Require confirmation before closing
 set cursorline                                  " Highlight the current line
-" let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
+let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
 
 hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=darkgrey
 hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=darkgrey
@@ -94,12 +91,12 @@ set fillchars+=vert:\ |                         " Remove the ugly vertical split
 
 syntax enable                                   " Enable syntax highlighting
 set encoding=utf-8
-" set t_Co=256
-" set term=xterm-256color
 set termencoding=utf-8
+
+set background=dark
+let g:solarized_termtrans = 1
 colorscheme solarized
-" set background=dark
-" highlight clear SignColumn
+highlight clear SignColumn
 
 set wildmode=longest,list                       " Tab completion shows the list of potential matches
 
