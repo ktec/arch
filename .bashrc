@@ -3,16 +3,7 @@
 # PERSONAL $HOME/.bashrc FILE for bash-3.0 (or later)
 # By Keith Salisbury
 #
-# Last modified: Wed Sep 23 14:43:47 GMT 2015
-
-#  This file is normally read by interactive shells only.
-#+ Here is the place to define your aliases, functions and
-#+ other interactive features like your prompt.
-#
-#  This bashrc file is a bit overcrowded.
-#  Remember, it is just just an example.
-#  Tailor it to your needs.
-#
+# Last modified: Wed Mar 27 14:43:47 GMT 2016
 # =============================================================== #
 
 # set history and size to unlimited, but ignore duplicates, ensure write on terminal close
