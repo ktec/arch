@@ -1,6 +1,7 @@
 [user]
 	name = Keith Salisbury
 	email = <keithsalisbury@gmail.com>
+	signingkey = 229704FE
 [color]
   ui = true
 [core]

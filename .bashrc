@@ -112,6 +112,7 @@ alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias gco='git checkout'
 alias gcp='git cherry-pick'
 alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
+alias amend_commit='git add . && git commit --amend -C HEAD'
 
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
