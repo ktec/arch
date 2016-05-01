@@ -2,3 +2,4 @@
 .tags*
 backlog.txt
 .ruby-version
+vendor/ruby
