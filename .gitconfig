@@ -20,6 +20,7 @@
   i  = add -i
   g  = grep --break --heading --line-number
   d  = diff
+  pf = push -f
   l  = log
   ll = log -p
   lt = log trunk

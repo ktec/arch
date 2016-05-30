@@ -99,8 +99,7 @@ alias lt='ls -ltr'         #  Sort by date, most recent last.
 # Aliases - http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
 alias g='git'
 alias gs='git status'
-alias gwip='git add .; git commit -m wip'
-alias save_game='git add . && git commit -m wip'
+alias save_game='git add . && git commit -m'
 alias new_quest='git checkout -b'
 alias publish_game='git push'
 
