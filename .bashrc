@@ -99,6 +99,7 @@ alias lt='ls -ltr'         #  Sort by date, most recent last.
 # Aliases - http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
 alias g='git'
 alias gs='git status'
+alias gd='git diff'
 alias save_game='git add . && git commit -m'
 alias new_quest='git checkout -b'
 alias publish_game='git push'
@@ -111,6 +112,7 @@ alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias gco='git checkout'
 alias gcp='git cherry-pick'
 alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
+alias gfr='git fetch -p;git reset --hard origin/master'
 alias amend_commit='git add . && git commit --amend -C HEAD'
 
 find_git_branch() {
