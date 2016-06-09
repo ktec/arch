@@ -106,6 +106,7 @@ alias publish_game='git push'
 
 alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias git_delete_merged="git branch -r --merged | grep -v master | sed 's/origin\///' | xargs -n 1 git push --delete origin"
 alias gbgrep="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
 alias gbd="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master.."
 alias greset='git co master; git fetch -p; git reset --hard origin/master'
@@ -114,6 +115,7 @@ alias gcp='git cherry-pick'
 alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
 alias gfr='git fetch -p;git reset --hard origin/master'
 alias amend_commit='git add . && git commit --amend -C HEAD'
+# alias git_log_work='git log --all --author=keithsalisbury | grep Date | awk \'{print " : "$2" "$4" "$3" "$6}\' | uniq -c | sort -k5M -k4'
 
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
