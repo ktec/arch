@@ -5,6 +5,8 @@
 
 !.bashrc
 !.bash_profile
+!.aliases
+!.colours
 
 !.gitignore
 !.gitconfig
@@ -14,11 +16,11 @@
 !.vimrc
 !.vim/colors
 !.tmux.conf
-!.colours
 
-!.pryrc
+!.emacs
 !.inputrc
 !.gemrc
+!.pryrc
 !.railsrc
 
 !.cabal/config

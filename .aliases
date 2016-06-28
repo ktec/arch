@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+#============================================================
+#
+#  ALIASES
+#
+#============================================================
+
+#-------------------
+# Personnal Aliases
+#-------------------
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i' # -> Prevents accidentally clobbering files.
+alias mkdir='mkdir -p'
+
+alias h='history'
+alias j='jobs -l'
+alias which='type -a'
+alias ..='cd ..'
+
+# Copy output of last command to clipboard
+alias cl="fc -e -|pbcopy"
+
+# Share history between terminal sessions
+alias he="history -a" # export history
+alias hi="history -n" # import history
+
+# Get your current public IP
+alias ip="curl icanhazip.com"
+
+# Pretty-print of some PATH variables:
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+alias du='du -kh'    # Makes a more readable output.
+alias df='df -kTh'
+
+alias ..='cd ../'
+alias ...='cd ../../'
+alias c='clear'
+alias vi=vim
+alias edit='vim'
+alias be='bundle exec '
+alias ta='tmux attach -t'
+alias tm='tm'
+alias ts='tmux ls'
+alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pg_stop="pg_ctl -D /usr/local/var/postgres stop"
+alias pg_restart="pg_ctl -D /usr/local/var/postgres -m i -l /usr/local/var/postgres/server.log restart"
+
+#-------------------------------------------------------------
+# The 'ls' family (this assumes you use a recent GNU ls).
+#-------------------------------------------------------------
+
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+    colorflag="--color"
+else # macOS `ls`
+    colorflag="-G"
+fi
+
+alias la="ls -aF ${colorflag}"
+alias ld="ls -ld"
+alias ll="ls -l"
+alias lt='ls -At1 && echo "------Oldest--"'
+alias ltr='ls -Art1 && echo "------Newest--"'
+
+#============================================================
+#
+#  Git
+#
+#============================================================
+
+alias g='git'
+alias gs='git status -sb'
+alias gd='git diff'
+alias gc='git commit'
+alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
+alias gco='git checkout'
+alias gco='git checkout'
+alias gcp='git cherry-pick'
+alias gbd="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master.."
+alias gfr='git fetch -p;git reset --hard origin/master'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+alias save_game='git add . && git commit -m'
+alias new_quest='git checkout -b'
+alias publish_game='git push'
+alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias git_delete_merged="git branch -r --merged | grep -v master | sed 's/origin\///' | xargs -n 1 git push --delete origin"
+alias gbgrep="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
+alias greset='git co master; git fetch -p; git reset --hard origin/master'
+alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
+alias amend_commit='git add . && git commit --amend -C HEAD'
+# alias git_log_work='git log --all --author=keithsalisbury | grep Date | awk \'{print " : "$2" "$4" "$3" "$6}\' | uniq -c | sort -k5M -k4'
