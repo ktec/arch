@@ -21,7 +21,7 @@
   g  = grep --break --heading --line-number
   d  = diff
   pf = push -f
-  l  = log
+  l  = log --oneline --graph --decorate
   ll = log -p
   lt = log trunk
   recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
