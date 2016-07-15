@@ -18,13 +18,32 @@ export EDITOR='vim'
 #============================================================
 
 # source in some utility files
-[ -f $HOME/.colours ] && source $HOME/.colours
-[ -f $HOME/.aliases ] && source $HOME/.aliases
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh # added by travis gem
-[ -f $HOME/.bin/tmuxinator.bash ] && source $HOME/.bin/tmuxinator.bash
+source $HOME/.colours
+source $HOME/.aliases
+source $HOME/.travis/travis.sh # added by travis gem
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 
-[ -f /usr/local/share/chruby/chruby.sh ] && source /usr/local/share/chruby/chruby.sh
-[ -f /usr/local/share/chruby/auto.sh ] && source /usr/local/share/chruby/auto.sh
+#============================================================
+#
+#  PATH
+#
+#============================================================
+
+export PATH="./bin:/usr/local/bin:/usr/local/sbin"
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:/opt/X11/bin"
+export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
+export PATH="$PATH:/usr/local/share/npm/bin" # Make Grunt cli work!???
+export GOPATH="$HOME/code/go/"
+# export PATH=$PATH:$GOPATH/bin
+export PATH="$PATH:$HOME/Library/Haskell/bin"
+
+# brew install bash-completion
+source $(brew --prefix)/etc/bash_completion
+
+# ...
+# . $HOME/.asdf/asdf.sh ### this provides multiple versions of elixir...
 
 #============================================================
 #
@@ -90,25 +109,3 @@ export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 
 # Default Git enabled root prompt (for use with "sudo -s")
 # export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
-
-#============================================================
-#
-#  PATH
-#
-#============================================================
-
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
-export PATH="/usr/local/share/npm/bin:$PATH" # Make Grunt cli work!???
-export GOPATH="$HOME/code/go/"
-# export PATH=$PATH:$GOPATH/bin
-export PATH="$HOME/Library/Haskell/bin:$PATH"
-export PATH="./bin:$PATH"
-
-# brew install bash-completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-# ...
-. $HOME/.asdf/asdf.sh
