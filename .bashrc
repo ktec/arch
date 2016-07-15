@@ -22,8 +22,7 @@ source $HOME/.colours
 source $HOME/.aliases
 source $HOME/.functions # includes git_prompt
 source $HOME/.travis/travis.sh # added by travis gem
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+source $HOME/.chruby
 
 #============================================================
 #

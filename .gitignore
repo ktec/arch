@@ -3,24 +3,22 @@
 
 # Except these...
 
-!.bashrc
-!.bash_profile
 !.aliases
+!.bash_profile
+!.bashrc
+!.cabal/config # haskell config
+!.chruby
 !.colours
-
+!.commitmessage
+!.emacs
+!.functions
+!.gemrc
 !.gitignore
 !.gitconfig
 !.gitignore_global
-!.commitmessage
-
-!.vimrc
-!.vim/colors
-!.tmux.conf
-
-!.emacs
 !.inputrc
-!.gemrc
 !.pryrc
 !.railsrc
-
-!.cabal/config
+!.tmux.conf
+!.vimrc
+!.vim/colors
