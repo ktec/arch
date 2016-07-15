@@ -30,7 +30,7 @@ source $HOME/.chruby
 #
 #============================================================
 
-export PATH="./bin:/usr/local/bin:/usr/local/sbin"
+export PATH="$PATH:./bin:/usr/local/bin:/usr/local/sbin"
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:/opt/X11/bin"
 export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
