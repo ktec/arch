@@ -30,3 +30,5 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+[fetch]
+	prune = true
