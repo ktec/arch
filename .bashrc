@@ -13,24 +13,11 @@ export EDITOR='vim'
 
 #============================================================
 #
-#  EXTERNAL SOURCES
-#
-#============================================================
-
-# source in some utility files
-source $HOME/.colours
-source $HOME/.aliases
-source $HOME/.functions # includes git_prompt
-source $HOME/.travis/travis.sh # added by travis gem
-source $HOME/.chruby
-
-#============================================================
-#
 #  PATH
 #
 #============================================================
 
-export PATH="$PATH:./bin:/usr/local/bin:/usr/local/sbin"
+export PATH="./bin:/usr/local/bin:/usr/local/sbin"
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:/opt/X11/bin"
 export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
@@ -62,6 +49,19 @@ HISTFILESIZE=
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
+
+#============================================================
+#
+#  EXTERNAL SOURCES
+#
+#============================================================
+
+# source in some utility files
+source $HOME/.colours
+source $HOME/.aliases
+source $HOME/.functions # includes git_prompt
+source $HOME/.travis/travis.sh # added by travis gem
+source $HOME/.chruby
 
 #============================================================
 #
