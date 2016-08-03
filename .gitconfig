@@ -12,7 +12,7 @@
 [alias]
 	co = checkout
   cp = cherry-pick
-	br = branch
+	br = branch -v
 	ci = commit
   s  = status
 	st = status
@@ -24,7 +24,8 @@
   l  = log --oneline --graph --decorate
   ll = log -p
   lt = log trunk
-  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+  recent = for-each-ref --sort=-committerdate refs/heads/ --count=15 --format='%(HEAD)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) - %(color:green)%(committerdate:relative)%(color:reset)'
+  brx = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 [commit]
   template = ~/.commitmessage
 [grep]
