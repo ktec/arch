@@ -17,7 +17,7 @@ export EDITOR='vim'
 #
 #============================================================
 
-export PATH="./bin:/usr/local/bin:/usr/local/sbin"
+export PATH="/usr/local/bin:/usr/local/sbin"
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:/opt/X11/bin"
 export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
@@ -25,9 +25,11 @@ export PATH="$PATH:/usr/local/share/npm/bin" # Make Grunt cli work!???
 export GOPATH="$HOME/code/go/"
 # export PATH=$PATH:$GOPATH/bin
 export PATH="$PATH:$HOME/Library/Haskell/bin"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # brew install bash-completion
 source $(brew --prefix)/etc/bash_completion
+source ~/.git-completion.bash
 
 # ...
 # . $HOME/.asdf/asdf.sh ### this provides multiple versions of elixir...
@@ -63,6 +65,8 @@ source $HOME/.functions # includes git_prompt
 source $HOME/.travis/travis.sh # added by travis gem
 source $HOME/.chruby
 
+export PATH="./bin:$PATH" # ALWAYS use local bins first!!!
+
 #============================================================
 #
 #  PROMPT
@@ -73,7 +77,8 @@ PROMPT_COMMAND="find_git_branch; find_git_dirty; clean_history; $PROMPT_COMMAND"
 
 # Default Git enabled prompt with dirty state
 # export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
-export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+# export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+export PS1="\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 # export PS1="\[$bldgrn\]\u@\h\[$txtrst\] \w \[$bldylw\]\$git_branch\[$txtcyn\]\$git_dirty\[$txtrst\]\$ "
 
 # Default Git enabled root prompt (for use with "sudo -s")

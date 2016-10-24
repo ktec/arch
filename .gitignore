@@ -16,6 +16,7 @@
 !.gitignore
 !.gitconfig
 !.gitignore_global
+!.git-completion.bash
 !.inputrc
 !.pryrc
 !.railsrc
