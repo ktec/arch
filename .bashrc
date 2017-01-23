@@ -31,8 +31,9 @@ export PATH="$PATH:$HOME/Library/Haskell/bin"
 source $(brew --prefix)/etc/bash_completion
 source ~/.git-completion.bash
 
-# ...
-# . $HOME/.asdf/asdf.sh ### this provides multiple versions of elixir...
+# asdf provides multiple versions of elixir...
+[ -f $HOME/.asdf/asdf.sh ] && $HOME/.asdf/asdf.sh
+[ -f $HOME/.asdf/completions/asdf.bash ] && $HOME/.asdf/completions/asdf.bash
 
 #============================================================
 #
