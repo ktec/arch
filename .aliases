@@ -95,3 +95,12 @@ alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
 alias amend_commit='git add . && git commit --amend -C HEAD'
 # alias git_log_work='git log --all --author=keithsalisbury | grep Date | awk \'{print " : "$2" "$4" "$3" "$6}\' | uniq -c | sort -k5M -k4'
+
+#============================================================
+#
+#  Docker
+#
+#============================================================
+
+alias dci='docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)'
+alias dc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
