@@ -17,23 +17,31 @@ export EDITOR='vim'
 #
 #============================================================
 
-export PATH="/usr/local/bin:/usr/local/sbin"
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$PATH:/opt/X11/bin"
+export PATH="./bin" # ALWAYS use local bins first!!!
+
+export PATH="$PATH:$HOME/.asdf/bin"
+export PATH="$PATH:$HOME/.asdf/shims"
+export PATH="$PATH:$HOME/Library/Haskell/bin"
+export PATH="$PATH:$HOME/.gems/ruby/2.3.1/bin"
+# export GOPATH="$HOME/code/go/"
+# export PATH=$PATH:$GOPATH/bin
+
 export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
 export PATH="$PATH:/usr/local/share/npm/bin" # Make Grunt cli work!???
-export GOPATH="$HOME/code/go/"
-# export PATH=$PATH:$GOPATH/bin
-export PATH="$PATH:$HOME/Library/Haskell/bin"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin"
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:/opt/X11/bin"
+
+
+# asdf provides multiple versions of elixir...
+$HOME/.asdf/completions/asdf.bash
 
 # brew install bash-completion
 source $(brew --prefix)/etc/bash_completion
 source ~/.git-completion.bash
-
-# asdf provides multiple versions of elixir...
-[ -f $HOME/.asdf/asdf.sh ] && $HOME/.asdf/asdf.sh
-[ -f $HOME/.asdf/completions/asdf.bash ] && $HOME/.asdf/completions/asdf.bash
 
 #============================================================
 #
@@ -66,7 +74,6 @@ source $HOME/.functions # includes git_prompt
 source $HOME/.travis/travis.sh # added by travis gem
 source $HOME/.chruby
 
-export PATH="./bin:$PATH" # ALWAYS use local bins first!!!
 
 #============================================================
 #
