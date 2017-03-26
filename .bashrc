@@ -23,6 +23,7 @@ export PATH="$PATH:$HOME/.asdf/bin"
 export PATH="$PATH:$HOME/.asdf/shims"
 export PATH="$PATH:$HOME/Library/Haskell/bin"
 export PATH="$PATH:$HOME/.gems/ruby/2.3.1/bin"
+export PATH="$PATH:$HOME/.yarn/bin"
 # export GOPATH="$HOME/code/go/"
 # export PATH=$PATH:$GOPATH/bin
 
