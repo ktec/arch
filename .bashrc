@@ -44,6 +44,8 @@ $HOME/.asdf/completions/asdf.bash
 source $(brew --prefix)/etc/bash_completion
 source ~/.git-completion.bash
 
+eval $(/usr/libexec/path_helper) # pkgin path helper
+
 #============================================================
 #
 #  HISTORY
