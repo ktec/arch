@@ -72,8 +72,8 @@ shopt -s histappend
 source $HOME/.colours
 source $HOME/.aliases
 source $HOME/.functions # includes git_prompt
-source $HOME/.travis/travis.sh # added by travis gem
-source $HOME/.chruby
+# source $HOME/.travis/travis.sh # added by travis gem
+# source $HOME/.chruby
 
 
 #============================================================

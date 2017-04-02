@@ -79,11 +79,11 @@ set nowrap                                      " No line wrapping
 set backspace=indent,eol,start                  " Fix backspace for insert mode
 set confirm                                     " Require confirmation before closing
 set cursorline                                  " Highlight the current line
-let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
+" let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
 
-hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=darkgrey
-hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=darkgrey
-hi ColorColumn  cterm=NONE ctermbg=darkgrey guibg=darkgrey
+" hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=darkgrey
+" hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=darkgrey
+" hi ColorColumn  cterm=NONE ctermbg=darkgrey guibg=darkgrey
 
 set regexpengine=1                              " Force Vim to use the old Regex Engine, significantly improve performance (see https://bugs.archlinux.org/task/36693)
 
@@ -93,7 +93,7 @@ syntax enable                                   " Enable syntax highlighting
 set encoding=utf-8
 set termencoding=utf-8
 
-set background=dark
+set background=light
 let g:solarized_termtrans = 1
 colorscheme solarized
 highlight clear SignColumn
