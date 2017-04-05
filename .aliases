@@ -49,6 +49,8 @@ alias ts='tmux ls'
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop"
 alias pg_restart="pg_ctl -D /usr/local/var/postgres -m i -l /usr/local/var/postgres/server.log restart"
+# http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash
+alias find_dups="find . -type f -exec md5 '{}' ';' | sort | uniq -f 3 -d | sed -e \"s/.*(\(.*\)).*/\1/\""
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls).
@@ -95,6 +97,7 @@ alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
 alias amend_commit='git add . && git commit --amend -C HEAD'
 # alias git_log_work='git log --all --author=keithsalisbury | grep Date | awk \'{print " : "$2" "$4" "$3" "$6}\' | uniq -c | sort -k5M -k4'
+alias a='atom'
 
 #============================================================
 #
