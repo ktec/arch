@@ -6,3 +6,5 @@ vendor/ruby
 .byebug_history
 *.local.key
 *.local.crt
+.tool-versions
+

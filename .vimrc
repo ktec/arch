@@ -305,3 +305,16 @@ inoremap <Left> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying
 inoremap <Right> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying to navigate"<CR>
 inoremap <Up> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying to navigate"<CR>
 inoremap <Down> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying to navigate"<CR>
+
+" ====[ Move Lines ]====
+" Normal mode
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+
+" Insert mode
+inoremap <C-j> <ESC>:m .+1<CR>==gi
+inoremap <C-k> <ESC>:m .-2<CR>==gi
+
+" Visual mode
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
