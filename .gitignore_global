@@ -4,7 +4,7 @@ backlog.txt
 .ruby-version
 vendor/ruby
 .byebug_history
-*.local.key
-*.local.crt
+*.key
+*.crt
 .tool-versions
-
+phx_new*.ez
