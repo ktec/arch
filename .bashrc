@@ -1,5 +1,5 @@
-# =============================================================== #
 #
+# =============================================================== #
 # PERSONAL $HOME/.bashrc FILE for bash-3.0 (or later)
 # By Keith Salisbury
 #
@@ -19,28 +19,30 @@ export EDITOR='vim'
 
 # export PATH="./bin" # ALWAYS use local bins first!!!
 # export PATH="$PATH:./node_modules/.bin" # npm weirdness!
-export PATH=""
+PATH=""
 
-export PATH="$PATH:$HOME/.asdf/bin"
-export PATH="$PATH:$HOME/.asdf/shims"
-export PATH="$PATH:$HOME/.yarn/bin"
-export PATH="$PATH:$HOME/.gems/ruby/2.3.1/bin"
-export PATH="$PATH:$HOME/.asdf/installs/node/7.8.0/bin"
-export PATH="$PATH:$HOME/Library/Haskell/bin"
-# export PATH="$PATH:`yarn global bin`"
-# export GOPATH="$HOME/code/go/"
-# export PATH=$PATH:$GOPATH/bin
+PATH="$PATH:$HOME/.asdf/bin"
+PATH="$PATH:$HOME/.asdf/shims"
+PATH="$PATH:$HOME/.yarn/bin"
+PATH="$PATH:$HOME/.gems/ruby/2.3.1/bin"
+PATH="$PATH:$HOME/.asdf/installs/node/7.8.0/bin"
+PATH="$PATH:$HOME/Library/Haskell/bin"
+# PATH="$PATH:`yarn global bin`"
+# GOPATH="$HOME/code/go/"
+# PATH=$PATH:$GOPATH/bin
 
-export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
-export PATH="$PATH:/usr/local/share/npm/bin" # Make Grunt cli work!???
+PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
+PATH="$PATH:/usr/local/share/npm/bin" # Make Grunt cli work!???
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin"
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$PATH:/opt/X11/bin"
-export PATH="$PATH:/opt/pkg/sbin"
-export PATH="$PATH:/opt/pkg/bin"
+PATH="$PATH:/usr/local/bin:/usr/local/sbin"
+PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
+PATH="$PATH:/opt/X11/bin"
+PATH="$PATH:/opt/pkg/sbin"
+PATH="$PATH:/opt/pkg/bin"
+
+export PATH
 
 # asdf provides multiple versions of elixir...
 $HOME/.asdf/completions/asdf.bash
@@ -88,18 +90,22 @@ source $HOME/.functions # includes git_prompt
 #
 #============================================================
 
-PROMPT_COMMAND="find_git_branch; find_git_dirty; clean_history; $PROMPT_COMMAND"
-
 # Default Git enabled prompt with dirty state
+PROMPT_COMMAND="find_git_branch; find_git_dirty; clean_history;"
+# MYPS='$(echo -n "${PWD/#$HOME/~}" | awk -F "/" '"'"'{
+# if (length($0) > 14) { if (NF>4) print $1 "/" $2 "/.../" $(NF-1) "/" $NF;
+# else if (NF>3) print $1 "/" $2 "/.../" $NF;
+# else print $1 "/.../" $NF; }
+# else print $0;}'"'"')'
+# PS1='$(eval "echo ${MYPS}$ \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] ") '
 # export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 # export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 # export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
 export PS1="\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] "
-# export PS1="\[$bldgrn\]\u@\h\[$txtrst\] \w \[$bldylw\]\$git_branch\[$txtcyn\]\$git_dirty\[$txtrst\]\$ "
+# PS1="\[$bldgrn\]\u@\h\[$txtrst\] \w \[$bldylw\]\$git_branch\[$txtcyn\]\$git_dirty\[$txtrst\]\$ "
 
 # Default Git enabled root prompt (for use with "sudo -s")
 # export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
-
