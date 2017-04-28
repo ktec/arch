@@ -25,8 +25,8 @@ PATH="$PATH:$HOME/.asdf/bin"
 PATH="$PATH:$HOME/.asdf/shims"
 PATH="$PATH:$HOME/.yarn/bin"
 PATH="$PATH:$HOME/.gems/ruby/2.3.1/bin"
-PATH="$PATH:$HOME/.asdf/installs/node/7.8.0/bin"
-PATH="$PATH:$HOME/Library/Haskell/bin"
+# PATH="$PATH:$HOME/.asdf/installs/node/7.8.0/bin"
+# PATH="$PATH:$HOME/Library/Haskell/bin"
 # PATH="$PATH:`yarn global bin`"
 # GOPATH="$HOME/code/go/"
 # PATH=$PATH:$GOPATH/bin
@@ -45,6 +45,7 @@ PATH="$PATH:/opt/pkg/bin"
 export PATH
 
 # asdf provides multiple versions of elixir...
+$HOME/.asdf/asdf.sh
 $HOME/.asdf/completions/asdf.bash
 
 # brew install bash-completion
