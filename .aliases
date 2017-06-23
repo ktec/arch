@@ -41,6 +41,7 @@ alias ..='cd ../'
 alias ...='cd ../../'
 alias c='clear'
 alias vi=vim
+alias em='open -a Emacs.app'
 alias edit='vim'
 alias be='bundle exec '
 alias ta='tmux attach -t'
