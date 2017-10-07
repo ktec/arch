@@ -93,7 +93,7 @@ syntax enable                                   " Enable syntax highlighting
 set encoding=utf-8
 set termencoding=utf-8
 
-set background=light
+set background=dark
 let g:solarized_termtrans = 1
 colorscheme solarized
 highlight clear SignColumn

@@ -49,6 +49,7 @@
 	df = diff --color-words='[^[:space:]]'
 	sh = show --color-words='[^[:space:]]'
 	pend = cherry -v origin/master
+	psuh = push
 
 [format]
 	# pretty = %C(yellow)%h%Creset %C(magenta)%cd%Creset %d %s
