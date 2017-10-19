@@ -49,7 +49,10 @@ $HOME/.asdf/asdf.sh
 $HOME/.asdf/completions/asdf.bash
 
 # brew install bash-completion
-source $(brew --prefix)/etc/bash_completion
+case "$OSTYPE" in
+  darwin*) source $(brew --prefix)/etc/bash_completion  ;;
+  linux*)   echo "LINUX" ;;
+esac
 source ~/.git-completion.bash
 
 
@@ -82,7 +85,6 @@ source $HOME/.colours
 source $HOME/.aliases
 source $HOME/.functions # includes git_prompt
 # source $HOME/.travis/travis.sh # added by travis gem
-# source $HOME/.chruby
 
 
 #============================================================
