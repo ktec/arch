@@ -1,2 +1,10 @@
 .DS_Store
 .tags*
+backlog.txt
+.ruby-version
+vendor/ruby
+.byebug_history
+*.key
+*.crt
+.tool-versions
+phx_new*.ez

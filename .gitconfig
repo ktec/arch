@@ -1,20 +1,67 @@
-[push]
-	default = current
 [user]
 	name = Keith Salisbury
-	email = keith.salisbury@alliants.com
+	email = <keithsalisbury@gmail.com>
+	signingkey = 229704FE
+
 [color]
-  ui = true
+	branch = auto
+	diff = auto
+	status = auto
+  showbranch = auto
+	ui = true
+
+# [color "branch"]
+# 	current = yellow reverse
+# 	local = yellow
+# 	remote = green
+
+[color "diff"]
+	meta = dim
+	frag = cyan
+	old = red
+	new = green
+
 [core]
   editor = vim
 	excludesfile = ~/.gitignore_global
+
+[push]
+	default = current
+
 [alias]
 	co = checkout
-	br = branch
+  cp = cherry-pick
+	br = branch -v
 	ci = commit
   s  = status
 	st = status
   a  = add -p
   i  = add -i
+  g  = grep --break --heading --line-number
+  d  = diff
+  pf = push -f
+  l  = log --oneline --graph --decorate
+  ll = log -p
+  lt = log trunk
+	graph = log --graph --oneline --decorate=short --branches='*'
+  recent = for-each-ref --sort=-committerdate refs/heads/ --count=20 --format='%(HEAD)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) - %(color:green)%(committerdate:relative)%(color:reset)'
+  brx = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	df = diff --color-words='[^[:space:]]'
+	sh = show --color-words='[^[:space:]]'
+	pend = cherry -v origin/master
+	psuh = push
+
+[format]
+	# pretty = %C(yellow)%h%Creset %C(magenta)%cd%Creset %d %s
+
 [commit]
   template = ~/.commitmessage
+
+[grep]
+	extendRegexp = true
+	lineNumber = true
+
+[fetch]
+	prune = true
+[credential]
+	helper = osxkeychain

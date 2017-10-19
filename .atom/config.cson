@@ -1,0 +1,49 @@
+"*":
+  "atom-beautify":
+    arduino: {}
+  "atom-elixir-formatter":
+    elixirExecutable: "/Users/keith/code/elixir/elixir/bin/elixir"
+    mixExecutable: "/Users/keith/code/elixir/elixir/bin/mix"
+  core:
+    disabledPackages: [
+      "linter-scss-lint"
+      "tree-view-filter"
+      "hide-tree"
+      "linter-clang"
+    ]
+    telemetryConsent: "no"
+  editor:
+    fontSize: 15
+    showInvisibles: true
+  "exception-reporting":
+    userId: "ff3024c3-5bd4-40a5-9b81-e7a20d0a77b5"
+  "ide-purescript":
+    addNpmPath: true
+    pscIdeServerExe: "purs ide server"
+    useCombinedExe: true
+  linter:
+    lintOnChange: false
+  "linter-clang":
+    clangIncludePaths: [
+      "."
+      "/Users/keith/Documents/Arduino"
+    ]
+  "linter-ui-default":
+    panelHeight: 69
+  "spell-check":
+    addKnownWords: true
+    knownWords: [
+      "defpartial"
+      "defpartialp"
+      "zero-arity"
+      "n-arity"
+      "Pointfree"
+      "composable"
+      "defmodule"
+    ]
+  "tree-view":
+    hideIgnoredNames: true
+  "tree-view-filter":
+    globalFilter: "node_modules"
+  welcome:
+    showOnStartup: false

@@ -20,7 +20,6 @@ Plugin 'tpope/vim-fugitive'                     " Git plugin
 Plugin 'scrooloose/nerdtree'                    " A tree explorer plugin for vim
 Plugin 'tpope/vim-surround'                     " quoting/parenthesizing made simple
 Plugin 'kien/ctrlp.vim'                         " Fuzzy file, buffer, mru, tag, etc finder
-Plugin 'altercation/vim-colors-solarized'       " Precision colorscheme for vim
 Plugin 'bling/vim-airline'                      " Lean & mean status/tabline for vim that’s light as air
 Plugin 'mattn/emmet-vim'                        " Emmet for Vim
 Plugin 'othree/html5.vim'                       " HTML5 autocomplete and syntax
@@ -33,12 +32,12 @@ Plugin 'cespare/vim-toml'                       " Syntax highlighting for TOML f
 Plugin 'Shougo/neocomplete.vim'                 " Code completion engine
 Plugin 'tpope/vim-endwise'                      " Wisely add “end” in Ruby
 Plugin 'Raimondi/delimitMate'                   " Add closing delimiters automagically
-Plugin 'groenewege/vim-less'                    " Syntax highlighting for LESS
 Plugin 'christoomey/vim-tmux-navigator'         " Seamless navigation between tmux panes and splits
 Plugin 'nginx.vim'                              " Nginx config syntax highlighting
 Plugin 'pangloss/vim-javascript'                " Improves JavaScript syntax and indenting
 Plugin 'mxw/vim-jsx'                            " Syntax highlighting and indenting for jsx
 Plugin 'matchit.zip'                            " Extend % matching to support more than one character
+Plugin 'elixir-lang/vim-elixir'                 " Syntax highlighting for Elixir
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,7 +60,6 @@ filetype plugin indent on    " required
 "                           General Configurations
 " ############################################################################ "
 
-
 set hlsearch                                    " Highlight all search results
 set incsearch                                   " Searches for strings incrementally
 set scrolloff=3                                 " Give a margin around searches and movement
@@ -81,11 +79,11 @@ set nowrap                                      " No line wrapping
 set backspace=indent,eol,start                  " Fix backspace for insert mode
 set confirm                                     " Require confirmation before closing
 set cursorline                                  " Highlight the current line
-let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
+" let &colorcolumn=join(range(81, 512), ",")      " puts thick boundary after the 80 character line
 
-hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=darkgrey
-hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=darkgrey
-hi ColorColumn  cterm=NONE ctermbg=darkgrey guibg=darkgrey
+" hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=darkgrey
+" hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=darkgrey
+" hi ColorColumn  cterm=NONE ctermbg=darkgrey guibg=darkgrey
 
 set regexpengine=1                              " Force Vim to use the old Regex Engine, significantly improve performance (see https://bugs.archlinux.org/task/36693)
 
@@ -93,12 +91,12 @@ set fillchars+=vert:\ |                         " Remove the ugly vertical split
 
 syntax enable                                   " Enable syntax highlighting
 set encoding=utf-8
-set t_Co=256
-set term=xterm-256color
 set termencoding=utf-8
-set background=dark
-colorscheme solarized
-"highlight clear SignColumn
+
+" set background=dark
+" let g:solarized_termtrans = 1
+colorscheme desert
+highlight clear SignColumn
 
 set wildmode=longest,list                       " Tab completion shows the list of potential matches
 
@@ -123,6 +121,8 @@ autocmd BufRead,BufNewFile *eslintrc,*jshintrc,*bowerrc set filetype=json
 autocmd BufRead,BufNewFile *Guardfile,*pryrc set filetype=ruby
 autocmd BufRead,BufNewFile *Procfile set filetype=yaml
 autocmd BufRead,BufNewFile *Makefile set noexpandtab
+" Add ES6 syntax highlighting for .es6 files
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
 " ############################################################################ "
 "                             Custom Functions
@@ -305,3 +305,16 @@ inoremap <Left> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying
 inoremap <Right> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying to navigate"<CR>
 inoremap <Up> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying to navigate"<CR>
 inoremap <Down> <C-o>:throw " Vim Tip #5: Always leave insert mode before trying to navigate"<CR>
+
+" ====[ Move Lines ]====
+" Normal mode
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+
+" Insert mode
+inoremap <C-j> <ESC>:m .+1<CR>==gi
+inoremap <C-k> <ESC>:m .-2<CR>==gi
+
+" Visual mode
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
