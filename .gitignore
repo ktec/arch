@@ -4,6 +4,8 @@
 # Except these...
 
 !.aliases
+!.atom
+!.atom/*
 !.bash_profile
 !.bashrc
 !.cabal/config # haskell config
@@ -13,14 +15,14 @@
 !.emacs
 !.functions
 !.gemrc
-!.gitignore
-!.gitconfig
-!.gitignore_global
 !.git-completion.bash
+!.gitconfig
+!.gitignore
+!.gitignore_global
 !.inputrc
 !.pryrc
 !.railsrc
 !.tmux.conf
-!.vimrc
 !.vim/colors
+!.vimrc
 !.yarnrc
