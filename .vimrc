@@ -93,9 +93,9 @@ syntax enable                                   " Enable syntax highlighting
 set encoding=utf-8
 set termencoding=utf-8
 
-set background=dark
-let g:solarized_termtrans = 1
-colorscheme solarized
+" set background=dark
+" let g:solarized_termtrans = 1
+colorscheme desert
 highlight clear SignColumn
 
 set wildmode=longest,list                       " Tab completion shows the list of potential matches
