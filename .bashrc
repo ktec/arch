@@ -50,8 +50,12 @@ $HOME/.asdf/completions/asdf.bash
 
 # brew install bash-completion
 case "$OSTYPE" in
-  darwin*) source $(brew --prefix)/etc/bash_completion  ;;
-  linux*)   echo "LINUX" ;;
+  darwin*)
+    source $(brew --prefix)/etc/bash_completion
+    ;;
+  linux*)
+    echo "LINUX"
+    ;;
 esac
 source ~/.git-completion.bash
 
