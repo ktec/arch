@@ -54,7 +54,7 @@ case "$OSTYPE" in
     source $(brew --prefix)/etc/bash_completion
     ;;
   linux*)
-    echo "LINUX"
+    # here we can install linux only tools
     ;;
 esac
 source ~/.git-completion.bash
