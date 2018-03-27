@@ -1,0 +1,72 @@
+#!/bin/bash
+# Copyright (c) 2018 Keith Salisbury
+
+# To run this download the file and execute
+# You "could" try this:
+# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/setup.sh)
+
+read -p "Would you repartition your drives [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "Configure disks with GPT"
+  (
+  echo o              # Clear all partitions
+  echo y              # Confirm
+  echo n              # Add a new partition
+  echo                # Partition number (Accept default)
+  echo                # First sector (Accept default)
+  echo +550M          # Last sector
+  echo ef00           # EFI Partition type
+  echo n              # Add a new partition
+  echo                # Partition number (Accept default)
+  echo                # First sector (Accept default)
+  echo +32G           # Parition Size
+  echo 8304           # Linux root partition type
+  echo n              # Add a new partition
+  echo                # Partition number (Accept default)
+  echo                # First sector (Accept default)
+  echo +16G           # Parition Size
+  echo 8200           # Linux swap type
+  echo n              # Add a new partition
+  echo                # Partition number (Accept default)
+  echo                # First sector (Accept default)
+  echo                # Last sector (Accept default)
+  echo 8302           # Linux swap type
+  echo w              # Write changes
+  echo yes            # Confirm
+  ) | gdisk /dev/sda
+
+  echo "Create filesystems"
+  mkfs.vfat -F32 /dev/sda1
+  echo "y" | mkfs.ext4 /dev/sda2
+  echo "y" | mkfs.ext4 /dev/sda4
+  mount /dev/sda2 /mnt
+  mkdir -p /mnt/boot && mount /dev/sda1 /mnt/boot
+  mkdir -p /mnt/home && mount /dev/sda4 /mnt/home
+  mkswap /dev/sda3 && swapon /dev/sda3
+fi
+
+read -p "Would you like to edit the mirror list [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  vi /etc/pacman.d/mirrorlist
+fi
+
+echo "Install base"
+pacstrap /mnt base base-devel
+
+echo "Save file system table"
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+echo "Download setup part 2"
+curl -O https://raw.githubusercontent.com/ktec/arch/master/root.sh
+mkdir -p /mnt/setup
+chmod +x root.sh && mv root.sh /mnt/setup
+
+echo "Now configure CHROOT"
+arch-chroot /mnt /setup/root.sh
+
+# umount -R /mnt
+
+echo "Installation complete. Please reboot and log in."
+# systemctl reboot

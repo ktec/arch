@@ -1,0 +1,184 @@
+Arch linux on Macbook
+
+Alt-left or Alt-right to switch tty
+
+----
+
+Look under the section System Commands in the man-page for systemctl
+
+A brief list is as follows for different modes:
+
+# systemctl default
+# systemctl rescue
+# systemctl emergency
+Then, suspensions and the likes of which:
+
+# systemctl halt
+# systemctl poweroff
+# systemctl reboot
+# systemctl suspend
+# systemctl hibernate
+# systemctl hybrid-sleep
+
+---
+
+
+# setfont sun12x22
+
+// Now lets get the wifi working…
+# ip link
+# dhcpcd enp0s20u1
+# dhcpcd enp0s20u3
+
+// Install nicer terminal font
+# pacman -Sy terminus-font
+# pacman -Ql terminus-font
+# setfont ter-v32n
+
+// mkpart [part-type fs-type name] start end
+# parted -s /dev/sda -- mklabel gpt \
+    mkpart primary fat32 "EFI System" 1007.0KiB 550MiB \
+    mkpart primary ext4  "Linux root (x86-64)"  551MiB 67108864 \
+    mkpart primary swap  "Linux swap" 85014527 16777216 \
+    mkpart primary ext4  "Linux /home" 1954210086 -1s
+
+
+// Set up disks
+# fisk -l
+# cgdisk /dev/sda
+/dev/sda1 2048      1128447     1126400     550M    EFI System            [ef00]
+/dev/sda2 1128448   68237311    67108864    32G     Linux root (x86-64)   [8304]
+/dev/sda3 68237312  85014527    16777216    8G      Linux swap            [8200]
+/dev/sda4 85014528  1954210086  1869195559  891.3G  Linux home            [8302]
+
+
+Mount point	Partition	Partition type (GUID)	Partition attributes	Suggested size
+/boot	/dev/sda1	C12A7328-F81F-11D2-BA4B-00A0C93EC93B: EFI System Partition		550 MiB
+/	/dev/sda2	4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709: Linux x86-64 root (/)		23 - 32 GiB
+[SWAP]	/dev/sda3	0657FD6D-A4AB-43C4-84E5-0933C84B4F4F: Linux swap		More than 512 MiB
+/home	/dev/sda4	933AC7E1-2EB4-4F13-B844-0E14E2AEF915: Linux /home		Remainder of the device
+
+// set hostname
+# echo kmac > /etc/hostname
+
+// set password
+# passwd
+
+// Lets find out which Broadcom Adapter we have:
+// either of two distinct chips, 14E4:4360 and 14E4:43A0
+# lspci -vnn | grep -i net
+// We have 14e4:43a0 (wl is the appropriate driver)
+
+// Disable XHC1 from causing wakeups when lid is closed
+echo 'SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}="disabled"' > /etc/udev/rules.d/90-xhc_sleep.rules
+
+// Add $VISUAL to environment
+export VISUAL="vim" >> ~/.zshrc
+
+
+// Some commands - not sure whats necessary and whats not...
+# yaourt broadcom-wl-dkms
+# pacman -S linux{,-headers}
+
+// This might get us the additional network adapter...
+# ip link
+
+// Need network manager
+
+# nmcli dev wifi connect "CleverBunny-5G" password "xxxxxx"
+
+
+// Set up wifi using menu
+# pacman -S dialog
+# wifi-menu -o
+
+// Choose wifi...
+# netctl list
+# netctl enable wlp3s0-CleverBunny-Guest
+
+// This is Mate Desktop Environment
+#  pacman -S mate mate-extra xorg sddm --noconfirm
+#  systemctl enable sddm
+
+
+https://fusion809.github.io/how-to-install-arch-linux/
+
+
+# Set up wifi using menu
+# wifi-menu -o
+# netctl enable wlp3s0-CleverBunny-5G
+
+
+// Install Yaourt (1st option)
+
+user $  git clone https://aur.archlinux.org/package-query.git
+user $  pushd package-query
+user $  makepkg -si --noconfirm
+user $  popd
+user $  git clone https://aur.archlinux.org/yaourt.git
+user $  pushd yaourt
+user $  makepkg -si --noconfirm
+user $  popd
+user $  git clone https://aur.archlinux.org/broadcom-wl.git
+user $  pushd broadcom-wl
+user $  makepkg -si --noconfirm
+user $  popd
+
+to install Yaourt and broadcom-wl. Why did not I use Yaourt to install broadcom-wl?
+Well because every new kernel I install I must rebuild and install this package, so
+I felt that I should not use Yaourt (as Yaourt places PKGBUILDs in a subfolder of
+/tmp which is cleaned with each reboot).
+
+// Add Yaourt 2nd option
+
+Edit /etc/pacman.conf
+
+[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch
+
+// Sync the database & install yaourt
+# pacman -Sy yaourt
+
+
+// List the Broadcom Network Adapter
+$ lspci -vnn -d 14e4:
+
+
+For X
+
+/etc/X11/xorg.conf.d/00-keyboard.conf:
+Section "InputClass"
+        Identifier “system-keyboard"
+        MatchIsKeyboard "on"
+        Option “XkbLayout”	“gb,us"
+        Option “XkbVariant"	"nodeadkeys"
+        Option “XkbOptions"	"apple:badmap”
+EndSection
+
+
+// Setup network
+
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+systemctl enable systemd-timesyncd
+
+cat >> /etc/systemd/network/wl.network <<FILE
+[Match]
+Name=wl*
+
+[Network]
+DHCP=ipv4
+FILE
+
+pacman -S wpa_supplicant
+
+// Setup sound
+yaourt -Sy alsa-utils
+
+// list sound cards
+cat /proc/asound/cards
+aplay -l
+
+
+
