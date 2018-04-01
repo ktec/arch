@@ -1,0 +1,34 @@
+!-- Xft settings !
+Xft.dpi: 190
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+!-- URxvt !
+URxvt.background: #1b1b1b
+URxvt.foreground: #00ff00
+URxvt.scrollBar: false
+URxvt.font: xft:monaco:size=10
+URxvt.boldfold: xft:monco:bold:size=10
+URxvt.letterSpace: 1
+URxvt.saveLines: 1000000
+URxvt.keysym.C-equql: resize-font:bigger
+URxvt.keysym.C-minus: resize-font:smaller
+
+!-- Perl extensions !
+URxvt.perl-ext-common: default, matcher, font-size
+
+!-- Change font size !
+URxvt.keysym.Control-0x2b: perl:font-size:increase
+URxvt.keysym.Control-0x2d: perl:font-size:decrease
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!-- Xterm !
+xterm*font: *-Terminus-*-*-*-18-*
+
+!-- Keyboard Bindings !
+xbindkeys

@@ -26,3 +26,10 @@
 !.vim/colors
 !.vimrc
 !.yarnrc
+
+# Linux files
+
+!.Xresources
+!.config/i3/config
+!.xinitrc
+!.xbindkeys
