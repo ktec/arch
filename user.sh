@@ -41,8 +41,10 @@ read -p "Would you like to install dotfiles [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "Setting up dotfiles. This should move to a dotfiles.git repo..."
-  git clone --bare https://github.com/ktec/dotfiles.git .git
+  git clone -b arch --bare https://github.com/ktec/dotfiles.git .git
   git config core.bare false
+  git remote remove origin
+  git remote add -f origin git@github.com:ktec/dotfiles.git
 fi
 
 read -p "Would you like to set a desktop wallpaper [y/N]? " -n 1

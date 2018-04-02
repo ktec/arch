@@ -159,7 +159,7 @@ FILE
 # options snd-hda-intel index=1,0 power_save=1
 # FILE
 
-echo "Add Host specific X configurations"
+echo "Enable natural scrolling and will setup trackpad acceleration like it is on MacOS"
 cat > /etc/X11/xorg.conf.d/30-touchpad.conf <<FILE
 Section "InputClass"
     Identifier "touchpad"
@@ -172,6 +172,7 @@ Section "InputClass"
 EndSection
 FILE
 
+echo "Enable natural scrolling for our external mouse as well"
 cat > /etc/X11/xorg.conf.d/30-pointer.conf <<FILE
 Section "InputClass"
     Identifier "pointer"
