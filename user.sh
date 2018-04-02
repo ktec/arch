@@ -44,7 +44,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   git clone -b arch --bare https://github.com/ktec/dotfiles.git .git
   git config core.bare false
   git remote remove origin
-  git remote add -f origin git@github.com:ktec/dotfiles.git
+  git remote add -f origin https://github.com/ktec/dotfiles.git
 fi
 
 read -p "Would you like to set a desktop wallpaper [y/N]? " -n 1
