@@ -2,35 +2,55 @@
 
 ## Overview
 
-These dotfiles are designed differently to most.
+These dotfiles are managed differently to most.
 
-The strategy means your `~` directory is actually a git repo, and you ignore EVERYTHING EXCEPT the files you want git to manage. Checkout the `.gitingore` file for details. This strategy works extremely well for me, but might not suit everyone. Please investigate careful before choosing this approach for your own system.
+Why not just put your home directory under git management?
+
+"Because there's just too much stuff, most I don't want managed by git"
+
+Fair enough, thats why the core of this strategy is to "ignore everything except".
+
+Checkout .gitignore and you'll see what I mean.
+
+The advantages of this are that your home directory _is under source control_.
 
 ## Contents
 
-For the most part, I like to keep things as SIMPLE AS POSSIBLE. Some inspiration taken from here:
+I have both Linux and MacOSX devices. To deal with differences, I use branches.
 
-https://gist.github.com/kevinelliott/3135044
+Master branch contains common configurations.
 
-
-Use asdf for managing versions
+Use asdf for managing versions of stuff like ruby, elixir, haskell
 
 ## Usage
 
-I'm testing various strategies at the moment. Previously I have been working in master but now I maintain a local working branch called 'w' and submit PR's to master when I make changes.
-
 ## Installation
 
-Getting this on your machine is still wip, however something like this worked for me:
+To install, you need a little git trickery. Clone as a bare repository, then
+re-establish the remote connection.
 
+To clone the master branch:
 ```
-git clone --bare $URL .git
+cd
+git clone --bare https://github.com/ktec/dotfiles.git .git
 git config core.bare false
-git fetch -p
-git reset --hard
+git remote remove origin && git remote add -f origin git@github.com:ktec/dotfiles.git
 ```
 
-I'm not sure we need all these commands, but its a tough one to test until I have virtual machines up and running to test this properly.
+
+To clone a specific branch:
+```
+cd
+git clone -b arch --bare https://github.com/ktec/dotfiles.git .git
+git config core.bare false
+git remote remove origin && git remote add -f origin git@github.com:ktec/dotfiles.git
+```
+
+This works beautifully for me. Obviously if you want to do this yourself,
+you'll need to change things to suit your needs.
+
+
+## Other stuff
 
 Some other stuff:
 
