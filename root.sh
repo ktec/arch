@@ -11,6 +11,7 @@ pacman -Syu
 echo "Install terminus font"
 pacman -S --noconfirm terminus-font # Decent terminal font
 setfont ter-v32n
+echo 'FONT=ter-v32n' >> /etc/vconsole.conf
 
 echo "Setup locale"
 echo 'LANG="en_GB.UTF-8"' >> /etc/locale.conf
@@ -20,10 +21,15 @@ export LC_ALL='en_GB.UTF-8'
 locale-gen
 # echo 'LANGUAGE'
 # echo 'LC_ALL'
+rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
+
+echo "Configure keyboard"
 # localectl set-keymap de-latin1-nodeadkeys
 # localectl set-x11-keymap de-latin1-nodeadkeys
-rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
-echo 'FONT=ter-v32n' >> /etc/vconsole.conf
+# https://wiki.archlinux.org/index.php/Apple_Keyboard
+# tee /sys/module/hid_apple/parameters/iso_layout <<< 0
+echo "options hid_apple fnmode=0" | tee /etc/modprobe.d/hid_apple.conf
+echo 'FILES="$FILES:/etc/modprobe.d/hid_apple.conf"' | tee -a /etc/mkinitcpio.conf
 
 echo "Update hosts file"
 cat >> /etc/hosts <<FILE

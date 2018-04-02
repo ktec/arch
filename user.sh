@@ -27,16 +27,6 @@ yaourt -S --noconfirm ttf-monaco \
   urxvt-resize-font-git \
   kbdlight
 
-# DOTFILES
-read -p "Would you like to install dotfiles [y/N]? " -n 1
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo "Setting up dotfiles. This should move to a dotfiles.git repo..."
-  git clone https://github.com/ktec/arch.git
-  cp -r arch/dotfiles/.* ~
-  rm -rf arch
-fi
-
 read -p "Would you like to setup an SSH key [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -44,6 +34,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   ssh-keygen -t ed25519
   eval "$(ssh-agent -s)"
   ssh-add
+fi
+
+# DOTFILES
+read -p "Would you like to install dotfiles [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "Setting up dotfiles. This should move to a dotfiles.git repo..."
+  git clone --bare https://github.com/ktec/dotfiles.git .git
+  git config core.bare false
 fi
 
 read -p "Would you like to set a desktop wallpaper [y/N]? " -n 1

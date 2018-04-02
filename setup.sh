@@ -5,6 +5,9 @@
 # You "could" try this:
 # bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/setup.sh)
 
+# Use a more readable font
+setfont sun12x22
+
 read -p "Would you repartition your drives [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then

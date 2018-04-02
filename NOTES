@@ -42,7 +42,6 @@ Then, suspensions and the likes of which:
     mkpart primary swap  "Linux swap" 85014527 16777216 \
     mkpart primary ext4  "Linux /home" 1954210086 -1s
 
-
 // Set up disks
 # fisk -l
 # cgdisk /dev/sda
@@ -108,21 +107,7 @@ https://fusion809.github.io/how-to-install-arch-linux/
 # wifi-menu -o
 # netctl enable wlp3s0-CleverBunny-5G
 
-
 // Install Yaourt (1st option)
-
-user $  git clone https://aur.archlinux.org/package-query.git
-user $  pushd package-query
-user $  makepkg -si --noconfirm
-user $  popd
-user $  git clone https://aur.archlinux.org/yaourt.git
-user $  pushd yaourt
-user $  makepkg -si --noconfirm
-user $  popd
-user $  git clone https://aur.archlinux.org/broadcom-wl.git
-user $  pushd broadcom-wl
-user $  makepkg -si --noconfirm
-user $  popd
 
 to install Yaourt and broadcom-wl. Why did not I use Yaourt to install broadcom-wl?
 Well because every new kernel I install I must rebuild and install this package, so
@@ -149,13 +134,12 @@ For X
 
 /etc/X11/xorg.conf.d/00-keyboard.conf:
 Section "InputClass"
-        Identifier “system-keyboard"
-        MatchIsKeyboard "on"
-        Option “XkbLayout”	“gb,us"
-        Option “XkbVariant"	"nodeadkeys"
-        Option “XkbOptions"	"apple:badmap”
+    Identifier “system-keyboard"
+    MatchIsKeyboard "on"
+    Option “XkbLayout”	“gb,us"
+    Option “XkbVariant"	"nodeadkeys"
+    Option “XkbOptions"	"apple:badmap”
 EndSection
-
 
 // Setup network
 
@@ -173,12 +157,6 @@ FILE
 
 pacman -S wpa_supplicant
 
-// Setup sound
-yaourt -Sy alsa-utils
-
 // list sound cards
 cat /proc/asound/cards
 aplay -l
-
-
-
