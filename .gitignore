@@ -1,13 +1,13 @@
-# Ignore everything
+# Blacklist files/folders in the same directory as .gitignore
 /*
-# Except these...
 
+# Except these...
 !.aliases
 !.atom
 !.bash_profile
 !.bashrc
 !.cabal/config
-!.config/
+!.config/i3/config
 !.chruby
 !.colours
 !.commitmessage
