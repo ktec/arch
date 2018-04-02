@@ -92,6 +92,7 @@ systemctl enable ntpd
 systemctl enable avahi-daemon
 systemctl enable org.cups.cupsd.service
 
+echo "Enable networking using Network Manager"
 systemctl disable dhcpcd
 pacman -S networkmanager network-manager-applet networkmanager-openvpn
 systemctl disable dhcpcd.service
@@ -155,11 +156,6 @@ FILE
 # DHCP=ipv4
 # FILE
 
-# cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE
-# # Switch audio output from HDMI to PCH and Enable sound chipset powersaving
-# options snd-hda-intel index=1,0 power_save=1
-# FILE
-
 echo "Enable natural scrolling and will setup trackpad acceleration like it is on MacOS"
 cat > /etc/X11/xorg.conf.d/30-touchpad.conf <<FILE
 Section "InputClass"
@@ -203,9 +199,11 @@ FILE
 # EndSection
 # FILE
 
-echo "Update index for intel sound module"
+
+echo "Switch audio output from HDMI to PCH and Enable sound chipset powersaving"
+# cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE
 cat > /etc/modprobe.d/alsa-base.conf <<FILE
-options snd_hda_intel index=1
+options snd_hda_intel index=1,0 power_save=1
 FILE
 
 echo "Add rule to enable changing screen brightness without sudo"

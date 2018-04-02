@@ -45,6 +45,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   git config core.bare false
   git remote remove origin
   git remote add -f origin https://github.com/ktec/dotfiles.git
+  git fetch -p && git reset --hard origin/arch
 fi
 
 read -p "Would you like to set a desktop wallpaper [y/N]? " -n 1
