@@ -12,10 +12,10 @@ if [[ $- != *i* ]] ; then
 fi
 
 # source in some utility files
-[[ -f ~/.colours ]] && ~/.colours
-[[ -f ~/.aliases ]] && . ~/.bash_aliases
-[[ -f ~/.aliases ]] && ~/.aliases
-[[ -f ~/.functions ]] && ~/.functions
+[[ -f ~/.colours ]] && . ~/.colours
+[[ -f ~/.aliases ]] && . ~/.aliases
+[[ -f ~/.aliases ]] && . ~/.aliases
+[[ -f ~/.functions ]] && . ~/.functions
 
 export EDITOR='vim'
 export VISUAL="vim"
