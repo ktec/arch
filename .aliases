@@ -66,16 +66,11 @@ alias gac='git add . && git commit'
 alias gbd="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master.."
 alias gbgrep="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
 alias gbr='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
-alias gc='git commit'
-alias gco='git checkout'
-alias gcp='git cherry-pick'
-alias gd='git diff'
 alias gfr='git fetch -p && git reset --hard origin/master'
 alias gfr='git fetch -p;git reset --hard origin/master'
 alias git_delete_merged_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 alias git_delete_merged="git branch -r --merged | grep -v master | sed 's/origin\///' | xargs -n 1 git push --delete origin"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias gp='git push'
 alias grbm='git fetch -p;git rebase origin/master; git push --force-with-lease'
 alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias gs='git status -sb'
