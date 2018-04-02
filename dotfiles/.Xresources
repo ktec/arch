@@ -19,9 +19,9 @@ URxvt.saveLines: 1000000
 !-- Perl extensions !
 URxvt.perl-ext-common: default, matcher, resize-font
 
-!-- Change font size !
-URxvt.keysym.C-equal: resize-font:bigger
+!-- Change font size on the fly !
 URxvt.keysym.C-minus: resize-font:smaller
+URxvt.keysym.C-equal: resize-font:bigger
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
