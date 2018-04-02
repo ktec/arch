@@ -30,5 +30,3 @@ URxvt.iso14755_52: false
 !-- Xterm !
 xterm*font: *-Terminus-*-*-*-18-*
 
-!-- Keyboard Bindings !
-xbindkeys
