@@ -12,23 +12,27 @@ if [[ $- != *i* ]] ; then
 fi
 
 # source in some utility files
-source $HOME/.colours
-source $HOME/.aliases
-source $HOME/.functions # includes git_prompt
+[[ -f ~/.colours ]] && ~/.colours
+[[ -f ~/.aliases ]] && . ~/.bash_aliases
+[[ -f ~/.aliases ]] && ~/.aliases
+[[ -f ~/.functions ]] && ~/.functions
 
 export EDITOR='vim'
 export VISUAL="vim"
 
+# don't put duplicate lines in the history. See bash(1) for more options
+HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+# HISTCONTROL=erasedups
 # set history and size to unlimited, but ignore duplicates, ensure write on terminal close
-# Note that you don't need to, and indeed should not, export HISTIGNORE.
-# This is a bash internal variable, not an environment variable
-HISTCONTROL=erasedups
 HISTSIZE=
 HISTFILESIZE=
+
+# Note that you don't need to, and indeed should not, export HISTIGNORE.
+# This is a bash internal variable, not an environment variable
 # HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*"
 # HISTIGNORE=$'*([\t ])+([-%+,./0-9\:@A-Z_a-z])*([\t ])' # ignore single word commands
 
-# Append to the Bash history file, rather than overwriting it
+# append to the history file, don't overwrite it
 shopt -s histappend
 
 # Keychain - not sure this is the best approach...
