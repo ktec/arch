@@ -1,6 +1,5 @@
 # Ignore everything
-*
-
+/*
 # Except these...
 
 !.aliases
@@ -8,10 +7,10 @@
 !.bash_profile
 !.bashrc
 !.cabal/config
+!.config/
 !.chruby
 !.colours
 !.commitmessage
-!.config/i3/config
 !.emacs
 !.functions
 !.gemrc
@@ -29,3 +28,4 @@
 !.xinitrc
 !.Xresources
 !.yarnrc
+
