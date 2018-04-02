@@ -5,8 +5,9 @@
 # All code here is run as root
 # ------------------------------------------------------
 
-echo "Lets update Arch"
+echo "Lets update Arch and install the linux headers"
 pacman -Syu
+pacman -S linux{,-headers}
 
 echo "Install terminus font"
 pacman -S --noconfirm terminus-font # Decent terminal font
