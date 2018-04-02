@@ -1,13 +1,7 @@
-#
 # =============================================================== #
 # PERSONAL $HOME/.bashrc FILE for bash-3.0 (or later)
 # By Keith Salisbury
-#
-# Last modified: Wed Mar 27 14:43:47 GMT 2016
 # =============================================================== #
-
-# inspiration:
-# https://github.com/mathiasbynens/dotfiles
 
 export EDITOR='vim'
 
@@ -18,7 +12,6 @@ export EDITOR='vim'
 #============================================================
 
 # export PATH="./bin" # ALWAYS use local bins first!!!
-# export PATH="$PATH:./node_modules/.bin" # npm weirdness!
 PATH=""
 
 PATH="$PATH:$HOME/.asdf/bin"
@@ -116,3 +109,7 @@ export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]▸ "
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
+
+# Keychain
+
+eval `keychain --eval -q --agents ssh id_ed25519`
