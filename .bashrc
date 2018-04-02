@@ -9,6 +9,7 @@ source $HOME/.aliases
 source $HOME/.functions # includes git_prompt
 
 export EDITOR='vim'
+export VISUAL="vim"
 
 # set history and size to unlimited, but ignore duplicates, ensure write on terminal close
 # Note that you don't need to, and indeed should not, export HISTIGNORE.
@@ -22,5 +23,5 @@ HISTFILESIZE=
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
 
-# Keychain
-eval `keychain --eval -q --agents ssh id_ed25519`
+# Keychain - not sure this is the best approach...
+# eval `keychain --eval -q --agents ssh id_*`

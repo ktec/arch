@@ -5,13 +5,13 @@
 
 !.aliases
 !.atom
-!.atom/*
 !.bash_profile
 !.bashrc
-!.cabal/config # haskell config
+!.cabal/config
 !.chruby
 !.colours
 !.commitmessage
+!.config/i3/config
 !.emacs
 !.functions
 !.gemrc
@@ -25,11 +25,7 @@
 !.tmux.conf
 !.vim/colors
 !.vimrc
-!.yarnrc
-
-# Linux files
-
-!.Xresources
-!.config/i3/config
-!.xinitrc
 !.xbindkeys
+!.xinitrc
+!.Xresources
+!.yarnrc
