@@ -15,12 +15,13 @@ order += "ipv6"
 order += "disk /"
 order += "wireless _first_"
 order += "ethernet _first_"
-order += "battery all"
+#order += "battery all"
+order += "battery 0"
 order += "load"
 order += "tztime local"
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
+        format_up = "W: (%quality at %essid, %bitrate) %ip"
         format_down = "W: down"
 }
 
@@ -32,6 +33,17 @@ ethernet _first_ {
 
 battery all {
         format = "%status %percentage %remaining"
+}
+
+battery 0 {
+        format = "%status %percentage %remaining %emptytime"
+        format_down = "No battery"
+        status_chr = "⚡ CHR"
+        status_bat = "? BAT"
+        status_unk = "? UNK"
+        status_full = ""
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
 }
 
 tztime local {

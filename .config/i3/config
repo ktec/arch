@@ -190,7 +190,9 @@ bar {
         status_command i3status
 }
 
-bindsym $mod+shift+x exec i3lock --color "$bg_color"
+#bindsym $mod+shift+x exec i3lock --color "$bg_color"
+bindsym $mod+shift+x exec "betterlockscreen --lock dim"
+exec betterlockscreen -u .local/share/wallpaper.jpg -b 3
 
 exec_always feh --bg-scale ~/.local/share/wallpaper.jpg
 exec compton -f
