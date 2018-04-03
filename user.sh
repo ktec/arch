@@ -22,11 +22,6 @@ pushd broadcom-wl
 makepkg -si --noconfirm
 popd
 
-yaourt -S --noconfirm ttf-monaco \
-  networkmanager-dmenu-git \
-  urxvt-resize-font-git \
-  kbdlight
-
 read -p "Would you like to setup an SSH key [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -74,6 +69,25 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   # TODO: need to skip checksums for now...
   makepkg -si --noconfirm --skipchecksums
   popd
+fi
+
+read -p "Would you like to install some nice utilities [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  yaourt -S --noconfirm ttf-monaco \
+    networkmanager-dmenu-git \
+    urxvt-resize-font-git \
+    kbdlight \
+    lxappearance
+fi
+
+read -p "Would you like to install a theme [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  yaourt -S --noconfirm \
+    osx-arc-darker \
+    osx-arc-shadow \
+    arc-osx-icon-theme
 fi
 
 # ------------------------------------------------------

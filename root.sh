@@ -29,8 +29,9 @@ echo "Configure keyboard"
 # localectl set-x11-keymap de-latin1-nodeadkeys
 # https://wiki.archlinux.org/index.php/Apple_Keyboard
 # tee /sys/module/hid_apple/parameters/iso_layout <<< 0
-echo "options hid_apple fnmode=0" | tee /etc/modprobe.d/hid_apple.conf
-echo 'FILES="$FILES:/etc/modprobe.d/hid_apple.conf"' | tee -a /etc/mkinitcpio.conf
+# This doesn't seem to work in our favour - fn keys stop working with it
+# echo "options hid_apple fnmode=0" | tee /etc/modprobe.d/hid_apple.conf
+# echo 'FILES="$FILES:/etc/modprobe.d/hid_apple.conf"' | tee -a /etc/mkinitcpio.conf
 
 echo "Update hosts file"
 cat >> /etc/hosts <<FILE
@@ -45,15 +46,19 @@ nameserver 193.183.98.66
 nameserver 51.254.25.115
 nameserver 188.165.200.156
 nameserver 51.255.48.78
+
 # OpenDNS IPv6 nameservers
 nameserver 2620:0:ccc::2
 nameserver 2620:0:ccd::2
+
 # Google IPv4 nameservers
 nameserver 8.8.8.8
 nameserver 8.8.4.4
+
 # Google IPv6 nameservers
 nameserver 2001:4860:4860::8888
 nameserver 2001:4860:4860::8844
+
 # Comodo nameservers
 nameserver 8.26.56.26
 nameserver 8.20.247.20
@@ -113,12 +118,16 @@ echo "Update the time"
 ntpd -gq
 hwclock --systohc --utc
 
-echo "Disable wake from S3 on XHC1"
+# echo "Disable wake from S3 on XHC1"
 # cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE
 # # disable wake from S3 on XHC1
 # SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}="disabled"
 # FILE
 
+# TODO: Investigate whether this works
+# Possibly missing firmware for module: aic94xx
+# Possibly missing firmware for module: wd719x
+# https://gist.github.com/imrvelj/c65cd5ca7f5505a65e59204f5a3f7a6d
 
 echo "Load powertop autotune settings at boot"
 # For more effective power management it is recommended to follow
@@ -207,11 +216,15 @@ options snd_hda_intel index=1,0 power_save=1
 FILE
 
 echo "Add rule to enable changing screen brightness without sudo"
-cat > /etc/udev/rules.d/backlight.rules <<FILE
+cat > /etc/udev/rules.d/90-backlight.rules <<FILE
 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="gmux_backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="gmux_backlight", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="gmux_backlight", RUN+="setpci -v -H1 -s 00:01.00 BRIDGE_CONTROL=0"
 FILE
+# cat > /etc/udev/rules.d/90-backlight.rules <<FILE
+# # disable wake from S3 on XHC1
+# SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}="disabled"
+# FILE
 
 echo "Download and install brightness script"
 curl https://gist.githubusercontent.com/ktec/155d4599a79dea985d3bdefde6f87903/raw/7f7ccd0ac2f8b3ad5731b624bdeaa931a49d8cfb/brightness -o /usr/local/bin/brightness
