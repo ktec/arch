@@ -22,9 +22,9 @@ find_git_branch() {
         branch='detached*'
     fi
     if [[ "$status" != "" ]]; then
-        git_branch=" ($branch*)"
+        git_branch="($branch*)"
     else
-        git_branch=" ($branch)"
+        git_branch="($branch)"
     fi
   else
     git_branch=""

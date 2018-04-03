@@ -37,7 +37,7 @@ shopt -s histappend
 
 # Custom Prompt
 PROMPT_COMMAND="find_git_branch; clean_history;"
-export PS1="[\u@\h \W]\$git_branch$ "
+export PS1="[\u@\h \W\$git_branch]$ "
 
 # Keychain - not sure this is the best approach...
 # eval `keychain --eval -q --agents ssh id_*`
