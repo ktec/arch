@@ -1,15 +1,15 @@
 !-- Xft settings !
 Xft.dpi: 190
-Xft.autohint: 0
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
-Xft.hinting: 1
-Xft.antialias: 1
+Xft.antialias: true
 Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.autohint: false
+Xft.lcdfilter: lcddefault
 
 !-- URxvt !
-URxvt.background: #1b1b1b
-URxvt.foreground: #00ff00
+URxvt*background: #1b1b1b
+URxvt*foreground: #B2B2B2
 URxvt.scrollBar: false
 URxvt.font: xft:monaco:size=10
 URxvt.boldfold: xft:monco:bold:size=10
