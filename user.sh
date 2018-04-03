@@ -78,7 +78,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     networkmanager-dmenu-git \
     urxvt-resize-font-git \
     kbdlight \
-    lxappearance
+    lxappearance \
+    compton \
+    betterlockscreen \
+    gedit \
+    nautilus
 fi
 
 read -p "Would you like to install a theme [y/N]? " -n 1
@@ -87,7 +91,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   yaourt -S --noconfirm \
     osx-arc-darker \
     osx-arc-shadow \
-    arc-osx-icon-theme
+    arc-osx-icon-theme \
+    moka-icon-theme-git
 fi
 
 # ------------------------------------------------------
