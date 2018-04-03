@@ -25,7 +25,7 @@ set $bg_colour              #2f343f
 set $active_bg_colour       #3f444f
 set $inactive_bg_colour     #2f343f
 set $text_colour            #f3f4f5
-set $inactive_test_colour   #676E7D
+set $inactive_text_colour   #676E7D
 set $urgent_bg_colour       #E53935
 
 # Before i3 v4.8, we used to recommend this one as the default:
