@@ -2,15 +2,17 @@
 /*
 
 # Except these...
+!.Xresources
 !.aliases
 !.atom
 !.bash_profile
 !.bashrc
 !.cabal/config
-!.config/i3/config
 !.chruby
 !.colours
 !.commitmessage
+!.config/gtk-3.0/settings.ini
+!.config/i3/config
 !.emacs
 !.functions
 !.gemrc
@@ -18,6 +20,7 @@
 !.gitconfig
 !.gitignore
 !.gitignore_global
+!.gtkrc-2.0.mine
 !.inputrc
 !.pryrc
 !.railsrc
@@ -26,6 +29,5 @@
 !.vimrc
 !.xbindkeys
 !.xinitrc
-!.Xresources
 !.yarnrc
 
