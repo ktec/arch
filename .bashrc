@@ -6,20 +6,17 @@
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
-if [[ $- != *i* ]] ; then
-  # Shell is non-interactive.  Be done now!
-  return
-fi
+[[ $- != *i* ]] && return
 
 # source in some utility files
 [[ -f ~/.colours ]] && . ~/.colours
-[[ -f ~/.aliases ]] && . ~/.aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
 [[ -f ~/.functions ]] && . ~/.functions
 
 export EDITOR='vim'
 export VISUAL="vim"
 
+# HISTORY
 # don't put duplicate lines in the history. See bash(1) for more options
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 # HISTCONTROL=erasedups
@@ -35,9 +32,19 @@ HISTFILESIZE=
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# Custom Prompt
+# PROMPT
 PROMPT_COMMAND="find_git_branch; clean_history;"
 export PS1="[\u@\h \W\$git_branch]$ "
 
+# PATH
+# asdf provides multiple versions of elixir, ruby, haskell, elm, etc
+$HOME/.asdf/asdf.sh
+$HOME/.asdf/completions/asdf.bash
+
+# SSH
 # Keychain - not sure this is the best approach...
 # eval `keychain --eval -q --agents ssh id_*`
+if [ -z "$SSH_ATH_SOCK" ]; then
+    eval $(ssh-agent)
+    ssh-add
+fi
