@@ -47,7 +47,7 @@ $HOME/.asdf/completions/asdf.bash
 # Some useful info here: https://wiki.archlinux.org/index.php/GNOME/Keyring
 # I have implemented suggested update "Using the keyring outside GNOME"
 # "PAM method" which updates /etc/pam.d/login
-if [ -z "$SSH_ATH_SOCK" ]; then
+if [ -z "$SSH_AUTH_SOCK" ]; then
     eval $(ssh-agent)
     ssh-add
 fi
