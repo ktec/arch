@@ -36,12 +36,19 @@ battery all {
 }
 
 battery 0 {
-        format = "%status %percentage %remaining %emptytime"
+        #format = "%percentage %status %remaining %emptytime"
+        format = "%percentage %status %remaining"
         format_down = "No battery"
-        status_chr = "⚡ CHR"
-        status_bat = "? BAT"
-        status_unk = "? UNK"
-        status_full = ""
+        # status_chr = " Charging"
+        # status_bat = "? BAT"
+        # status_unk = "? UNK"
+        # status_full = "Full"
+
+        status_chr = "CHR"
+        status_bat = "BAT"
+        status_unk = "UNK"
+        status_full = "FULL"
+
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
 }
@@ -51,7 +58,7 @@ tztime local {
 }
 
 load {
-        format = "%1min"
+        format = "Load: %1min"
 }
 
 disk "/" {

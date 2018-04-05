@@ -17,7 +17,7 @@ URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
 
 !-- Perl extensions !
-URxvt.perl-ext-common: default, matcher, resize-font
+URxvt.perl-ext-common: default,matcher,resize-font
 
 !-- Change font size on the fly !
 URxvt.keysym.C-minus: resize-font:smaller
