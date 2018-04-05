@@ -44,6 +44,7 @@ $HOME/.asdf/completions/asdf.bash
 # SSH
 # Keychain - not sure this is the best approach...
 # eval `keychain --eval -q --agents ssh id_*`
+# Some useful info here: https://wiki.archlinux.org/index.php/GNOME/Keyring
 if [ -z "$SSH_ATH_SOCK" ]; then
     eval $(ssh-agent)
     ssh-add
