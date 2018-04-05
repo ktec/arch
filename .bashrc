@@ -45,6 +45,8 @@ $HOME/.asdf/completions/asdf.bash
 # Keychain - not sure this is the best approach...
 # eval `keychain --eval -q --agents ssh id_*`
 # Some useful info here: https://wiki.archlinux.org/index.php/GNOME/Keyring
+# I have implemented suggested update "Using the keyring outside GNOME"
+# "PAM method" which updates /etc/pam.d/login
 if [ -z "$SSH_ATH_SOCK" ]; then
     eval $(ssh-agent)
     ssh-add
