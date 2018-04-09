@@ -230,6 +230,26 @@ echo "Download and install brightness script"
 curl https://gist.githubusercontent.com/ktec/155d4599a79dea985d3bdefde6f87903/raw/7f7ccd0ac2f8b3ad5731b624bdeaa931a49d8cfb/brightness -o /usr/local/bin/brightness
 chmod +x /usr/local/bin/brightness
 
+read -p "Would you like to install bluetooth?" -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Install bluez"
+    pacman -S --noconfirm bluez bluez-utils
+
+# This is the "old" way
+echo "Add rule to load bluetooth at boot"
+cat > /etc/udev/rules.d/10-local.rules <<-FILE
+# Set bluetooth power up
+ACTION=="add", KERNEL=="hci0", RUN+="/usr/bin/hciconfig %k up"
+FILE
+
+    # This is the "new" way
+    sed -i '/#AutoEnable=false/s/AutoEnable=true//' /etc/bluetooth/main.conf
+
+    # TODO: Confirm the new way actually works - didn't seem to on first attempt
+fi
+
+
 regex='^[0-9a-zA-Z._-]+$'
 
 while true; do
@@ -251,6 +271,9 @@ passwd $USERNAME
 
 echo "Add user to video group"
 gpasswd -a $USERNAME video
+
+echo "Add user to bluetooth group"
+gpasswd -a $USERNAME lp
 
 echo "Enable wheel users for sudo commands"
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
