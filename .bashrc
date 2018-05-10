@@ -40,6 +40,7 @@ export PS1="[\u@\h \W\$git_branch]$ "
 # asdf provides multiple versions of elixir, ruby, haskell, elm, etc
 [[ -f ~/.asdf/asdf.sh ]] && . ~/.asdf/asdf.sh
 [[ -f ~/.asdf/completions/asdf.bash ]] && . ~/.asdf/completions/asdf.bash
+[[ -f ~/.git-completion.bash ]] && . ~/.git-completion.bash
 
 # SSH
 # Keychain - not sure this is the best approach...
