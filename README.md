@@ -38,6 +38,12 @@ https://gist.github.com/ktec/73b874bbaf3d20fd7e9f75346a6888aa
  - https://www.youtube.com/watch?v=_kjbj-Ez1vU
  - https://www.youtube.com/watch?v=N_V7bKVuaRw
 
+
+## i3 Customisations
+ - https://terminal.sexy/
+ - http://dotshare.it/dots/
+
+
 # Install scripts
  - https://gist.github.com/SoreGums/9171333
  - https://github.com/helmuthdu/aui
