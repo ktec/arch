@@ -15,6 +15,21 @@ Storage 	512 GB SSD 	Optical 	None*
 
 https://gist.github.com/ktec/73b874bbaf3d20fd7e9f75346a6888aa
 
+
+# Getting Started
+
+Create a bootable USB with Arch linux on it, reboot the machine and hold down "Alt" to bring up the boot menu. Now choose "EFI" to boot off the USB stick.Once you're in to a command prompt, now we need to get wifi working. Easiest way, is to plugin in a mobile, and use the USB tethering.
+
+After that, follow these steps:
+
+```
+# ip link
+...
+# dhcpcd <your_interface_name>
+...
+# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/setup.sh)
+```
+
 # Links
 
 ## Tutorials
