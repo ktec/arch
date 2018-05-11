@@ -2,7 +2,10 @@
 xset r rate 270 30
 
 # Start Xorg server at this DPI
-xrandr --dpi 190
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
+# xrandr --dpi 190
+xrandr --auto
 
 # Merge & load configuration from .Xresources
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
