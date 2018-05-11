@@ -41,6 +41,7 @@ export PS1="[\u@\h \W\$git_branch]$ "
 [[ -f ~/.asdf/asdf.sh ]] && . ~/.asdf/asdf.sh
 [[ -f ~/.asdf/completions/asdf.bash ]] && . ~/.asdf/completions/asdf.bash
 [[ -f ~/.git-completion.bash ]] && . ~/.git-completion.bash
+PATH="$PATH:$HOME/.bin"
 
 # SSH
 # Keychain - not sure this is the best approach...

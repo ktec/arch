@@ -30,6 +30,7 @@
 !.vim/colors
 !.vimrc
 !.vimrc.local
+!.vimrc.local.bundles
 !.xbindkeysrc
 !.xinitrc
 !.Xmodmap
