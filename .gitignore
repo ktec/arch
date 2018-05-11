@@ -29,6 +29,7 @@
 !.tmux.conf
 !.vim/colors
 !.vimrc
+!.vimrc.local
 !.xbindkeysrc
 !.xinitrc
 !.Xmodmap
