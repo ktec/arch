@@ -1,0 +1,16 @@
+
+"" Tabs
+unmap <Tab>
+unmap <S-Tab>
+unmap <silent> <S-t>
+
+
+" Elixir formatter
+" let g:mix_format_on_save = 1
+" Plug 'mhinz/vim-mix-format'
+autocmd BufWritePost *.exs silent :!mix format %
+autocmd BufWritePost *.ex silent :!mix format %
+
+"" NERDTree configuration
+let g:NERDTreeShowHidden = 1
+
