@@ -5,3 +5,4 @@ LINK=.local/share/wallpaper.jpg
 
 [[ -L $LINK ]] && rm -f $LINK
 ln -s $SOURCE $LINK
+sh .fehbg
