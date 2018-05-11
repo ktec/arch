@@ -11,8 +11,13 @@ Xft.lcdfilter: lcddefault
 URxvt*background: #1b1b1b
 URxvt*foreground: #B2B2B2
 URxvt.scrollBar: false
-URxvt.font: xft:monaco:size=10
-URxvt.boldfold: xft:monco:bold:size=10
+URxvt*font: xft:xos4 Terminus:pizelsize=17,\
+            xft:monaco:size=10,\
+            xft:Noto Mono:size=10
+
+URxvt*boldfold: xft:xos4 Terminus:pizelsize=17,\
+                xft:monaco:bold:size=10,\
+                xft:Noto Mono:bold:size=10
 URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
 
