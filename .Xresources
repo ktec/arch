@@ -8,18 +8,15 @@ Xft.autohint: false
 Xft.lcdfilter: lcddefault
 
 !-- URxvt !
-URxvt*background: #1b1b1b
-URxvt*foreground: #B2B2B2
+/* URxvt*background: #1b1b1b */
+/* URxvt*foreground: #B2B2B2 */
 URxvt.scrollBar: false
-URxvt*font: xft:xos4 Terminus:pizelsize=17,\
-            xft:monaco:size=10,\
-            xft:Noto Mono:size=10
-
-URxvt*boldfold: xft:xos4 Terminus:pizelsize=17,\
-                xft:monaco:bold:size=10,\
-                xft:Noto Mono:bold:size=10
+URxvt*font: xft:Liberation Mono:size=11
+URxvt*font: xft:Liberation Mono:bold:size=11
 URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0200/c800
 
 !-- Perl extensions !
 URxvt.perl-ext-common: default,matcher,resize-font
@@ -31,7 +28,7 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 !-- Xterm !
-xterm*font: *-Terminus-*-*-*-18-*
+xterm*font: *-Terminus-*-*-*-27-*
 
 ! special
 *.foreground:   #c7ccd1
