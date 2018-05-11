@@ -3,6 +3,6 @@
 SOURCE=`find /usr/share/wallpapers/ -type f | shuf -n1`
 LINK=.local/share/wallpaper.jpg
 
-[[ -L $LINK ]] && rm -f $LINK
-ln -s $SOURCE $LINK
-sh .fehbg
+[[ -L $LINK ]] && rm -f "$LINK"
+ln -s "$SOURCE" "$LINK"
+feh --bg-scale "$LINK"
