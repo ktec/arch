@@ -82,7 +82,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     compton \
     betterlockscreen \
     gedit \
-    nautilus
+    nautilus \
+    ranger \
+    w3m \
+    rsync \
+    unzip
 fi
 
 read -p "Would you like to install a theme [y/N]? " -n 1
@@ -95,6 +99,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     moka-icon-theme-git
 fi
 
+read -p "Would you like to install asdf [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
+fi
 # ------------------------------------------------------
 # END USER SETUP
 # ------------------------------------------------------
