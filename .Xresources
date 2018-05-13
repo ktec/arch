@@ -8,16 +8,19 @@ Xft.autohint: false
 Xft.lcdfilter: lcddefault
 
 !-- URxvt !
-!URxvt*background: #1b1b1b
-!URxvt*foreground: #B2B2Bu
+!URxvt.background: #1b1b1b
+!URxvt.foreground: #B2B2Bu
 URxvt.scrollBar: false
-URxvt*font: xft:Liberation Mono:size=11,\
-            xft:Terminess Powerline:size=12
-!URxvt*font: xft:Liberation Mono:bold:size=11
+URxvt.font: xft:Liberation Mono:size=11,\
+            xft:Terminess Powerline:size=12,
+            xft:FontAwesome:size=9
+URxvt.boldFont: xft:Liberation Mono:bold:size=11,\
+            xft:Terminess Powerline:size=12,
+            xft:FontAwesome:size=9
 URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
-URxvt*depth: 32
-URxvt*background: rgba:0000/0000/0200/c800
+URxvt.depth: 32
+URxvt.background: rgba:0000/0000/0200/c800
 
 !-- Perl extensions !
 URxvt.perl-ext-common: default,matcher,resize-font
