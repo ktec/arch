@@ -8,11 +8,13 @@ unmap <silent> <S-t>
 " Elixir formatter
 " let g:mix_format_on_save = 1
 " Plug 'mhinz/vim-mix-format'
-autocmd BufWritePost *.exs silent :!mix format %
-autocmd BufWritePost *.ex silent :!mix format %
+" autocmd BufWritePost *.exs silent :!mix format %
+" autocmd BufWritePost *.ex silent :!mix format %
 
 "" NERDTree configuration
 let g:NERDTreeShowHidden = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -38,5 +40,3 @@ colorscheme one
 let g:airline_theme='one'
 let g:airline_powerline_fonts = 1
 
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
