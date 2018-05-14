@@ -90,7 +90,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     the_silver_searcher \
     wx \
     inotify-tools \
-    ttf-dejavu
+    ttf-dejavu \
+    sshfs \
+    unzip
 fi
 
 read -p "Would you like to install a theme [y/N]? " -n 1
@@ -112,8 +114,7 @@ fi
 read -p "Would you like to install postgres [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    yaourt -S --noconfirm \
-        postgresql
+    yaourt -S --noconfirm postgresql
     systemctl enable postgresql.service
     sudo -u postgres initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data'
     systemctl start postgresql.service
