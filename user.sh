@@ -86,7 +86,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     ranger \
     w3m \
     rsync \
-    unzip
+    unzip \
+    the_silver_searcher \
+    wx \
+    inotify-tools \
+    ttf-dejavu
 fi
 
 read -p "Would you like to install a theme [y/N]? " -n 1
