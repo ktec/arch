@@ -108,6 +108,17 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
 fi
+
+read -p "Would you like to install postgres [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    yaourt -S --noconfirm \
+        postgresql
+    systemctl enable postgresql.service
+    sudo -u postgres initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data'
+    systemctl start postgresql.service
+    sudo -u postgres createuser --interactive
+fi
 # ------------------------------------------------------
 # END USER SETUP
 # ------------------------------------------------------
