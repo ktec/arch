@@ -47,6 +47,8 @@ if ls --color > /dev/null 2>&1; then # GNU `ls`
 else # macOS `ls`
   colorflag='-G'
 fi
+export LS_OPTS='--color=auto'
+alias ls='ls ${LS_OPTS}'
 
 alias la="ls -aF ${colorflag}"
 alias ld='ls -ld'

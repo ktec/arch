@@ -102,6 +102,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# launch a new terminal with same path as focused terminal
+bindsym $mod+b exec ~/.config/i3/shell
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
