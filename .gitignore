@@ -7,14 +7,16 @@
 !.atom
 !.bash_profile
 !.bashrc
-!.bin/
+!.bin/*
 !.cabal/config
 !.chruby
 !.colours
 !.commitmessage
 !.config/gtk-3.0/settings.ini
 !.config/i3/config
+!.config/i3/shell
 !.config/i3status/config
+!.config/dunst/dunstrc
 !.emacs
 !.functions
 !.gemrc
