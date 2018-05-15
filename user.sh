@@ -83,6 +83,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     betterlockscreen \
     gedit \
     nautilus \
+    thunar \
     ranger \
     w3m \
     rsync \
@@ -90,10 +91,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     the_silver_searcher \
     wx \
     inotify-tools \
+    dunst \
     ttf-dejavu \
-    sshfs \
-    unzip \
-    dunst
+    sshfs
 fi
 
 read -p "Would you like to install a theme [y/N]? " -n 1
