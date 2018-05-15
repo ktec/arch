@@ -92,7 +92,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     inotify-tools \
     ttf-dejavu \
     sshfs \
-    unzip
+    unzip \
+    dunst
 fi
 
 read -p "Would you like to install a theme [y/N]? " -n 1
@@ -120,6 +121,26 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     systemctl start postgresql.service
     sudo -u postgres createuser --interactive
 fi
+
+read -p "Would you like to setup bluetooth [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    yaourt -S --noconfirm bluez bluez-utils
+    systemctl enable bluetooth.service
+    systemctl start bluetooth.service
+    systemctl status bluetooth.service
+    echo "Try: agent on\npower on\nscan on\n"
+    echo "Also change autoenable: /etc/bluetooth/main.conf"
+    bluetoothctl
+fi
+
+read -p "Would you like to prevent suspend when docked? [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    sed -i '/#HandleLidSwitchDocked/s/^#//' /etc/systemd/logind.conf
+    systemctl restart systemd-logind.service
+fi
+
 # ------------------------------------------------------
 # END USER SETUP
 # ------------------------------------------------------
