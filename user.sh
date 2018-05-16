@@ -144,7 +144,9 @@ fi
 read -p "Would you like to install dependencies for erlang? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    yaourt -S openssl glu ncurses wxgtk2 erlang-unixodbc lksctp-tools fop git libxslt mesa perl unixodbc
+    yaourt -S openssl glu ncurses wxgtk2 erlang-unixodbc lksctp-tools fop git libxslt mesa perl unixodbc curses libssh
+    export KERL_CONFIGURE_OPTIONS="--enable-compat28"
+    asdf install erlang 20.3
 fi
 
 # ------------------------------------------------------
