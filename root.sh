@@ -216,6 +216,10 @@ cat > /etc/modprobe.d/alsa-base.conf <<FILE
 options snd_hda_intel index=1,0 power_save=1
 FILE
 
+echo "Download and install brightness script"
+curl https://gist.githubusercontent.com/ktec/155d4599a79dea985d3bdefde6f87903/raw/7f7ccd0ac2f8b3ad5731b624bdeaa931a49d8cfb/brightness -o /usr/local/bin/brightness
+chmod +x /usr/local/bin/brightness
+
 echo "Add rule to enable changing screen brightness without sudo"
 cat > /etc/udev/rules.d/90-backlight.rules <<FILE
 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="gmux_backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
@@ -227,9 +231,15 @@ FILE
 # SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}="disabled"
 # FILE
 
-echo "Download and install brightness script"
-curl https://gist.githubusercontent.com/ktec/155d4599a79dea985d3bdefde6f87903/raw/7f7ccd0ac2f8b3ad5731b624bdeaa931a49d8cfb/brightness -o /usr/local/bin/brightness
-chmod +x /usr/local/bin/brightness
+echo "Download and install kbdlight script"
+curl https://gist.githubusercontent.com/ktec/6efc41613a772f1e2807a14782478342/raw/21a1874b69e69b68b852306898aa826c41a01305/kbdlight -o /usr/local/bin/kbdlight
+chmod +x /usr/local/bin/kbdlight
+
+echo "Add rule to enable changing screen brightness without sudo"
+cat > /etc/udev/rules.d/90-kbdlight.rules <<FILE
+ACTION=="add", SUBSYSTEM=="smc::kbd_backlight", KERNEL=="smc::kbd_backlight", RUN+="/bin/chgrp video /sys/class/leds/%k/brightness"
+ACTION=="add", SUBSYSTEM=="smc::kbd_backlight", KERNEL=="smc::kbd_backlight", RUN+="/bin/chmod g+w /sys/class/leds/%k/brightness"
+FILE
 
 read -p "Would you like to install bluetooth?" -n 1
 echo

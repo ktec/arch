@@ -77,7 +77,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   yaourt -S --noconfirm ttf-monaco \
     networkmanager-dmenu-git \
     urxvt-resize-font-git \
-    kbdlight \
     lxappearance \
     compton \
     betterlockscreen \
