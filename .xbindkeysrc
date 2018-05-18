@@ -14,12 +14,12 @@ m:0x0 + c:121
 XF86AudioMute
 
 # Decrease Keyboard Brightness
-"kbdlight down"
+"kbdlight -set -5%"
 m:0x0 + c:237
 XF86KbdBrightnessDown
 
 # Increase Keyboard Brightness
-"kbdlight up"
+"kbdlight -set +5%"
 m:0x0 + c:238
 XF86KbdBrightnessUp
 
