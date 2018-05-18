@@ -15,6 +15,7 @@
 
 export EDITOR='vim'
 export VISUAL="vim"
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 # HISTORY
 # don't put duplicate lines in the history. See bash(1) for more options
