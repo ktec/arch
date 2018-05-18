@@ -12,9 +12,9 @@ PID=$(xprop -id $ID | grep -m 1 PID | cut -d " " -f 3)
 
 # Get last child process (shell, vim, etc)
 if [ -n "$PID" ]; then
-	TREE=$(pstree -lpA $PID | tail -n 1)
-	PROCESS=$(echo $TREE | awk -F'---' '{print $NF}')
-	PID=$(echo $TREE | awk -F'---' '{print $NF}' | sed -re 's/[^0-9]//g')
+	# TREE=$(pstree -lpA $PID | tail -n 1)
+	# PROCESS=$(echo $TREE | awk -F'---' '{print $NF}')
+	# PID=$(echo $TREE | awk -F'---' '{print $NF}' | sed -re 's/[^0-9]//g')
 	# If we're in a tmux session then we need to do some gymnastics to get the
 	# cwd since the tmux session is not a direct child of the terminal
 	if [[ $PROCESS == tmux* ]];
