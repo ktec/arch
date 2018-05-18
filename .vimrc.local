@@ -13,8 +13,9 @@ autocmd BufWritePost *.ex silent :!mix format %
 
 "" NERDTree configuration
 let g:NERDTreeShowHidden = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeMouseMode = 2
 
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
