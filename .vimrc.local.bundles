@@ -1,1 +1,3 @@
 Plug 'rakr/vim-one'
+" vim-plug
+Plug 'elixir-editors/vim-elixir'
