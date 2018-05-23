@@ -4,10 +4,11 @@
 # Except these...
 !.Xresources
 !.aliases
-!.atom
+!.atom/.apmrc
+!.atom/config.cson
 !.bash_profile
 !.bashrc
-!.bin/*
+!.bin
 !.cabal/config
 !.chruby
 !.colours
@@ -17,6 +18,8 @@
 !.config/i3/shell
 !.config/i3status/config
 !.config/dunst/dunstrc
+!.config/mpd
+!.config/youtube-dl
 !.emacs
 !.functions
 !.gemrc
@@ -37,4 +40,3 @@
 !.xinitrc
 !.Xmodmap
 !.yarnrc
-
