@@ -222,14 +222,13 @@ chmod +x /usr/local/bin/brightness
 
 echo "Add rule to enable changing screen brightness without sudo"
 cat > /etc/udev/rules.d/90-backlight.rules <<FILE
-ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="gmux_backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
-ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="gmux_backlight", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
-ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="gmux_backlight", RUN+="setpci -v -H1 -s 00:01.00 BRIDGE_CONTROL=0"
-FILE
-# cat > /etc/udev/rules.d/90-backlight.rules <<FILE
-# # disable wake from S3 on XHC1
+SUBSYSTEM=="backlight", ACTION=="add", \
+  RUN+="/bin/chgrp video %S%p/brightness", \
+  RUN+="/bin/chmod g+w %S%p/brightness", \
+  RUN+="/bin/setpci -v -H1 -s 00:01.00 BRIDGE_CONTROL=0"
+# disable wake from S3 on XHC1
 # SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}="disabled"
-# FILE
+FILE
 
 echo "Download and install kbdlight script"
 curl https://gist.githubusercontent.com/ktec/6efc41613a772f1e2807a14782478342/raw/21a1874b69e69b68b852306898aa826c41a01305/kbdlight -o /usr/local/bin/kbdlight
@@ -237,8 +236,9 @@ chmod +x /usr/local/bin/kbdlight
 
 echo "Add rule to enable changing screen brightness without sudo"
 cat > /etc/udev/rules.d/90-kbdlight.rules <<FILE
-ACTION=="add", SUBSYSTEM=="smc::kbd_backlight", KERNEL=="smc::kbd_backlight", RUN+="/bin/chgrp video /sys/class/leds/%k/brightness"
-ACTION=="add", SUBSYSTEM=="smc::kbd_backlight", KERNEL=="smc::kbd_backlight", RUN+="/bin/chmod g+w /sys/class/leds/%k/brightness"
+SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", \
+  RUN+="/bin/chgrp video %S%p/brightness", \
+  RUN+="/bin/chmod g+w %S%p/brightness"
 FILE
 
 read -p "Would you like to install bluetooth?" -n 1
