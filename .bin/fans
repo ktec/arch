@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# Basic fan control
+#
+# Author: ktec
+
+set -o errexit
+set -o nounset
+
+usage() {
+cat <<EOF
+Usage: ${0} [options]
+    max
+    auto
+EOF
+}
+
+max() {
+    sudo tee /sys/devices/platform/applesmc.768/fan1_manual <<< 1
+    sudo tee /sys/devices/platform/applesmc.768/fan1_output <<< 6200
+
+    sudo tee /sys/devices/platform/applesmc.768/fan2_manual <<< 1
+    sudo tee /sys/devices/platform/applesmc.768/fan2_output <<< 6200
+}
+
+auto() {
+    sudo tee /sys/devices/platform/applesmc.768/fan1_manual <<< 0
+    sudo tee /sys/devices/platform/applesmc.768/fan2_manual <<< 0
+}
+
+if [ "$#" -eq "0" ]; then
+    usage
+    exit 2
+fi
+
+case "$1" in
+    "auto") auto;;
+    "max") max;;
+    *) usage;;
+esac
