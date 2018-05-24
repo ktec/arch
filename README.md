@@ -30,6 +30,28 @@ After that, follow these steps:
 # bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/setup.sh)
 ```
 
+## Special Instructions
+
+There is an ACPI interrupt which seems to go crazy - there are various solutions to prevent but the most successful (but equally vulgar) is to disable it during boot:
+
+If you want to do this you can find out which interrupt are going crazy by running:
+```
+grep . -r /sys/firmware/acpi/interrupts/
+```
+If any has a crazy large number - that's the one. Mine is GPE17, so to disable it at boot, edit the boot script to look like this:
+
+```
+# /boot/loader/entries/arch.conf
+
+title Arch Linux
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux.img
+options root=PARTUUID=9ea22b9f-e6d6-4b81-a9b0-c3a4c5ea1f9a rw quiet acpi_mask
+_gpe=0x17
+```
+
+
 # Links
 
 ## Tutorials
