@@ -11,6 +11,7 @@ usage() {
 cat <<EOF
 Usage: ${0} [options]
     max
+    set
     auto
 EOF
 }
@@ -21,6 +22,14 @@ max() {
 
     sudo tee /sys/devices/platform/applesmc.768/fan2_manual <<< 1
     sudo tee /sys/devices/platform/applesmc.768/fan2_output <<< 6200
+}
+
+set_speed() {
+    sudo tee /sys/devices/platform/applesmc.768/fan1_manual <<< 1
+    sudo tee /sys/devices/platform/applesmc.768/fan1_output <<< ${1}
+
+    sudo tee /sys/devices/platform/applesmc.768/fan2_manual <<< 1
+    sudo tee /sys/devices/platform/applesmc.768/fan2_output <<< ${1}
 }
 
 auto() {
@@ -36,5 +45,6 @@ fi
 case "$1" in
     "auto") auto;;
     "max") max;;
+    [0-9]*) set_speed ${1//[!0-9]/} ;;
     *) usage;;
 esac
