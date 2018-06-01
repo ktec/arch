@@ -88,7 +88,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     rsync \
     unzip \
     the_silver_searcher \
-    wx \
     inotify-tools \
     dunst \
     ttf-dejavu \
