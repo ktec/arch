@@ -74,24 +74,24 @@ fi
 read -p "Would you like to install some nice utilities [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  yaourt -S --noconfirm ttf-monaco \
-    networkmanager-dmenu-git \
-    urxvt-resize-font-git \
-    lxappearance \
-    compton \
-    betterlockscreen \
-    gedit \
-    nautilus \
-    thunar \
-    ranger \
-    w3m \
-    rsync \
-    unzip \
-    the_silver_searcher \
-    inotify-tools \
-    dunst \
-    ttf-dejavu \
-    sshfs
+    yaourt -S --noconfirm ttf-monaco
+    yaourt -S --noconfirm ttf-dejavu
+    yaourt -S --noconfirm compton
+    yaourt -S --noconfirm lxappearance
+    yaourt -S --noconfirm networkmanager-dmenu-git
+    yaourt -S --noconfirm dunst
+    yaourt -S --noconfirm inotify-tools
+    yaourt -S --noconfirm urxvt-resize-font-git
+    yaourt -S --noconfirm betterlockscreen
+    yaourt -S --noconfirm gedit
+    yaourt -S --noconfirm the_silver_searcher
+    yaourt -S --noconfirm nautilus
+    yaourt -S --noconfirm thunar
+    yaourt -S --noconfirm ranger
+    yaourt -S --noconfirm w3m
+    yaourt -S --noconfirm rsync
+    yaourt -S --noconfirm unzip
+    yaourt -S --noconfirm sshfs
 fi
 
 read -p "Would you like to install a theme [y/N]? " -n 1
