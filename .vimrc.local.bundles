@@ -1,3 +1,6 @@
+" Colors
+
 Plug 'rakr/vim-one'
+Plug 'aradunovic/perun.vim'
 " vim-plug
 Plug 'elixir-editors/vim-elixir'
