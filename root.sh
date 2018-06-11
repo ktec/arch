@@ -91,6 +91,7 @@ pacman -S --noconfirm acpid ntp dbus avahi cups cronie ntp
 pacman -S --noconfirm python-dbus
 pacman -S --noconfirm arandr
 pacman -S --noconfirm wxgtk
+pacman -S --noconfirm redshift
 
 echo "Enable system services"
 systemctl enable acpid
