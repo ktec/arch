@@ -242,6 +242,20 @@ SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", \
   RUN+="/bin/chmod g+w %S%p/brightness"
 FILE
 
+
+read -p "Would you like to hibernate on low battery?" -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+echo "Add rule to hibernate on low battery level"
+cat > /etc/udev/rules.d/99-low-battery-hibernate.rules <<FILE
+# Suspend the system when the battery level drops to 5% or lower
+SUBSYSTEM=="power_supply", \
+  ATTR{status}=="Discharging", \
+  ATTR{capacity}=="[0-5]", \
+  RUN+="/usr/bin/systemctl hibernate"
+FILE
+fi
+
 read -p "Would you like to install bluetooth?" -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
