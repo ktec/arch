@@ -17,12 +17,15 @@ Xft*lcdfilter: lcddefault
 /* URxvt.boldFont: xft:Liberation Mono:bold:size=11,\ */
 /*                 xft:Dejavu Sans Mono for Powerline:size=19,\ */
 /*                 xft:FontAwesome:size=9 */
-URxvt.font: xft:Consolas:size=11,\
-            xft:Dejavu Sans Mono for Powerline:size=11
+! URxvt.font: xft:Consolas:size=11,\
+URxvt*font: xft:Dejavu Sans Mono for Powerline:size=13
+URxvt*boldFont: xft:Dejavu Sans Mono for Powerline:size=13
+XTerm*faceName: xft:Dejavu Sans Mono for Powerline:size=13
 
-XTerm*faceName: xft:Dejavu Sans Mono for Powerline:size=11
+URxvt*font: xft:Dejavu Sans Mono:size=11
+XTerm*faceName: xft:Dejavu Sans Mono:size=11
 XTerm*utf8: 2
-URxvt.letterSpace: 0
+URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
 /* URxvt*saveLines:            32767 */
 /* XTerm*saveLines:            32767 */
