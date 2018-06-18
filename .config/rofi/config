@@ -1,0 +1,3 @@
+rofi.combi-modi:    window,drun,ssh
+rofi.theme:         arthur
+rofi.modi:          combi
