@@ -94,7 +94,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -273,6 +273,11 @@ exec --no-startup-id betterlockscreen -u .local/share/wallpaper.jpg -b 3
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale ~/.local/share/wallpaper.jpg
+
+# Rofi
+# bindsym $mod+q exec "rofi -modi window,drun,run -show drun -sidebar-mode -terminal termite -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
+
+bindsym $mod+space exec "rofi -modi window,drun,run -show drun -sidebar-mode"
 
 # start tray applications
 exec --no-startup-id nm-applet
