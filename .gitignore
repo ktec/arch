@@ -23,6 +23,8 @@
 !.config/mpd/
 !.config/mpd/playlists/
 !.config/youtube-dl/
+!.config/rofi/
+!.config/redshift/
 !.emacs
 !.functions
 !.gemrc
