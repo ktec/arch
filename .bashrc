@@ -38,11 +38,28 @@ PROMPT_COMMAND="find_git_branch; clean_history;"
 export PS1="[\u@\h \W\$git_branch]$ "
 
 # PATH
+
+pathmunge () {
+    # Remove from path
+    [[ ":$PATH:" == *":$1:"* ]] && PATH="${PATH//$1:/}"
+    # Now add to path
+    if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)" ; then
+       if [ "$2" = "after" ] ; then
+          PATH="$PATH:$1"
+       else
+          PATH="$1:$PATH"
+       fi
+    fi
+}
+
 # asdf provides multiple versions of elixir, ruby, haskell, elm, etc
 [[ -f ~/.asdf/asdf.sh ]] && . ~/.asdf/asdf.sh
 [[ -f ~/.asdf/completions/asdf.bash ]] && . ~/.asdf/completions/asdf.bash
 [[ -f ~/.git-completion.bash ]] && . ~/.git-completion.bash
-PATH="$PATH:$HOME/.bin"
+# For elixir development
+pathmunge $HOME/code/elixir/bin
+# Add all local bin
+pathmunge .bin
 
 # SSH
 # Keychain - not sure this is the best approach...

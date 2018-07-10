@@ -11,6 +11,9 @@ xrandr --auto
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
+# https://bugs.archlinux.org/task/46374
+source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+
 # Let QT and GTK autodetect retina screen and autoadjust
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export GDK_SCALE=2

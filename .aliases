@@ -36,6 +36,7 @@ alias ts='tmux ls'
 alias vi=vim
 alias which='type -a'
 # http://www.commandlinefu.com/commands/view/3555/find-duplicate-files-based-on-size-first-then-md5-hash
+alias watch_elixir="find . -name '*.ex' -o -name '*.exs' | entr mix test"
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls).

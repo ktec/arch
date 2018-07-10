@@ -1,5 +1,5 @@
 !-- Xft settings !
-Xft*dpi: 190
+Xft*dpi: 220
 /* Xft*dpi:                    96 */
 Xft*antialias: true
 /* Xft*rgba: rgb */
@@ -18,12 +18,12 @@ Xft*lcdfilter: lcddefault
 /*                 xft:Dejavu Sans Mono for Powerline:size=19,\ */
 /*                 xft:FontAwesome:size=9 */
 ! URxvt.font: xft:Consolas:size=11,\
-URxvt*font: xft:Dejavu Sans Mono for Powerline:size=13
-URxvt*boldFont: xft:Dejavu Sans Mono for Powerline:size=13
-XTerm*faceName: xft:Dejavu Sans Mono for Powerline:size=13
+/* URxvt*font: xft:Dejavu Sans Mono for Powerline:size=13 */
+/* XTerm*faceName: xft:Dejavu Sans Mono for Powerline:size=13 */
+/* URxvt*boldFont: xft:Dejavu Sans Mono for Powerline:size=13 */
 
 URxvt*font: xft:Dejavu Sans Mono:size=11
-XTerm*faceName: xft:Dejavu Sans Mono:size=11
+URxvt*faceName: xft:Dejavu Sans Mono:size=11
 XTerm*utf8: 2
 URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
@@ -42,6 +42,11 @@ URxvt.saveLines: 1000000
 !
 !-- Perl extensions !
 URxvt.perl-ext-common: default,matcher,resize-font
+!-- URxvt.perl-ext-common: ...,tabbed,...
+
+!-- Change background/foreground colours !
+URxvt.keysym.C-7: command:\033]11;#ffffff\007\033]10;black\007
+URxvt.keysym.C-6: command:\033]11;#000000\007\033]10;white\007
 
 !-- Change font size on the fly !
 URxvt.keysym.C-minus: resize-font:smaller

@@ -9,10 +9,11 @@ set -o nounset
 
 usage() {
 cat <<EOF
-Usage: ${0} [options]
-    max
-    set
-    auto
+Usage:
+    ${0} max
+    ${0} auto
+    ${0} 100
+    
 EOF
 }
 
