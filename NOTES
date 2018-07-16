@@ -22,6 +22,17 @@ Then, suspensions and the likes of which:
 
 ---
 
+sudo pacman -Syu
+sudo pacman -Syyu # update pacman
+du -sh /var/cache/pacman/pkg/ # Look up how much space pacman is using
+ls /var/cache/pacman/pkg/ | wc -l
+more /var/lib/pacman/db.lck
+sudo more /var/lib/pacman/db.lck
+sudo rm /var/lib/pacman/db.lck
+
+
+---
+
 
 # setfont sun12x22
 
@@ -160,3 +171,143 @@ pacman -S wpa_supplicant
 // list sound cards
 cat /proc/asound/cards
 aplay -l
+
+
+LIST OF INSTALLATIONS
+======================
+
+aurman -G arc-osx-icon-theme
+aurman -Rsn osx-arc-darker arc-osx-icon-theme
+aurman -S --no-confirm ttf-google-fonts-git
+aurman -S --noconfirm inotify-tools
+aurman -S --noconfirm networkmanager-dmenu-git urxvt-resize-font-git lxappearance compton betterlockscreen gedit thunar ranger w3m rsync unzip the_silver_searcher inotify-tools dunst sshfs
+aurman -S --noconfirm postgresql
+aurman -S --noconfirm pulseaudio-alsa
+aurman -S --noconfirm pulseaudio-bluetooth
+aurman -S --noconfirm ttf-google-fonts-git
+aurman -S blueman
+aurman -S bumblebee
+aurman -S bumblebee bbswitch primus
+aurman -S bumblebee mesa
+aurman -S canon-pixma-mg5500-complete
+aurman -S cmp-daemon
+aurman -S cpufreq
+aurman -S Dejavu
+aurman -S docker
+aurman -S docker-git
+aurman -S erlang-crypto
+aurman -S erlang-ssl
+aurman -S fancontrol
+aurman -S google-fonts-git
+aurman -S grpc
+aurman -S grpc-git
+aurman -S hexchat
+aurman -S kbdlight
+aurman -S libksane-git
+aurman -S lsof
+aurman -S menlo
+aurman -S mpd
+aurman -S ncmpcpp
+aurman -S ncpamixer
+aurman -S neovim
+aurman -S netstat
+aurman -S nvidia-beta
+aurman -S osx-arc-darker
+aurman -S osx-arc-darker arc-osx-icon-theme
+aurman -S osx-arc-darker arc-osx-icon-theme
+aurman -S osx-arc-shadow
+aurman -S postgres
+aurman -S postgresql
+aurman -S powerline
+aurman -S powerline-fonts
+aurman -S pulseaudio
+aurman -S ranger
+aurman -S rsync
+aurman -S rxvt-unicode
+aurman -S slimjet
+aurman -S the_silver_searcher
+aurman -S unzip
+aurman -S w3m
+aurman -S wx
+aurman -S wx
+aurman -S wxgtk2.8
+aurman -S wxgtk3
+aurman -S wxgtk3-dev
+aurman -S wxWidgets
+aurman -S xf86-video-intel
+aurman -S xsltproc
+aurman -Syua
+aurman numix-gtk-theme
+
+sudo pacman -Ql canon-pixma-mg5650-complete
+sudo pacman -R wxgtk3
+sudo pacman -Rd nvidia-beta nvidia-beta-utils libglvnd
+sudo pacman -Rdd postgresql
+sudo pacman -Rn wxgtk3
+sudo pacman -Rs wxgtk3
+sudo pacman -S --no-confirm thermald
+sudo pacman -S --no-confirm wxgtk3
+sudo pacman -S --noconfirm at
+sudo pacman -S --noconfirm gnome-themes-standard arc-gtk-theme
+sudo pacman -S --noconfirm thermald
+sudo pacman -S --noconfirm webkit2gtk
+sudo pacman -S --noconfirm webkite2gtk
+sudo pacman -S --noconfirm wxgtk3
+sudo pacman -S atom
+sudo pacman -S aurman
+sudo pacman -S bbswitch
+sudo pacman -S bluez
+sudo pacman -S cpufreq
+sudo pacman -S dig
+sudo pacman -S docker-git
+sudo pacman -S erlang-crypto
+sudo pacman -S gnome-themes-standard arc-gtk-theme
+sudo pacman -S gparted
+sudo pacman -S gparted
+sudo pacman -S gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
+sudo pacman -S gvfs
+sudo pacman -S hunspell
+sudo pacman -S hunspell-en
+sudo pacman -S inotify-tolls
+sudo pacman -S iotop
+sudo pacman -S krita
+sudo pacman -S libpng
+sudo pacman -S libreoffice
+sudo pacman -S libssh
+sudo pacman -S libwayland-eg1-mesa
+sudo pacman -S lxdappearance-gtk3 gnome-themes-standard arc-gtk-theme
+sudo pacman -S mplayer
+sudo pacman -S openssl
+sudo pacman -S openssl glu ncurses erlang-unixodbc lksctp-tools fop git libxslt mesa perl unixodbc
+sudo pacman -S openssl glu ncurses wxgtk2 erlang-unixodbc lksctp-tools fop git libxslt mesa perl unixodbc
+sudo pacman -S postgresql
+sudo pacman -S pv
+sudo pacman -S redshift
+sudo pacman -S rofi
+sudo pacman -S rxvt-unicode
+sudo pacman -S sane
+sudo pacman -S sshfs
+sudo pacman -S sshfs
+sudo pacman -S thermald
+sudo pacman -S tlp
+sudo pacman -S transmission
+sudo pacman -S transmission-gtk
+sudo pacman -S tree
+sudo pacman -S ttf-dejavu
+sudo pacman -S udevcontrol
+sudo pacman -S vlc
+sudo pacman -S wayland
+sudo pacman -S wayland wlc
+sudo pacman -S wx
+sudo pacman -S wxgtk
+sudo pacman -S wxgtk2
+sudo pacman -S wxgtk3
+sudo pacman -S xf86-video-intel
+sudo pacman -S xf86-video-nouveau
+sudo pacman -S xf86-video-nouveau nouveau-dri
+sudo pacman -S xsane
+sudo pacman -S yay
+sudo pacman -Sy libnotify
+sudo pacman -Syyu --nocon
+sudo pacman -U /tmp/yaourt-tmp-keith/aur-arc-osx-icon-theme/arc-osx-icon-theme-2.1.tar.gz
+sudo pacman -U slimjet-18.0.5.0-1-x86_64.pkg.tar.xz

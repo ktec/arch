@@ -5,14 +5,37 @@
 # All code here is run as root
 # ------------------------------------------------------
 
+echo "Install terminus font"
+pacman -S --noconfirm terminus-font # A font we can read
+setfont ter-v32n
+echo 'FONT=ter-v32n' >> /etc/vconsole.conf
+
+echo "Enable networking using Network Manager"
+systemctl disable dhcpcd
+pacman -S networkmanager network-manager-applet networkmanager-openvpn
+systemctl disable dhcpcd.service
+systemctl enable NetworkManager.service
+
+read -p "Would you like to connect to wifi [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  nmcli dev wifi rescan
+  WIFIS=$(nmcli -t dev wifi list|cut -d':' -f2)
+
+  echo "Which wifi would you like to connect to?"
+  select WIFI in $WIFIS exit; do
+    case $WIFI in
+      exit) echo "exiting"
+            exit 0 ;;
+         *) nmcli dev wifi connect $WIFI;
+            break ;;
+    esac
+  done
+fi
+
 echo "Lets update Arch and install the linux headers"
 pacman -Syu
 pacman -S linux{,-headers}
-
-echo "Install terminus font"
-pacman -S --noconfirm terminus-font # Decent terminal font
-setfont ter-v32n
-echo 'FONT=ter-v32n' >> /etc/vconsole.conf
 
 echo "Setup locale"
 echo 'LANG="en_GB.UTF-8"' >> /etc/locale.conf
@@ -20,8 +43,6 @@ echo 'LC_COLLATE="C"' >> /etc/locale.conf
 sed -i '/#en_GB/s/^#//' /etc/locale.gen
 export LC_ALL='en_GB.UTF-8'
 locale-gen
-# echo 'LANGUAGE'
-# echo 'LC_ALL'
 rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
 
 echo "Configure keyboard"
@@ -32,6 +53,17 @@ echo "Configure keyboard"
 # This doesn't seem to work in our favour - fn keys stop working with it
 # echo "options hid_apple fnmode=0" | tee /etc/modprobe.d/hid_apple.conf
 # echo 'FILES="$FILES:/etc/modprobe.d/hid_apple.conf"' | tee -a /etc/mkinitcpio.conf
+
+# cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<FILE
+# Section "InputClass"
+#   Identifier "system-keyboard"
+#   MatchIsKeyboard "on"
+#   Option "XkbLayout"  "gb,us"
+#   Option "XkbVariant" "nodeadkeys"
+#   Option "XkbOptions" "apple:badmap"
+# EndSection
+# FILE
+
 
 echo "Update hosts file"
 cat >> /etc/hosts <<FILE
@@ -80,7 +112,8 @@ echo "Install some stuff"
 pacman -S --noconfirm dialog git sudo htop wget gvim acpi
 # pacman -S --noconfirm nvidia
 pacman -S --noconfirm xorg-server xorg-apps xorg-xinit xorg-twm xterm
-pacman -S --noconfirm i3-gaps dmenu rxvt-unicode gtk2-perl i3lock i3status
+pacman -S --noconfirm i3-gaps dmenu i3lock i3status
+pacman -S --noconfirm rxvt-unicode gtk2-perl
 pacman -S --noconfirm wpa_supplicant
 pacman -S --noconfirm xbindkeys
 pacman -S --noconfirm powertop
@@ -92,24 +125,13 @@ pacman -S --noconfirm python-dbus
 pacman -S --noconfirm arandr
 pacman -S --noconfirm wxgtk
 pacman -S --noconfirm redshift
+pacman -S --noconfirm xfce4-power-manager
 
 echo "Enable system services"
 systemctl enable acpid
 systemctl enable ntpd
 systemctl enable avahi-daemon
 systemctl enable org.cups.cupsd.service
-
-echo "Enable networking using Network Manager"
-systemctl disable dhcpcd
-pacman -S networkmanager network-manager-applet networkmanager-openvpn
-systemctl disable dhcpcd.service
-systemctl enable NetworkManager.service
-nmcli dev wifi list
-read -p "Would you like to connect to CleverBunny-Guest wifi [y/N]? " -n 1
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  nmcli dev wifi connect "CleverBunny-Guest"
-fi
 
 # systemctl enable systemd-networkd
 # systemctl enable systemd-resolved
@@ -177,6 +199,7 @@ Section "InputClass"
     Option "NaturalScrolling" "true"
     Option "ClickMethod" "clickfinger"
     Option "AccelProfile" "flat"
+    Option "AccelSpeed" "0.4"
 EndSection
 FILE
 
@@ -189,16 +212,6 @@ Section "InputClass"
     Option "NaturalScrolling" "true"
 EndSection
 FILE
-
-# cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<FILE
-# Section "InputClass"
-#   Identifier "system-keyboard"
-#   MatchIsKeyboard "on"
-#   Option "XkbLayout"  "gb,us"
-#   Option "XkbVariant" "nodeadkeys"
-#   Option "XkbOptions" "apple:badmap"
-# EndSection
-# FILE
 
 # cat > /etc/X11/xorg.conf.d/10-nvidia-brightness.conf <<FILE
 # Section "Device"
@@ -256,25 +269,52 @@ SUBSYSTEM=="power_supply", \
 FILE
 fi
 
-read -p "Would you like to install bluetooth?" -n 1
-echo
+# read -p "Would you like to install bluetooth?" -n 1
+# echo
+# if [[ $REPLY =~ ^[Yy]$ ]]; then
+#     echo "Install bluez"
+#     pacman -S --noconfirm bluez bluez-utils
+
+# # This is the "old" way
+# echo "Add rule to load bluetooth at boot"
+# cat > /etc/udev/rules.d/10-local.rules <<-FILE
+# # Set bluetooth power up
+# ACTION=="add", KERNEL=="hci0", RUN+="/usr/bin/hciconfig %k up"
+# FILE
+
+#     # This is the "new" way
+#     sed -i '/#AutoEnable=false/s/AutoEnable=true//' /etc/bluetooth/main.conf
+
+#     # TODO: Confirm the new way actually works - didn't seem to on first attempt
+# fi
+
+read -p "Would you like to setup a low battery alarm? [y/N]? " -n 1echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Install bluez"
-    pacman -S --noconfirm bluez bluez-utils
-
-# This is the "old" way
-echo "Add rule to load bluetooth at boot"
-cat > /etc/udev/rules.d/10-local.rules <<-FILE
-# Set bluetooth power up
-ACTION=="add", KERNEL=="hci0", RUN+="/usr/bin/hciconfig %k up"
+cat > /etc/acpi/events/low_battery_warning <<FILE
+event=battery.*
+action=/etc/acpi/actions/low_battery_warning.sh %e
 FILE
-
-    # This is the "new" way
-    sed -i '/#AutoEnable=false/s/AutoEnable=true//' /etc/bluetooth/main.conf
-
-    # TODO: Confirm the new way actually works - didn't seem to on first attempt
 fi
 
+
+read -p "Would you like to setup bluetooth [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    pacman -S --noconfirm bluez bluez-utils
+    systemctl enable bluetooth.service
+    systemctl start bluetooth.service
+    systemctl status bluetooth.service
+    echo "Try: agent on\npower on\nscan on\n"
+    echo "Also change autoenable: /etc/bluetooth/main.conf"
+    echo "Use bluetoothctl"
+fi
+
+read -p "Would you like to prevent suspend when docked? [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    sed -i '/#HandleLidSwitchDocked/s/^#//' /etc/systemd/logind.conf
+    systemctl restart systemd-logind.service
+fi
 
 regex='^[0-9a-zA-Z._-]+$'
 
