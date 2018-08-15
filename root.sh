@@ -99,13 +99,37 @@ FILE
 echo "Install bootloader"
 pacman -S --noconfirm intel-ucode
 bootctl install
-PARTUUID=$(blkid | grep sda2 | sed 's/.*PARTUUID="\(.*\)".*/PARTUUID=\1/g')
+BOOTUUID=$(blkid | grep sda2 | sed 's/.*PARTUUID="\(.*\)".*/PARTUUID=\1/g')
+SWAPUUID=$(blkid | grep sda3 | sed 's/.*UUID="\(.*\)".*/UUID=\1/g')
 cat > /boot/loader/entries/arch.conf <<FILE
 title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options root=$PARTUUID rw quiet
+options root=$BOOTUUID resume=$SWAPUUID rw quiet splash acpi_mash_gpe=0x17
+FILE
+
+# TODO: Automate this!
+echo """
+# edit /etc/mkinitcpio.conf
+# HOOKS=\"base udev resume autodetect modconf block filesystems keyboard fsck\"
+#                    ^^^
+"""
+
+echo "Update intramfs"
+mkinitcpio -p linux
+
+echo "Ensure the bootloader is updated after updating systemd"
+cat > /etc/pacman.d/hooks/systemd-boot.hook <<FILE
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = systemd
+
+[Action]
+Description = Updating systemd-boot
+When = PostTransaction
+Exec = /usr/bin/bootctl update
 FILE
 
 echo "Install some stuff"
