@@ -264,7 +264,8 @@ client.urgent               $urgent_bg_colour       $urgent_bg_colour       $tex
 bar {
         #font pango:System San Francisco Display 9, Siji 9
         #font pango:System San Francisco Display 9, FontAwesome5Free 9, FontAwesome5Brands 9
-    position bottom
+    # font FontAwesome5Free 14, FontAwesome5Brands 14
+    position bottom 
     status_command i3status
     # tray_output primary
 }
@@ -304,4 +305,4 @@ exec --no-startup-id redshift-gtk              # Screen Colour shift
 exec --no-startup-id thunar --daemon           # File Manager
 exec --no-startup-id xfce4-power-manager       # Power Manager
 
-exec compton -f
+# exec compton -f
