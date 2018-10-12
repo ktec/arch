@@ -1,7 +1,7 @@
 [user]
 	name = Keith Salisbury
 	email = <keithsalisbury@gmail.com>
-	signingkey = 229704FE
+	signingkey = DDD3C151B7F3BD83
 
 [color]
 	branch = auto
@@ -50,6 +50,7 @@
 	sh = show --color-words='[^[:space:]]'
 	pend = cherry -v origin/master
 	psuh = push
+  # commit_with_t = commit --author 'Tanya <tanechka289@gmail.com'
 
 [format]
 	# pretty = %C(yellow)%h%Creset %C(magenta)%cd%Creset %d %s

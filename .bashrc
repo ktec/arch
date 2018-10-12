@@ -16,6 +16,7 @@
 export EDITOR='vim'
 export VISUAL="vim"
 export ERL_AFLAGS="-kernel shell_history enabled"
+export GDK_SCALE=2
 
 # HISTORY
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -56,8 +57,10 @@ pathmunge () {
 [[ -f ~/.asdf/asdf.sh ]] && . ~/.asdf/asdf.sh
 [[ -f ~/.asdf/completions/asdf.bash ]] && . ~/.asdf/completions/asdf.bash
 [[ -f ~/.git-completion.bash ]] && . ~/.git-completion.bash
+
+pathmunge $HOME/.local/bin
 # For elixir development
-pathmunge $HOME/code/elixir/bin
+pathmunge $HOME/code/elixir/elixir/bin
 # Add all local bin
 pathmunge .bin
 
@@ -71,3 +74,6 @@ eval `keychain --eval --nogui --noask -q --agents ssh id_*`
 #     eval $(ssh-agent)
 #     ssh-add
 # fi
+
+# add GPG key to bash profile
+export GPG_TTY=$(tty)
