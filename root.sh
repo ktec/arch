@@ -137,22 +137,23 @@ FILE
 
 echo "Install some stuff"
 pacman -S --noconfirm dialog git sudo htop wget gvim acpi
-# pacman -S --noconfirm nvidia
-pacman -S --noconfirm xorg-server xorg-apps xorg-xinit xorg-twm xterm
-pacman -S --noconfirm i3-gaps dmenu i3lock i3status
-pacman -S --noconfirm rxvt-unicode gtk2-perl
 pacman -S --noconfirm wpa_supplicant
 pacman -S --noconfirm xbindkeys
-pacman -S --noconfirm powertop
-pacman -S --noconfirm keychain
+pacman -S --noconfirm acpid ntp dbus avahi cups cronie
 # pacman -S --noconfirm autocutsel
 pacman -S --noconfirm openssh
-pacman -S --noconfirm acpid ntp dbus avahi cups cronie ntp
+pacman -S --noconfirm keychain
 pacman -S --noconfirm python-dbus
-pacman -S --noconfirm arandr
-pacman -S --noconfirm wxgtk
 pacman -S --noconfirm redshift
+pacman -S --noconfirm dnsutils
+pacman -S --noconfirm xorg-server xorg-apps xorg-xinit xorg-twm xterm
+pacman -S --noconfirm i3-gaps dmenu i3status
+pacman -S --noconfirm arandr
+pacman -S --noconfirm nvidia
+pacman -S --noconfirm rxvt-unicode gtk2-perl
 pacman -S --noconfirm xfce4-power-manager
+pacman -S --noconfirm wxgtk
+pacman -S --noconfirm powertop
 
 echo "Enable system services"
 systemctl enable acpid
