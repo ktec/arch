@@ -312,15 +312,6 @@ fi
 #     # TODO: Confirm the new way actually works - didn't seem to on first attempt
 # fi
 
-read -p "Would you like to setup a low battery alarm? [y/N]? " -n 1echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-cat > /etc/acpi/events/low_battery_warning <<FILE
-event=battery.*
-action=/etc/acpi/actions/low_battery_warning.sh %e
-FILE
-fi
-
-
 read -p "Would you like to setup bluetooth [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -331,6 +322,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Try: agent on\npower on\nscan on\n"
     echo "Also change autoenable: /etc/bluetooth/main.conf"
     echo "Use bluetoothctl"
+fi
+
+
+read -p "Would you like to setup a low battery alarm? [y/N]? " -n 1echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+cat > /etc/acpi/events/low_battery_warning <<FILE
+event=battery.*
+action=/etc/acpi/actions/low_battery_warning.sh %e
+FILE
 fi
 
 read -p "Would you like to prevent suspend when docked? [y/N]? " -n 1

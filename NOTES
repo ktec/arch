@@ -185,7 +185,7 @@ aurman -S --noconfirm postgresql
 aurman -S --noconfirm pulseaudio-alsa
 aurman -S --noconfirm pulseaudio-bluetooth
 aurman -S --noconfirm ttf-google-fonts-git
-aurman -S blueman
+aurman -S blueberry
 aurman -S bumblebee
 aurman -S bumblebee bbswitch primus
 aurman -S bumblebee mesa
