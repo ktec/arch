@@ -16,7 +16,9 @@ source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 # Let QT and GTK autodetect retina screen and autoadjust
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# Scale UI elements by a factor of 2
 export GDK_SCALE=2
+# Undo the scaling of text
 export GDK_DPI_SCALE=0.5
 
 # Start xbindkeys
