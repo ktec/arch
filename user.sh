@@ -61,6 +61,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm ttf-google-fonts-git
     aurman -S --noconfirm ttf-liberation
     aurman -S --noconfirm ttf-meslo
+    aurman -S --noconfirm ttf-font-awesome
+    aurman -S --noconfirm ttf-liberation noto-fonts
+    aurman -S --noconfirm adobe-source-code-pro-fonts
 fi
 
 read -p "Would you like to install the Slimjet Browser [y/N]? " -n 1
@@ -92,9 +95,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm dunst
     aurman -S --noconfirm inotify-tools
     aurman -S --noconfirm urxvt-resize-font-git
-    aurman -S --noconfirm betterlockscreen
     aurman -S --noconfirm the_silver_searcher
     aurman -S --noconfirm nautilus
+    aurman -S --noconfirm gnome-calculator
     aurman -S --noconfirm thunar
     aurman -S --noconfirm ranger
     aurman -S --noconfirm w3m
@@ -102,9 +105,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm unzip
     aurman -S --noconfirm sshfs
     aurman -S --noconfirm xsane
-    aurman -S --noconfirm redshift
     aurman -S --noconfirm iotop
-    aurman -S --noconfirm dnsutils
     aurman -S --noconfirm rofi
     aurman -S --noconfirm tree
     aurman -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
@@ -118,6 +119,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm gedit
     aurman -S --noconfirm krita
     aurman -S --noconfirm libreoffice
+    aurman -S --noconfirm darktable
+    aurman -S --noconfirm lightzone
+    aurman -S --noconfirm gimp
 fi
 
 read -p "Would you like to install some multimedia stuff [y/N]? " -n 1
@@ -136,6 +140,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm osx-arc-shadow
     aurman -S --noconfirm arc-osx-icon-theme
     aurman -S --noconfirm moka-icon-theme-git
+    # based on Paper Icon Set and Papirus
+    aurman -S --noconfirm papirus-icon-theme
+    aurman -S --noconfirm papirus-libreoffice-theme
+
 fi
 
 read -p "Would you like to install asdf [y/N]? " -n 1
@@ -162,6 +170,26 @@ echo
     export KERL_CONFIGURE_OPTIONS="--enable-compat28"
     asdf install erlang 20.3
 fi
+
+read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # tools and drivers for monitoring temperatures, voltage, and fans.
+    aurman -S --noconfirm lm-sensors
+    aurman -S --noconfirm xfce4-sensors-plugin
+    echo """
+    Check out https://wiki.archlinux.org/index.php/lm_sensors for more details...
+    """
+fi
+
+read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    aurman -S --noconfirm canon-pixma-mg5500-complete
+    aurman -S --noconfirm ghostscript
+fi
+
+
 
 # ------------------------------------------------------
 # END USER SETUP
