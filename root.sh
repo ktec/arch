@@ -109,14 +109,17 @@ initrd /initramfs-linux.img
 options root=$BOOTUUID resume=$SWAPUUID rw quiet splash acpi_mash_gpe=0x17
 FILE
 
-# TODO: Automate this!
-echo """
-# edit /etc/mkinitcpio.conf
-# HOOKS=\"base udev resume autodetect modconf block filesystems keyboard fsck\"
-#                    ^^^
-"""
+# Hibernation
+# The bootloader above has been configured to point the kernel to your swap using the resume= kernel parameter.
+# This tells the kernel to attempt resuming from the specified swap in early userspace.
+# mkinitcpio is a Bash script used to create an initial ramdisk environment.
+# A preset is a predefined definition of how to create an initramfs image
+# instead of specifying the configuration file and output file every time.
+# The -p/--preset switch specifies a preset to utilize.
+# For example, mkinitcpio -p linux selects the preset provided by the linux package.
 
 echo "Update intramfs"
+sed -i '/^HOOKS/s/)$/\ resume)/' /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
 echo "Ensure the bootloader is updated after updating systemd"
