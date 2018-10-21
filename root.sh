@@ -160,10 +160,9 @@ systemctl enable acpid
 systemctl enable ntpd
 systemctl enable avahi-daemon
 systemctl enable org.cups.cupsd.service
-
-# systemctl enable systemd-networkd
-# systemctl enable systemd-resolved
-# systemctl enable systemd-timesyncd
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+systemctl enable systemd-timesyncd
 
 echo "Update the time"
 #echo "server de.pool.ntp.org" >> /etc/ntp.conf
