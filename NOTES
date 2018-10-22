@@ -34,44 +34,14 @@ sudo rm /var/lib/pacman/db.lck
 ---
 
 
-# setfont sun12x22
-
 // Now lets get the wifi working…
 # ip link
 # dhcpcd enp0s20u1
 # dhcpcd enp0s20u3
 
-// Install nicer terminal font
-# pacman -Sy terminus-font
-# pacman -Ql terminus-font
-# setfont ter-v32n
+// user groups (sys lock scanner users video uucp lp wheel)
 
-// mkpart [part-type fs-type name] start end
-# parted -s /dev/sda -- mklabel gpt \
-    mkpart primary fat32 "EFI System" 1007.0KiB 550MiB \
-    mkpart primary ext4  "Linux root (x86-64)"  551MiB 67108864 \
-    mkpart primary swap  "Linux swap" 85014527 16777216 \
-    mkpart primary ext4  "Linux /home" 1954210086 -1s
-
-// Set up disks
-# fisk -l
-# cgdisk /dev/sda
-/dev/sda1 2048      1128447     1126400     550M    EFI System            [ef00]
-/dev/sda2 1128448   68237311    67108864    32G     Linux root (x86-64)   [8304]
-/dev/sda3 68237312  85014527    16777216    8G      Linux swap            [8200]
-/dev/sda4 85014528  1954210086  1869195559  891.3G  Linux home            [8302]
-
-
-Mount point	Partition	Partition type (GUID)	Partition attributes	Suggested size
-/boot	/dev/sda1	C12A7328-F81F-11D2-BA4B-00A0C93EC93B: EFI System Partition		550 MiB
-/	/dev/sda2	4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709: Linux x86-64 root (/)		23 - 32 GiB
-[SWAP]	/dev/sda3	0657FD6D-A4AB-43C4-84E5-0933C84B4F4F: Linux swap		More than 512 MiB
-/home	/dev/sda4	933AC7E1-2EB4-4F13-B844-0E14E2AEF915: Linux /home		Remainder of the device
-
-// set hostname
-# echo kmac > /etc/hostname
-
-// set password
+// set root password
 # passwd
 
 // Lets find out which Broadcom Adapter we have:
@@ -276,7 +246,6 @@ sudo pacman -S libreoffice
 sudo pacman -S libssh
 sudo pacman -S libwayland-eg1-mesa
 sudo pacman -S lxdappearance-gtk3 gnome-themes-standard arc-gtk-theme
-sudo pacman -S mplayer
 sudo pacman -S openssl
 sudo pacman -S openssl glu ncurses erlang-unixodbc lksctp-tools fop git libxslt mesa perl unixodbc
 sudo pacman -S openssl glu ncurses wxgtk2 erlang-unixodbc lksctp-tools fop git libxslt mesa perl unixodbc

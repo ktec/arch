@@ -143,7 +143,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     # based on Paper Icon Set and Papirus
     aurman -S --noconfirm papirus-icon-theme
     aurman -S --noconfirm papirus-libreoffice-theme
-
+    # based
+    aurman -S --noconfirm adapta-gtk-theme
+    # A modified version of the Numix GTK
+    aurman -S --noconfirm numix-gtk-theme-git
+    # GNOME's Adwaita Theme
+    aurman -S --noconfirm adwaita-icon-theme adwaita-qt5 adwaita-qt4 adg-gtk-theme adwaita-dark adwaita-xfce-theme-git firefox-theme-gnome-git
 fi
 
 read -p "Would you like to install asdf [y/N]? " -n 1
@@ -168,7 +173,7 @@ fi
 read -p "Would you like to install dependencies for erlang? [y/N]? " -n 1
 echo
     export KERL_CONFIGURE_OPTIONS="--enable-compat28"
-    asdf install erlang 20.3
+    asdf install erlang 21.1.1
 fi
 
 read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
@@ -189,7 +194,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm ghostscript
 fi
 
-
+read -p "Would you like to install pulseaudio stuff? [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    aurman -S --noconfirm pulseaudio-alsa
+    aurman -S --noconfirm pulseaudio-bluetooth
+fi
 
 # ------------------------------------------------------
 # END USER SETUP

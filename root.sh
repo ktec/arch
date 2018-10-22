@@ -64,6 +64,11 @@ echo "Configure keyboard"
 # EndSection
 # FILE
 
+echo "Correcting swapped keys and wrong keymaps for international (non-US) keyboards"
+cat > /etc/modprobe.d/keyboard-layout.conf <<FILE
+options hid_apple iso_layout=0
+FILE
+
 
 echo "Update hosts file"
 cat >> /etc/hosts <<FILE
