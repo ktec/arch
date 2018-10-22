@@ -15,6 +15,7 @@ systemctl disable dhcpcd
 pacman -S networkmanager network-manager-applet networkmanager-openvpn
 systemctl disable dhcpcd.service
 systemctl enable NetworkManager.service
+systemctl start wpa_supplicant.service
 
 read -p "Would you like to connect to wifi [y/N]? " -n 1
 echo
@@ -27,7 +28,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     case $WIFI in
       exit) echo "exiting"
             exit 0 ;;
-         *) nmcli dev wifi connect $WIFI;
+         *) nmcli --ask dev wifi connect $WIFI;
             break ;;
     esac
   done
