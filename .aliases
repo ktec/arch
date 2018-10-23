@@ -63,6 +63,7 @@ alias ltr='ls -Art1 && echo "------Newest--"'
 
 # alias git_log_work='git log --all --author=keithsalisbury | grep Date | awk \'{print " : "$2" "$4" "$3" "$6}\' | uniq -c | sort -k5M -k4'
 alias a='atom'
+alias atom='ELECTRON_TRASH=gio atom'
 alias amend_commit='git add . && git commit --amend -C HEAD'
 alias g='git'
 alias gac='git add . && git commit'

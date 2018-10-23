@@ -28,6 +28,8 @@ Xft*lcdfilter: lcddefault
 
 URxvt*font: xft:Dejavu Sans Mono:size=11
 URxvt*faceName: xft:Dejavu Sans Mono:size=11
+XTerm*font: xft:Dejavu Sans Mono:size=11
+XTerm*faceName: xft:Dejavu Sans Mono:size=11
 XTerm*utf8: 2
 URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
@@ -45,8 +47,9 @@ URxvt.saveLines: 1000000
 /* URxvt.url-select.underline: true */
 !
 !-- Perl extensions !
-URxvt.perl-ext-common: default,matcher,resize-font
+URxvt.perl-ext-common: default,matcher,font-size
 !-- URxvt.perl-ext-common: ...,tabbed,...
+!setxkbmap -option apple:badmap
 
 !-- Change background/foreground colours !
 URxvt.keysym.C-7: command:\033]11;#ffffff\007\033]10;black\007
