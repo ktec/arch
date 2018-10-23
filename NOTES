@@ -215,7 +215,6 @@ sudo pacman -S --noconfirm thermald
 sudo pacman -S --noconfirm webkit2gtk
 sudo pacman -S --noconfirm webkite2gtk
 sudo pacman -S --noconfirm wxgtk3
-sudo pacman -S atom
 sudo pacman -S aurman
 sudo pacman -S bbswitch
 sudo pacman -S bluez
@@ -228,9 +227,6 @@ sudo pacman -S gparted
 sudo pacman -S gparted
 sudo pacman -S gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
 sudo pacman -S gvfs
-sudo pacman -S hunspell
-sudo pacman -S hunspell-en
-sudo pacman -S inotify-tolls
 sudo pacman -S iotop
 sudo pacman -S krita
 sudo pacman -S libpng
@@ -259,10 +255,10 @@ sudo pacman -S udevcontrol
 sudo pacman -S vlc
 sudo pacman -S wayland
 sudo pacman -S wayland wlc
-sudo pacman -S wx
+
 sudo pacman -S wxgtk
-sudo pacman -S wxgtk2
 sudo pacman -S wxgtk3
+
 sudo pacman -S xf86-video-intel
 sudo pacman -S xf86-video-nouveau
 sudo pacman -S xf86-video-nouveau nouveau-dri

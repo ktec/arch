@@ -57,23 +57,25 @@ locale-gen
 rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
 
 echo "Configure keyboard"
-# localectl set-keymap de-latin1-nodeadkeys
+localectl set-keymap en-latin1-nodeadkeys
 # localectl set-x11-keymap de-latin1-nodeadkeys
 # https://wiki.archlinux.org/index.php/Apple_Keyboard
-# tee /sys/module/hid_apple/parameters/iso_layout <<< 0
+sudo tee /sys/module/hid_apple/parameters/iso_layout <<< 0
+setxkbmap -option apple:badmap
 # This doesn't seem to work in our favour - fn keys stop working with it
 # echo "options hid_apple fnmode=0" | tee /etc/modprobe.d/hid_apple.conf
 # echo 'FILES="$FILES:/etc/modprobe.d/hid_apple.conf"' | tee -a /etc/mkinitcpio.conf
 
-# cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<FILE
-# Section "InputClass"
-#   Identifier "system-keyboard"
-#   MatchIsKeyboard "on"
-#   Option "XkbLayout"  "gb,us"
-#   Option "XkbVariant" "nodeadkeys"
-#   Option "XkbOptions" "apple:badmap"
-# EndSection
-# FILE
+
+cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<FILE
+Section "InputClass"
+  Identifier "system-keyboard"
+  MatchIsKeyboard "on"
+  Option "XkbLayout"  "gb,us"
+  Option "XkbVariant" "nodeadkeys"
+  Option "XkbOptions" "apple:badmap"
+EndSection
+FILE
 
 echo "Correcting swapped keys and wrong keymaps for international (non-US) keyboards"
 cat > /etc/modprobe.d/keyboard-layout.conf <<FILE

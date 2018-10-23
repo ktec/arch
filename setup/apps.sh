@@ -69,6 +69,7 @@ read -p "Would you like to install some useful apps [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # here be some goodies
+    yay -S --mflags "--noconfirm" hunspell hunspell-en_GB
     yay -S --mflags "--noconfirm" atom
     yay -S --mflags "--noconfirm" gedit
     yay -S --mflags "--noconfirm" krita
@@ -76,4 +77,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     yay -S --mflags "--noconfirm" darktable
     yay -S --mflags "--noconfirm" lightzone
     yay -S --mflags "--noconfirm" gimp
+fi
+
+read -p "Would you like to install co working tools [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  yay -S --mflags "--noconfirm" x11vnc tk net-tools
+  yay -S --mflags "--noconfirm" remmina
 fi
