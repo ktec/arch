@@ -114,5 +114,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   curl -O https://raw.githubusercontent.com/ktec/arch/master/setup/apps.sh
   curl -O https://raw.githubusercontent.com/ktec/arch/master/setup/theme.sh
   curl -O https://raw.githubusercontent.com/ktec/arch/master/setup/nvidia.sh
+  chmod +x *.sh
   popd
 fi
