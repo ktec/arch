@@ -148,13 +148,6 @@ LIST OF INSTALLATIONS
 
 aurman -G arc-osx-icon-theme
 aurman -Rsn osx-arc-darker arc-osx-icon-theme
-aurman -S --no-confirm ttf-google-fonts-git
-aurman -S --noconfirm inotify-tools
-aurman -S --noconfirm networkmanager-dmenu-git urxvt-resize-font-git lxappearance compton betterlockscreen gedit thunar ranger w3m rsync unzip the_silver_searcher inotify-tools dunst sshfs
-aurman -S --noconfirm postgresql
-aurman -S --noconfirm pulseaudio-alsa
-aurman -S --noconfirm pulseaudio-bluetooth
-aurman -S --noconfirm ttf-google-fonts-git
 aurman -S blueberry
 aurman -S bumblebee
 aurman -S bumblebee bbswitch primus
@@ -162,7 +155,6 @@ aurman -S bumblebee mesa
 aurman -S canon-pixma-mg5500-complete
 aurman -S cmp-daemon
 aurman -S cpufreq
-aurman -S Dejavu
 aurman -S docker
 aurman -S docker-git
 aurman -S erlang-crypto

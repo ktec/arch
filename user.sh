@@ -26,10 +26,13 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm lxappearance
     aurman -S --noconfirm gtk2
     aurman -S --noconfirm gtk3
+    aurman -S --noconfirm wxgtk
+    aurman -S --noconfirm wxgtk3
     aurman -S --noconfirm network-manager-applet
     aurman -S --noconfirm networkmanager-dmenu-git
     aurman -S --noconfirm dunst
     aurman -S --noconfirm inotify-tools
+    aurman -S --noconfirm ttf-dejavu
 #    aurman -S --noconfirm urxvt-resize-font-git
     aurman -S --noconfirm urxvt-font-size-git
     aurman -S --noconfirm the_silver_searcher
