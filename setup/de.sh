@@ -1,11 +1,13 @@
 #!/bin/bash
 # Copyright (c) 2018 Keith Salisbury
 
+# This needs to run inside i3
 read -p "Would you like to set a desktop wallpaper [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   sudo pacman -S --noconfirm feh
   DIMENSIONS=$(xdpyinfo | awk '/dimensions/{print $2}')
+  mkdir -p ~/Pictures
   curl https://source.unsplash.com/random/$DIMENSIONS -o ~/Pictures/wallpaper.jpg
 fi
 

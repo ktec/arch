@@ -408,3 +408,4 @@ popd
 
 echo "Now run the user setup"
 mv /tmp/setup /home/$USERNAME/
+chown -R $USERNAME:users /home/$USERNAME/setup

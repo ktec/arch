@@ -17,8 +17,4 @@ makepkg -si --noconfirm
 popd
 
 echo "Install Broadcom-Wl"
-cd /tmp
-git clone https://aur.archlinux.org/broadcom-wl.git
-pushd broadcom-wl
-makepkg -si --noconfirm
-popd
+aurman -S --noconfirm broadcom-wl
