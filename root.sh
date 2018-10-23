@@ -32,6 +32,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     case $WIFI in
       exit) echo "exiting"
             exit 0 ;;
+      cont) echo "continue"
+            break ;;
          *) nmcli --ask dev wifi connect $WIFI;
             break ;;
     esac
@@ -43,8 +45,12 @@ pacman -Syu
 pacman -S linux{,-headers}
 
 echo "Setup locale"
-echo 'LANG="en_GB.UTF-8"' >> /etc/locale.conf
-echo 'LC_COLLATE="C"' >> /etc/locale.conf
+cat > /etc/locale.conf <<FILE
+LANG=en_GB.UTF-8
+LANGUAGE=en_GB:en
+LC_COLLATE=C
+FILE
+
 sed -i '/#en_GB/s/^#//' /etc/locale.gen
 export LC_ALL='en_GB.UTF-8'
 locale-gen
