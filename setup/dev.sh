@@ -51,5 +51,12 @@ read -p "Would you like to install dependencies for erlang? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     export KERL_CONFIGURE_OPTIONS="--enable-compat28"
+    #javac
+    #odbc
+    #xsltproc
+    #fop
+
+    asdf plugin-list-all
+    asdf plugin-add erlang
     asdf install erlang 21.1.1
 fi

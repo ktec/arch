@@ -176,7 +176,6 @@ pacman -S --noconfirm xorg-server xorg-apps xorg-xinit xorg-twm xterm
 pacman -S --noconfirm i3-gaps dmenu i3status
 
 pacman -S --noconfirm arandr
-pacman -S --noconfirm nvidia
 pacman -S --noconfirm rxvt-unicode gtk2-perl
 pacman -S --noconfirm xfce4-power-manager
 pacman -S --noconfirm wxgtk
@@ -263,17 +262,6 @@ Section "InputClass"
     Option "NaturalScrolling" "true"
 EndSection
 FILE
-
-# cat > /etc/X11/xorg.conf.d/10-nvidia-brightness.conf <<FILE
-# Section "Device"
-#     Identifier     "Device0"
-#     Driver         "nvidia"
-#     VendorName     "NVIDIA Corporation"
-#     BoardName      "[GeForce GT 750M Mac Edition]"
-#     Option         "RegistryDwords" "EnableBrightnessControl=1"
-# EndSection
-# FILE
-
 
 echo "Switch audio output from HDMI to PCH and Enable sound chipset powersaving"
 # cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE

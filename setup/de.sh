@@ -59,7 +59,6 @@ fi
 read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    # tools and drivers for monitoring temperatures, voltage, and fans.
     aurman -S --noconfirm lm-sensors
     aurman -S --noconfirm xfce4-sensors-plugin
     echo """
@@ -67,7 +66,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     """
 fi
 
-read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
+read -p "Would you like to install printing stuff? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm canon-pixma-mg5500-complete
