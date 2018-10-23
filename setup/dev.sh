@@ -22,6 +22,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     git remote remove origin
     git remote add -f origin https://github.com/ktec/dotfiles.git
     git fetch -p && git reset --hard origin/arch
+    source ~/.bashrc
     popd
 fi
 
