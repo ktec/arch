@@ -4,7 +4,7 @@
 read -p "Would you like to install the Slimjet Browser [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Please enble Multilib in pacman conf:"
+    echo "Please enble Multilib in pacman conf: (search for multi and uncomment)"
     sudo vim /etc/pacman.conf
     sudo pacman -Syu
     echo "Install extra/atk (2) and multilib/lib32-atk (10)"
@@ -61,6 +61,7 @@ read -p "Would you like to install some useful apps [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # here be some goodies
+    aurman -S --noconfirm atom
     aurman -S --noconfirm gedit
     aurman -S --noconfirm krita
     aurman -S --noconfirm libreoffice
