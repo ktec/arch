@@ -10,9 +10,13 @@ pacman -S --noconfirm terminus-font # A font we can read
 setfont ter-v32n
 echo 'FONT=ter-v32n' >> /etc/vconsole.conf
 
+echo "*********************************************************"
+echo "**              START SYSTEM SET UP                    **"
+echo "*********************************************************"
+
 echo "Enable networking using Network Manager"
 systemctl disable dhcpcd
-pacman -S networkmanager network-manager-applet networkmanager-openvpn
+pacman -S networkmanager networkmanager-openvpn
 systemctl disable dhcpcd.service
 systemctl enable NetworkManager.service
 systemctl start wpa_supplicant.service
@@ -141,7 +145,7 @@ When = PostTransaction
 Exec = /usr/bin/bootctl update
 FILE
 
-echo "Install some stuff"
+echo "Install some essentials"
 pacman -S --noconfirm dialog git sudo htop wget gvim acpi
 pacman -S --noconfirm wpa_supplicant
 pacman -S --noconfirm xbindkeys
@@ -151,14 +155,16 @@ pacman -S --noconfirm openssh
 pacman -S --noconfirm keychain
 pacman -S --noconfirm python-dbus
 pacman -S --noconfirm redshift
-pacman -S --noconfirm dnsutils
 pacman -S --noconfirm xorg-server xorg-apps xorg-xinit xorg-twm xterm
 pacman -S --noconfirm i3-gaps dmenu i3status
+
 pacman -S --noconfirm arandr
 pacman -S --noconfirm nvidia
 pacman -S --noconfirm rxvt-unicode gtk2-perl
 pacman -S --noconfirm xfce4-power-manager
 pacman -S --noconfirm wxgtk
+
+pacman -S --noconfirm dnsutils
 pacman -S --noconfirm powertop
 
 echo "Enable system services"
@@ -166,9 +172,9 @@ systemctl enable acpid
 systemctl enable ntpd
 systemctl enable avahi-daemon
 systemctl enable org.cups.cupsd.service
-systemctl enable systemd-networkd
-systemctl enable systemd-resolved
-systemctl enable systemd-timesyncd
+#systemctl enable systemd-networkd
+#systemctl enable systemd-resolved
+#systemctl enable systemd-timesyncd
 
 echo "Update the time"
 #echo "server de.pool.ntp.org" >> /etc/ntp.conf
@@ -184,7 +190,19 @@ hwclock --systohc --utc
 # TODO: Investigate whether this works
 # Possibly missing firmware for module: aic94xx
 # Possibly missing firmware for module: wd719x
-# https://gist.github.com/imrvelj/c65cd5ca7f5505a65e59204f5a3f7a6d
+cd /tmp
+
+git clone https://aur.archlinux.org/aic94xx-firmware.git
+pushd aic94xx-firmware
+makepkg -si --noconfirm
+popd
+
+git clone https://aur.archlinux.org/wd719x-firmware.git
+pushd wd719x-firmware
+makepkg -si --noconfirm
+popd
+
+cd
 
 echo "Load powertop autotune settings at boot"
 # For more effective power management it is recommended to follow
@@ -349,6 +367,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     systemctl restart systemd-logind.service
 fi
 
+echo "*********************************************************"
+echo "**              SYSTEM SET UP COMPLETE                 **"
+echo "*********************************************************"
+
 regex='^[0-9a-zA-Z._-]+$'
 
 while true; do
@@ -378,8 +400,11 @@ echo "Enable wheel users for sudo commands"
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 
 echo "Download setup user setup"
-curl https://raw.githubusercontent.com/ktec/arch/master/user.sh -o /setup/user.sh
-chmod +x /setup/user.sh
+mkdir /tmp/setup
+pushd /tmp/setup
+curl -O https://raw.githubusercontent.com/ktec/arch/master/setup/{apps,de,dev,essentials,fonts}.sh
+chmod +x *.sh
+popd
 
 echo "Now run the user setup"
-sudo -u $USERNAME /setup/user.sh
+mv /tmp/setup /home/$USERNAME/
