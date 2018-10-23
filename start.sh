@@ -3,7 +3,7 @@
 
 # To run this download the file and execute
 # You "could" try this:
-# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/setup.sh)
+# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/start.sh)
 
 # Use a more readable font
 setfont sun12x22

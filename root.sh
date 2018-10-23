@@ -128,6 +128,23 @@ FILE
 # The -p/--preset switch specifies a preset to utilize.
 # For example, mkinitcpio -p linux selects the preset provided by the linux package.
 
+# TODO: Investigate whether this works
+# Possibly missing firmware for module: aic94xx
+# Possibly missing firmware for module: wd719x
+cd /tmp
+
+git clone https://aur.archlinux.org/aic94xx-firmware.git
+pushd aic94xx-firmware
+makepkg -si --noconfirm
+popd
+
+git clone https://aur.archlinux.org/wd719x-firmware.git
+pushd wd719x-firmware
+makepkg -si --noconfirm
+popd
+
+cd
+
 echo "Update intramfs"
 sed -i '/^HOOKS/s/)$/\ resume)/' /etc/mkinitcpio.conf
 mkinitcpio -p linux
@@ -186,23 +203,6 @@ hwclock --systohc --utc
 # # disable wake from S3 on XHC1
 # SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}="disabled"
 # FILE
-
-# TODO: Investigate whether this works
-# Possibly missing firmware for module: aic94xx
-# Possibly missing firmware for module: wd719x
-cd /tmp
-
-git clone https://aur.archlinux.org/aic94xx-firmware.git
-pushd aic94xx-firmware
-makepkg -si --noconfirm
-popd
-
-git clone https://aur.archlinux.org/wd719x-firmware.git
-pushd wd719x-firmware
-makepkg -si --noconfirm
-popd
-
-cd
 
 echo "Load powertop autotune settings at boot"
 # For more effective power management it is recommended to follow
