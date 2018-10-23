@@ -387,13 +387,12 @@ gpasswd -a $USERNAME lp
 echo "Enable wheel users for sudo commands"
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 
-echo "Download setup user setup"
-mkdir /tmp/setup
-pushd /tmp/setup
-curl -O https://raw.githubusercontent.com/ktec/arch/master/setup/{apps,de,dev,essentials,fonts}.sh
-chmod +x *.sh
+echo "Create user installation script"
+pushd /home/$USERNAME
+curl -O https://raw.githubusercontent.com/ktec/arch/master/user.sh
+chown -R $USERNAME:users user.sh
+chmod +x user.sh
 popd
 
-echo "Now run the user setup"
-mv /tmp/setup /home/$USERNAME/
-chown -R $USERNAME:users /home/$USERNAME/setup
+echo "Setup complete - now reboot!"
+reboot
