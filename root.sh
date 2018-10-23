@@ -340,7 +340,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 
-read -p "Would you like to setup a low battery alarm? [y/N]? " -n 1echo
+read -p "Would you like to setup a low battery alarm? [y/N]? " -n 1
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 cat > /etc/acpi/events/low_battery_warning <<FILE
 event=battery.*
