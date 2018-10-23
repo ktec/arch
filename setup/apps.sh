@@ -14,7 +14,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     harfbuzz-icu harfbuzz-icon-theme icu libpng libxss libxtst nss openssl nspr \
     opus snappy speech-dispatcher ttf-font xdg-utils
     echo "install slimjet"
-    aurman -G slimjet
+    aurman -S slimjet
     pushd slimjet
     # TODO: need to skip checksums for now...
     makepkg -si --noconfirm --skipchecksums
