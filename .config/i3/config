@@ -300,7 +300,6 @@ for_window [class="Gnome-calculator"] floating enable
 
 # start tray applications
 exec --no-startup-id nm-applet --sm-disable    # Network Manager
-exec --no-startup-id blueman-applet            # Bluetooth Manager
 exec --no-startup-id redshift-gtk              # Screen Colour shift
 exec --no-startup-id thunar --daemon           # File Manager
 exec --no-startup-id xfce4-power-manager       # Power Manager
