@@ -86,3 +86,6 @@ eval `keychain --eval --nogui --noask -q --agents ssh id_*`
 
 # add GPG key to bash profile
 export GPG_TTY=$(tty)
+
+# Build erlang docs
+export KERL_BUILD_DOCS=yes

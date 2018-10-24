@@ -283,7 +283,8 @@ bindsym $mod+control+space exec rofi -show run -lines 3 -eh 2 -width 30 -padding
 # Predefined floats
 # To get the class name for a window, use 'xprop'
 
-for_window [class="blueberry.py"] floating enable
+for_window [class="Blueberry.py"] floating enable
+for_window [class="Avahi-discover"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="vlc"] floating enable
 for_window [class="nvidia-settings"] floating enable
@@ -292,6 +293,7 @@ for_window [class="gmpc"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [class="Dunst"] border none
 for_window [class="Gnome-calculator"] floating enable
+
 
 # start tray applications
 exec --no-startup-id nm-applet --sm-disable    # Network Manager
