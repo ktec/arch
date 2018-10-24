@@ -55,8 +55,15 @@ URxvt.keysym.C-7: command:\033]11;#ffffff\007\033]10;black\007
 URxvt.keysym.C-6: command:\033]11;#000000\007\033]10;white\007
 
 !-- Change font size on the fly !
-URxvt.keysym.C-equal: font-size:increase
-URxvt.keysym.C-underscore: font-size:decrease
+!URxvt.keysym.C-equal: font-size:increase
+!URxvt.keysym.C-underscore: font-size:decrease
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+URxvt.keysym.C-slash:  font-size:show
+
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.keysym.Shift-Alt-V: eval:paste_clipboard
