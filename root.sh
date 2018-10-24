@@ -383,17 +383,8 @@ done
 echo "Hello ${USERNAME}"
 echo "We're now going to set up a user account for you."
 
-useradd -m -g users -G wheel -s /bin/bash $USERNAME
+useradd -m -g users -G wheel,storage,power,lp,sys,video -s /bin/bash $USERNAME
 passwd $USERNAME
-
-echo "Add user to video group"
-gpasswd -a $USERNAME video
-
-echo "Add user to bluetooth group"
-gpasswd -a $USERNAME lp
-
-echo "Add user to sys group for print admin"
-gpasswd -a $USERNAME sys
 
 echo "Enable wheel users for sudo commands"
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers

@@ -113,6 +113,7 @@ _gpe=0x17
   - https://wiki.archlinux.org/index.php/EFI_System_Partition
   - https://wiki.archlinux.org/index.php/List_of_applications#Web_browsers
   - https://wiki.archlinux.org/index.php/Xinit
+  - https://www.howtoforge.com/tutorial/install-arch-linux-server/
 
 Get a network connections with mobile:
   - https://wiki.archlinux.org/index.php/Android_tethering
