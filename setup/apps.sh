@@ -54,11 +54,12 @@ fi
 read -p "Would you like to install dependencies for erlang? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+    sudo pacman -S --needed base-devel
+    yay -S --mflags "--noconfirm" glu mesa wxgtk2 libpng
+    yay -S --mflags "--noconfirm" curses fop libxslt libssh erlang-unixodbc
     export KERL_CONFIGURE_OPTIONS="--enable-compat28"
+    export KERL_BUILD_DOCS="yes"
     #javac
-    #odbc
-    #xsltproc
-    #fop
 
     asdf plugin-list-all
     asdf plugin-add erlang
