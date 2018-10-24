@@ -34,9 +34,18 @@ HISTFILESIZE=
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Save current working dir
+save_cwd() {
+  pwd > ${HOME}/.cwd
+}
+
+
 # PROMPT
-PROMPT_COMMAND="find_git_branch; clean_history;"
+PROMPT_COMMAND="find_git_branch; clean_history; save_cwd;"
 export PS1="[\u@\h \W\$git_branch]$ "
+
+# Change to saved working dir
+[[ -f "${HOME}/.cwd" ]] && cd "$(< ${HOME}/.cwd)"
 
 # PATH
 

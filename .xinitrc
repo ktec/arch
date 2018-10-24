@@ -24,6 +24,8 @@ export GDK_DPI_SCALE=0.5
 # Start xbindkeys
 xbindkeys &
 
+autocutsel &
+
 # Finally start i3wm
 exec i3
 # If you need to debug i3, uncomment this:

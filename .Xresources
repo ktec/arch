@@ -26,10 +26,10 @@ Xft*lcdfilter: lcddefault
 /* XTerm*faceName: xft:Dejavu Sans Mono for Powerline:size=13 */
 /* URxvt*boldFont: xft:Dejavu Sans Mono for Powerline:size=13 */
 
-URxvt*font: xft:Dejavu Sans Mono:size=11
-URxvt*faceName: xft:Dejavu Sans Mono:size=11
-XTerm*font: xft:Dejavu Sans Mono:size=11
-XTerm*faceName: xft:Dejavu Sans Mono:size=11
+URxvt*font: xft:Dejavu Sans Mono:size=9
+URxvt*faceName: xft:Dejavu Sans Mono:size=9
+XTerm*font: xft:Dejavu Sans Mono:size=9
+XTerm*faceName: xft:Dejavu Sans Mono:size=9
 XTerm*utf8: 2
 URxvt.letterSpace: 1
 URxvt.saveLines: 1000000
@@ -49,17 +49,18 @@ URxvt.saveLines: 1000000
 !-- Perl extensions !
 URxvt.perl-ext-common: default,matcher,font-size
 !-- URxvt.perl-ext-common: ...,tabbed,...
-!setxkbmap -option apple:badmap
 
 !-- Change background/foreground colours !
 URxvt.keysym.C-7: command:\033]11;#ffffff\007\033]10;black\007
 URxvt.keysym.C-6: command:\033]11;#000000\007\033]10;white\007
 
 !-- Change font size on the fly !
-URxvt.keysym.C-minus: resize-font:smaller
-URxvt.keysym.C-equal: resize-font:bigger
+URxvt.keysym.C-equal: font-size:increase
+URxvt.keysym.C-underscore: font-size:decrease
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+URxvt.keysym.Shift-Alt-V: eval:paste_clipboard
+URxvt.keysym.Shift-Alt-C: eval:selection_to_clipboard
 
 !-- Xterm !
 !xterm*font: *-Terminus-*-*-*-27-*
