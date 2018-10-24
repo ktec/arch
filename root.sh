@@ -392,6 +392,9 @@ gpasswd -a $USERNAME video
 echo "Add user to bluetooth group"
 gpasswd -a $USERNAME lp
 
+echo "Add user to sys group for print admin"
+gpasswd -a $USERNAME sys
+
 echo "Enable wheel users for sudo commands"
 sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 
