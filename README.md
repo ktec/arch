@@ -52,6 +52,16 @@ _gpe=0x17
 ```
 
 
+## Notes on Printing for Canon
+
+1. Install canon-pixma-mg5500-complete.
+2. Ensure avahi service is started and operational.
+3. Update `/etc/nsswitch.conf` and add `mdns4_minimal` to the line:
+```
+hosts:          files mdns4_minimal [NOTFOUND=return] dns mdns4
+```
+3. Ensure you can ping the printer, eg. `$ ping B72D71000000.local`
+
 # Links
 
 ## Tutorials

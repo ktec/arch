@@ -68,6 +68,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm canon-pixma-mg5500-complete
     aurman -S --noconfirm ghostscript
+    aurman -S --noconfirm simple-scan
 fi
 
 read -p "Would you like to install pulseaudio stuff? [y/N]? " -n 1
