@@ -50,7 +50,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm tree
     aurman -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
     aurman -S --noconfirm gvfs gvfs-nfs gvfs-smb
-    aurman -S --noconfirm gnome-keyring libsecret
+    aurman -S --noconfirm gnome-keyring libsecret seahorse
 fi
 
 read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
