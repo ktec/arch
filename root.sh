@@ -338,7 +338,7 @@ fi
 read -p "Would you like to setup bluetooth [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    pacman -S --noconfirm bluez bluez-utils
+    pacman -S --noconfirm bluez bluez-utils blueberry
     systemctl enable bluetooth.service
     systemctl start bluetooth.service
     systemctl status bluetooth.service

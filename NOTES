@@ -148,7 +148,6 @@ LIST OF INSTALLATIONS
 
 aurman -G arc-osx-icon-theme
 aurman -Rsn osx-arc-darker arc-osx-icon-theme
-aurman -S blueberry
 aurman -S bumblebee
 aurman -S bumblebee bbswitch primus
 aurman -S bumblebee mesa
