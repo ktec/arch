@@ -47,6 +47,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm xsane
     aurman -S --noconfirm iotop
     aurman -S --noconfirm rofi
+    aurman -S --noconfirm screenfetch
     aurman -S --noconfirm tree
     aurman -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
     aurman -S --noconfirm gvfs gvfs-nfs gvfs-smb
