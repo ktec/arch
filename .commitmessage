@@ -1,3 +1,14 @@
+# <type>[optional scope]: <description>
+
+# [optional body]
+
+# [optional footer]
+
+# chore:, docs:, style:, refactor:, perf:, test:
+
+# Examples:
+# e.g., feat(parser): add ability to parse arrays
+
 # [#story-id] 50 Character Title
 
 # What was done (not the how)

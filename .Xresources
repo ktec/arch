@@ -27,8 +27,8 @@ XTerm*utf8: 2
 /* URxvt.url-select.launcher:  /usr/bin/firefox -new-tab */
 /* URxvt.url-select.underline: true */
 
-URxvt.font: xft:Dejavu Sans Mono:size=10
-URxvt.letterSpace: 1
+URxvt.font: xft:Dejavu Sans Mono:size=8
+URxvt.letterSpace: -1
 URxvt.saveLines: 1000000
 
 !-- Perl extensions !
