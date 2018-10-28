@@ -20,7 +20,14 @@ echo "Update intramfs"
 sed -i '/^MODULES/s/)$/\ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
+echo "Create a blacklist file to prevent nouveau drivers from loading at boot"
+cat /etc/modprobe.d/nouveau.conf <<FILE
+blacklist nouveau
+options nouveau modeset=0
+FILE
+
 echo "To update initramfs after an NVIDIA driver upgrade, lets set a pacman hook"
+mkdir -p /etc/pacman.d/hooks
 cat > /etc/pacman.d/hooks/nvidia.hook <<FILE
 [Trigger]
 Operation=Install
@@ -39,13 +46,14 @@ NeedsTargets
 Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /usr/bin/mkinitcpio -P'
 FILE
 
-# cat > /etc/X11/xorg.conf.d/10-nvidia-brightness.conf <<FILE
-# Section "Device"
-#     Identifier     "Device0"
-#     Driver         "nvidia"
-#     VendorName     "NVIDIA Corporation"
-#     BoardName      "[GeForce GT 750M Mac Edition]"
-#     Option         "RegistryDwords" "EnableBrightnessControl=1"
-# EndSection
-# FILE
+cat > /etc/X11/xorg.conf.d/10-nvidia-brightness.conf <<FILE
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "[GeForce GT 750M Mac Edition]"
+    Option         "RegistryDwords" "EnableBrightnessControl=1"
+EndSection
+FILE
+
 fi
