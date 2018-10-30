@@ -86,3 +86,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   yay -S --mflags "--noconfirm" x11vnc tk net-tools
   yay -S --mflags "--noconfirm" remmina
 fi
+
+read -p "Would you like to install arduino stuff [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  yay -S --mflags "--noconfirm" gnome-themes-standard
+  yay -S --mflags "--noconfirm" arduino arduino-avr-core
+fi
