@@ -78,6 +78,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     aurman -S --noconfirm pulseaudio-alsa
     aurman -S --noconfirm pulseaudio-bluetooth
+    aurman -S --noconfirm pavucontrol
 fi
 
 read -p "Would you like to setup a new SSH key [y/N]? " -n 1
