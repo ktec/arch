@@ -205,11 +205,12 @@ echo "Update the time"
 ntpd -gq
 hwclock --systohc --utc
 
-# echo "Disable wake from S3 on XHC1"
-# cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE
-# # disable wake from S3 on XHC1
-# SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}="disabled"
-# FILE
+echo "Disable wake from USB"
+cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE
+# disable wake from S3 on XHC1
+SUBSYSTEM=="pci", KERNEL=="0000:00:14.0", ATTR{power/wakeup}=="disabled"
+RUN+="/bin/sh -c '/bin/echo disabled > /sys$env{DEVPATH}/power/wakeup'"
+FILE
 
 echo "Load powertop autotune settings at boot"
 # For more effective power management it is recommended to follow
