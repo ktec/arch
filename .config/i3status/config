@@ -9,7 +9,7 @@
 general {
   colors = true
   interval = 1
-  color_good = "#2AA198"
+  color_good = "#73C990"
   color_bad = "#586E75"
   color_degraded = "#DC322F"
 }
@@ -19,20 +19,19 @@ order += "disk /"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
-# order += "battery 0"
 order += "volume master"
 order += "load"
 order += "tztime local"
 
 wireless _first_ {
-  format_up = "W: (%quality at %essid, %bitrate) %ip"
-  format_down = "W: down"
+  format_up = " (%quality at %essid, %bitrate) %ip"
+  format_down = ""
 }
 
 ethernet _first_ {
   # if you use %speed, i3status requires root privileges
   format_up = "E: %ip (%speed)"
-  format_down = "E: down"
+  format_down = ""
 }
 
 battery all {
@@ -41,15 +40,10 @@ battery all {
   format_down = "No battery"
   last_full_capacity = true
   integer_battery_capacity = true
-  # status_chr = ""
-  status_chr = "⚡"
-  # status_bat = "bat"
-  status_bat = ""
-  # status_bat = "   "
-  # status_unk = "?"
-  status_unk = ""
-  # status_full = ""
-  status_full = "☻"
+  status_chr = "CHR ⚡"
+  status_bat = ""
+  status_unk = "?" # unknown
+  status_full = ""
   low_threshold = 15
   threshold_type = time
 }
@@ -73,14 +67,14 @@ battery all {
 volume master {
   format = "♪: %volume"
   format_muted = "♪: %volume"
-  device = "default"
+  device = "pulse"
   mixer = "Master"
   mixer_idx = 0
 }
 
 tztime local {
   # format = "%Y-%m-%d %H:%M:%S"
-  format = " %d.%m. %H:%M "
+  format = " %a %d-%m-%Y %H:%M "
 }
 
 load {
@@ -88,5 +82,6 @@ load {
 }
 
 disk "/" {
+  # format = "  %avail"
   format = " ⛁ %avail"
 }
