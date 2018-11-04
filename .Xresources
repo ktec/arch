@@ -1,13 +1,13 @@
 !-- Xft settings !
 !-- Using `xdpyinfo | grep -B 2 resolution` u can find res for ur monitor
 !Xft*dpi: 220
-Xft*dpi: 190
+Xft*dpi: 220
 
 
 Xft*antialias: true
 /* Xft*rgba: rgb */
 /* Xft*hinting:                full */
-/* Xft.hintstyle:  hintfull */
+/* Xft*hintstyle:  hintfull */
 
 Xft*hinting: true
 Xft*hintstyle: hintslight
@@ -16,48 +16,54 @@ Xft*lcdfilter: lcddefault
 
 !-- Xterm settings !
 
-Xterm*font: *-Terminus-*-*-*-27-*
+Xterm*font: *-Terminus-*-*-*-27-*,xft:Font Awesome 5 Free:size=8
 XTerm*utf8: 2
 
 !-- URxvt settings !
 
 /* XTerm*saveLines:            32767 */
-/* URxvt.depth: 32 */
-/* URxvt.iconFile:             /usr/share/icons/elementary/apps/24/terminal.svg */
-/* URxvt.colorUL:              #AED210 */
-/* URxvt.keysym.M-u:           perl:url-select:select_next */
-/* URxvt.url-select.launcher:  /usr/bin/firefox -new-tab */
-/* URxvt.url-select.underline: true */
+/* URxvt*depth: 32 */
+/* URxvt*iconFile:             /usr/share/icons/elementary/apps/24/terminal.svg */
+/* URxvt*colorUL:              #AED210 */
+/* URxvt*keysym.M-u:           perl:url-select:select_next */
+/* URxvt*url-select.launcher:  /usr/bin/firefox -new-tab */
+/* URxvt*url-select.underline: true */
 
-URxvt.font: xft:Dejavu Sans Mono:size=8
-URxvt.letterSpace: -1
-URxvt.saveLines: 1000000
+URxvt*keysym.C-M-c:     perl:clipboard:copy;
+URxvt*keysym.C-M-v:     perl:clipboard:paste;
+
+URxvt*font: xft:Dejavu Sans Mono:size=8,xft:Font Awesome 5 Free:size=8,xft:Inconsolata\ for\ Powerline:pixelsize=22
+
+URxvt*letterSpace: -1
+URxvt*saveLines: 1000000
 
 !-- Perl extensions !
-URxvt.perl-ext-common: default,matcher,font-size,url-select
+URxvt*perl-ext-common: default,matcher,font-size,url-select,keyboard-select
 !-- URxvt.perl-ext-common: ...,tabbed,...
 
 !-- Change background/foreground colours !
-URxvt.keysym.C-7: command:\033]11;#ffffff\007\033]10;black\007
-URxvt.keysym.C-6: command:\033]11;#000000\007\033]10;white\007
+URxvt*keysym.C-7: command:\033]11;#ffffff\007\033]10;black\007
+URxvt*keysym.C-6: command:\033]11;#000000\007\033]10;white\007
 
 !-- Change font size on the fly !
-!URxvt.keysym.C-equal: font-size:increase
-!URxvt.keysym.C-underscore: font-size:decrease
-URxvt.keysym.C-Up:     font-size:increase
-URxvt.keysym.C-Down:   font-size:decrease
-URxvt.keysym.C-S-Up:   font-size:incglobal
-URxvt.keysym.C-S-Down: font-size:decglobal
-URxvt.keysym.C-equal:  font-size:reset
-URxvt.keysym.C-slash:  font-size:show
+!URxvt*keysym.C-equal: font-size:increase
+!URxvt*keysym.C-underscore: font-size:decrease
+URxvt*keysym.C-Up:     font-size:increase
+URxvt*keysym.C-Down:   font-size:decrease
+URxvt*keysym.C-S-Up:   font-size:incglobal
+URxvt*keysym.C-S-Down: font-size:decglobal
+URxvt*keysym.C-equal:  font-size:reset
+URxvt*keysym.C-slash:  font-size:show
 
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.keysym.Shift-Alt-V: eval:paste_clipboard
-URxvt.keysym.Shift-Alt-C: eval:selection_to_clipboard
+URxvt*iso14755: false
+URxvt*iso14755_52: false
+URxvt*keysym.Shift-Alt-V: eval:paste_clipboard
+URxvt*keysym.Shift-Alt-C: eval:selection_to_clipboard
 
-URxvt.scrollBar: false
-/* URxvt.scrollBar:            false */
+URxvt.url-select.launcher:	flashpeak-slimjet
+
+URxvt*scrollBar: false
+/* URxvt*scrollBar:            false */
 /* URxvt*scrollTtyKeypress:    true */
 /* URxvt*scrollTtyOutput:      false */
 /* URxvt*scrollWithBuffer:     false */
@@ -67,7 +73,7 @@ URxvt.scrollBar: false
 !-- Common settings !
 
 ! special
-*.foreground:   #c5c8c6
+*.foreground:   #dcdcdc
 *.background:   #1d1f21
 *.cursorColor:  #c5c8c6
 
