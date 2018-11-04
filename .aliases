@@ -82,7 +82,7 @@ alias greset='git co master; git fetch -p; git reset --hard origin/master'
 alias gs='git status -sb'
 alias new_quest='git checkout -b'
 alias publish_game='git push'
-alias save_game='git add . && git commit -m'
+alias save_game='git add . && git commit -m wip'
 
 #--------------------------------------------------------------
 #  Docker
