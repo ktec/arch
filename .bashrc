@@ -71,7 +71,7 @@ pathmunge $HOME/.local/bin
 # For elixir development
 pathmunge $HOME/code/elixir/elixir/bin
 # Add all local bin
-pathmunge .bin
+#pathmunge .bin
 
 # SSH
 # Keychain - not sure this is the best approach...
@@ -89,3 +89,6 @@ export GPG_TTY=$(tty)
 
 # Build erlang docs
 export KERL_BUILD_DOCS=yes
+
+# Enable delete in Atom editor
+export ELECTRON_TRASH=gio
