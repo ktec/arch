@@ -13,6 +13,10 @@ Xft*hinting: true
 Xft*hintstyle: hintslight
 Xft*autohint: false
 Xft*lcdfilter: lcddefault
+urxvt*background:       rgba:0000/0000/0000/cccc
+
+URxvt.transparent:   true
+URxvt.shading:       20 
 
 !-- Xterm settings !
 
@@ -29,8 +33,10 @@ XTerm*utf8: 2
 /* URxvt*url-select.launcher:  /usr/bin/firefox -new-tab */
 /* URxvt*url-select.underline: true */
 
-URxvt*keysym.C-M-c:     perl:clipboard:copy;
-URxvt*keysym.C-M-v:     perl:clipboard:paste;
+/* URxvt*keysym.C-M-c:     perl:clipboard:copy; */
+/* URxvt*keysym.C-M-v:     perl:clipboard:paste; */
+URxvt*keysym.Control-Meta-V: eval:paste_clipboard
+URxvt*keysym.Control-Meta-C: eval:selection_to_clipboard
 
 URxvt*font: xft:Dejavu Sans Mono:size=8,xft:Font Awesome 5 Free:size=8,xft:Inconsolata\ for\ Powerline:pixelsize=22
 
@@ -38,8 +44,12 @@ URxvt*letterSpace: -1
 URxvt*saveLines: 1000000
 
 !-- Perl extensions !
-URxvt*perl-ext-common: default,matcher,font-size,url-select,keyboard-select
-!-- URxvt.perl-ext-common: ...,tabbed,...
+!URxvt.perl-ext-common: default,clipboard,matcher,tabbed,font-size,url-select,keyboard-select
+URxvt.perl-ext-common: default,clipboard,matcher,font-size,url-select,keyboard-select
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.url-select.launcher:	/usr/bin/flashpeak-slimjet
+URxvt.url-select.underline: true
+URxvt.matcher.button: 1
 
 !-- Change background/foreground colours !
 URxvt*keysym.C-7: command:\033]11;#ffffff\007\033]10;black\007
@@ -57,10 +67,9 @@ URxvt*keysym.C-slash:  font-size:show
 
 URxvt*iso14755: false
 URxvt*iso14755_52: false
-URxvt*keysym.Shift-Alt-V: eval:paste_clipboard
-URxvt*keysym.Shift-Alt-C: eval:selection_to_clipboard
+/* URxvt*keysym.Shift-Alt-V: eval:paste_clipboard */
+/* URxvt*keysym.Shift-Alt-C: eval:selection_to_clipboard */
 
-URxvt.url-select.launcher:	flashpeak-slimjet
 
 URxvt*scrollBar: false
 /* URxvt*scrollBar:            false */

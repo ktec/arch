@@ -1,5 +1,5 @@
 # Adjust keyboard typematic delay and rate
-xset r rate 270 30
+xset r rate 250 60
 
 # Start Xorg server at this DPI
 # xrandr --setprovideroutputsource modesetting NVIDIA-0

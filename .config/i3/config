@@ -266,7 +266,6 @@ bar {
     font pango:DejaVu Sans 7,Font Awesome 5 Free 7
     position bottom
     status_command i3status
-    tray_output primary
 }
 
 bindsym $mod+shift+x exec i3lock --color "$bg_color"
@@ -279,7 +278,7 @@ exec --no-startup-id feh --bg-scale ~/.local/share/wallpaper.jpg
 
 bindsym $mod+equal exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
 bindsym $mod+space exec "rofi -modi window,drun,run -show drun -sidebar-mode"
-bindsym $mod+control+space exec rofi -show run -lines 3 -eh 2 -width 30 -padding 10 -opacity "85" -bw 0 -bc "$bg_colour" -bg "$bg_colour" -fg "$text_colour" -hlbg "$bg_colour" -hlfg "#9575cd" -font "System San Francisco Display 11"
+bindsym $mod+control+space exec rofi -show run -lines 3 -eh 2 -width 30 -padding 10 -opacity "85" -bw 0 -bc "$bg_colour" -bg "$bg_colour" -fg "$text_colour" -hlbg "$bg_colour" -hlfg "#9575cd" -font "DejaVu Sans7,Font Awesome 5 Free 7"
 
 # Predefined floats
 # To get the class name for a window, use 'xprop'
@@ -303,4 +302,4 @@ exec --no-startup-id redshift-gtk              # Screen Colour shift
 exec --no-startup-id thunar --daemon           # File Manager
 exec --no-startup-id xfce4-power-manager       # Power Manager
 
-# exec compton -f
+exec compton -f
