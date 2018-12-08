@@ -68,6 +68,7 @@ alias g='git'
 alias a='git add'
 alias s='git status'
 alias d='git diff'
+alias gds='git diff --stat origin/master..HEAD'
 alias gac='git add . && git commit'
 alias gbd="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master.."
 alias gbgrep="git branch -a | tr -d \* | xargs git grep" # =>  $ git grep_all <regexp>
@@ -83,6 +84,8 @@ alias gs='git status -sb'
 alias new_quest='git checkout -b'
 alias publish_game='git push'
 alias save_game='git add . && git commit -m wip'
+alias et="find . -name '*.ex' -o -name '*.exs' -o -name '*.eex' | entr mix test"
+alias etf="find . -name '*.ex' -o -name '*.exs' -o -name '*.eex' | entr mix test --include focus --exclude test"
 
 #--------------------------------------------------------------
 #  Docker

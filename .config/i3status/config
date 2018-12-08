@@ -40,7 +40,7 @@ battery all {
   format_down = "No battery"
   last_full_capacity = true
   integer_battery_capacity = true
-  status_chr = "CHR ⚡"
+  status_chr =""
   status_bat = ""
   status_unk = "?" # unknown
   status_full = ""

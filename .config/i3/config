@@ -292,6 +292,8 @@ for_window [class="gmpc"] floating enable
 for_window [class="Dunst"] border none
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
+for_window [class="Pavucontrol"] floating enable
+
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable
 
