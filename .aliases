@@ -93,3 +93,11 @@ alias etf="find . -name '*.ex' -o -name '*.exs' -o -name '*.eex' | entr mix test
 
 alias dci='docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)'
 alias dc='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
+
+#-------------------------------------------------------------
+#  Elixir & Erlang
+#-------------------------------------------------------------
+
+alias rebar3=/home/keith/.asdf/installs/elixir/1.7.3/.mix/rebar3
+alias rebar=/home/keith/.asdf/installs/elixir/1.7.3/.mix/rebar
+
