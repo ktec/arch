@@ -46,6 +46,7 @@ URxvt*saveLines: 1000000
 !-- Perl extensions !
 !URxvt.perl-ext-common: default,clipboard,matcher,tabbed,font-size,url-select,keyboard-select
 URxvt.perl-ext-common: default,clipboard,matcher,font-size,url-select,keyboard-select
+URxvt.searchable-scrollback: CM-s
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.url-select.launcher:	/usr/bin/flashpeak-slimjet
 URxvt.url-select.underline: true
