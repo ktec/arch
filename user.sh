@@ -8,58 +8,57 @@ pushd package-query
 makepkg -si --noconfirm
 popd
 
-echo "Install Aurman"
+echo "Install Yay"
 cd /tmp
-git clone https://aur.archlinux.org/aurman.git
-pushd aurman
-gpg --search-keys 465022E743D71E39 # don't ask!
+git clone https://aur.archlinux.org/yay.git
+pushd yay
 makepkg -si --noconfirm
 popd
 
 echo "Install Broadcom-Wl"
-aurman -S --noconfirm broadcom-wl
+yay -S --noconfirm broadcom-wl
 
 read -p "Would you like to install some os utilities [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    aurman -S --noconfirm compton
-    aurman -S --noconfirm lxappearance
-    aurman -S --noconfirm gtk2
-    aurman -S --noconfirm gtk3
-    aurman -S --noconfirm wxgtk
-    aurman -S --noconfirm wxgtk3
-    aurman -S --noconfirm network-manager-applet
-    aurman -S --noconfirm networkmanager-dmenu-git
-    aurman -S --noconfirm dunst
-    aurman -S --noconfirm inotify-tools
-    aurman -S --noconfirm ttf-dejavu
-#    aurman -S --noconfirm urxvt-resize-font-git
-    aurman -S --noconfirm urxvt-font-size-git
-    aurman -S --noconfirm the_silver_searcher
-#    aurman -S --noconfirm nautilus
-    aurman -S --noconfirm gnome-calculator
-    aurman -S --noconfirm thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
-    aurman -S --noconfirm ranger
-    aurman -S --noconfirm w3m
-    aurman -S --noconfirm rsync
-    aurman -S --noconfirm unzip
-    aurman -S --noconfirm sshfs
-    aurman -S --noconfirm xsane
-    aurman -S --noconfirm iotop
-    aurman -S --noconfirm rofi
-    aurman -S --noconfirm screenfetch
-    aurman -S --noconfirm nfs-utils
-    aurman -S --noconfirm tree
-    aurman -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
-    aurman -S --noconfirm gvfs gvfs-nfs gvfs-smb
-    aurman -S --noconfirm gnome-keyring libsecret seahorse
+    yay -S --noconfirm compton
+    yay -S --noconfirm lxappearance
+    yay -S --noconfirm gtk2
+    yay -S --noconfirm gtk3
+    yay -S --noconfirm wxgtk
+    yay -S --noconfirm wxgtk3
+    yay -S --noconfirm network-manager-applet
+    yay -S --noconfirm networkmanager-dmenu-git
+    yay -S --noconfirm dunst
+    yay -S --noconfirm inotify-tools
+    yay -S --noconfirm ttf-dejavu
+#    yay -S --noconfirm urxvt-resize-font-git
+    yay -S --noconfirm urxvt-font-size-git
+    yay -S --noconfirm the_silver_searcher
+#    yay -S --noconfirm nautilus
+    yay -S --noconfirm gnome-calculator
+    yay -S --noconfirm thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
+    yay -S --noconfirm ranger
+    yay -S --noconfirm w3m
+    yay -S --noconfirm rsync
+    yay -S --noconfirm unzip
+    yay -S --noconfirm sshfs
+    yay -S --noconfirm xsane
+    yay -S --noconfirm iotop
+    yay -S --noconfirm rofi
+    yay -S --noconfirm screenfetch
+    yay -S --noconfirm nfs-utils
+    yay -S --noconfirm tree
+    yay -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
+    yay -S --noconfirm gvfs gvfs-nfs gvfs-smb
+    yay -S --noconfirm gnome-keyring libsecret seahorse
 fi
 
 read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    aurman -S --noconfirm lm-sensors
-    aurman -S --noconfirm xfce4-sensors-plugin
+    yay -S --noconfirm lm-sensors
+    yay -S --noconfirm xfce4-sensors-plugin
     echo """
     Check out https://wiki.archlinux.org/index.php/lm_sensors for more details...
     """
@@ -68,17 +67,17 @@ fi
 read -p "Would you like to install printing stuff? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    aurman -S --noconfirm canon-pixma-mg5500-complete
-    aurman -S --noconfirm ghostscript
-    aurman -S --noconfirm simple-scan
+    yay -S --noconfirm canon-pixma-mg5500-complete
+    yay -S --noconfirm ghostscript
+    yay -S --noconfirm simple-scan
 fi
 
 read -p "Would you like to install pulseaudio stuff? [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    aurman -S --noconfirm pulseaudio-alsa
-    aurman -S --noconfirm pulseaudio-bluetooth
-    aurman -S --noconfirm pavucontrol
+    yay -S --noconfirm pulseaudio-alsa
+    yay -S --noconfirm pulseaudio-bluetooth
+    yay -S --noconfirm pavucontrol
 fi
 
 read -p "Would you like to setup a new SSH key [y/N]? " -n 1
