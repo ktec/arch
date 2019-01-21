@@ -55,6 +55,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   vi /etc/pacman.d/mirrorlist
 fi
 
+echo "update pgp keys"
+dirmngr </dev/null
+pacman-key --populate archlinux
+pacman-key --refresh-keys
+
 echo "Install base"
 pacstrap /mnt base base-devel
 
