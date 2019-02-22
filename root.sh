@@ -62,9 +62,11 @@ localectl set-keymap en-latin1-nodeadkeys
 # https://wiki.archlinux.org/index.php/Apple_Keyboard
 sudo tee /sys/module/hid_apple/parameters/iso_layout <<< 0
 setxkbmap -option apple:badmap
-# This doesn't seem to work in our favour - fn keys stop working with it
-# echo "options hid_apple fnmode=0" | tee /etc/modprobe.d/hid_apple.conf
-# echo 'FILES="$FILES:/etc/modprobe.d/hid_apple.conf"' | tee -a /etc/mkinitcpio.conf
+
+echo "fix function keys for apple keyboard"
+cat > /etc/modprobe.d/hid_apple.conf <<FILE
+options hid_apple fnmode=1
+FILE
 
 
 cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<FILE
@@ -190,6 +192,7 @@ pacman -S --noconfirm wxgtk
 
 pacman -S --noconfirm dnsutils
 pacman -S --noconfirm powertop
+pacman -S --noconfirm nss-mdns
 
 echo "Enable system services"
 systemctl enable acpid
@@ -271,6 +274,9 @@ Section "InputClass"
     Option "NaturalScrolling" "true"
 EndSection
 FILE
+
+echo "Set keyboard layout"
+localectl --no-convert set-x11-keymap gb pc104
 
 echo "Switch audio output from HDMI to PCH and Enable sound chipset powersaving"
 # cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE

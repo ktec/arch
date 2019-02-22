@@ -22,36 +22,39 @@ read -p "Would you like to install some os utilities [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     yay -S --noconfirm compton
-    yay -S --noconfirm lxappearance
+    yay -S --noconfirm ctags
+    yay -S --noconfirm dunst
+    yay -S --noconfirm file-roller
+    yay -S --noconfirm gnome-calculator
+    yay -S --noconfirm gnome-keyring libsecret seahorse
+    yay -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
     yay -S --noconfirm gtk2
     yay -S --noconfirm gtk3
-    yay -S --noconfirm wxgtk
-    yay -S --noconfirm wxgtk3
+    yay -S --noconfirm gvfs gvfs-nfs gvfs-smb
+    yay -S --noconfirm inotify-tools
+    yay -S --noconfirm iotop
+    yay -S --noconfirm lxappearance
     yay -S --noconfirm network-manager-applet
     yay -S --noconfirm networkmanager-dmenu-git
-    yay -S --noconfirm dunst
-    yay -S --noconfirm inotify-tools
-    yay -S --noconfirm ttf-dejavu
-#    yay -S --noconfirm urxvt-resize-font-git
-    yay -S --noconfirm urxvt-font-size-git
-    yay -S --noconfirm the_silver_searcher
-#    yay -S --noconfirm nautilus
-    yay -S --noconfirm gnome-calculator
-    yay -S --noconfirm thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
-    yay -S --noconfirm ranger
-    yay -S --noconfirm w3m
-    yay -S --noconfirm rsync
-    yay -S --noconfirm unzip
-    yay -S --noconfirm sshfs
-    yay -S --noconfirm xsane
-    yay -S --noconfirm iotop
-    yay -S --noconfirm rofi
-    yay -S --noconfirm screenfetch
     yay -S --noconfirm nfs-utils
+    yay -S --noconfirm ranger
+    yay -S --noconfirm rofi
+    yay -S --noconfirm rsync
+    yay -S --noconfirm screenfetch
+    yay -S --noconfirm sshfs
+    yay -S --noconfirm the_silver_searcher
+    yay -S --noconfirm thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
     yay -S --noconfirm tree
-    yay -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
-    yay -S --noconfirm gvfs gvfs-nfs gvfs-smb
-    yay -S --noconfirm gnome-keyring libsecret seahorse
+    yay -S --noconfirm ttf-dejavu
+    yay -S --noconfirm udisks2 udiskie
+    yay -S --noconfirm unzip
+    yay -S --noconfirm urxvt-font-size-git
+    yay -S --noconfirm w3m
+    yay -S --noconfirm wxgtk
+    yay -S --noconfirm wxgtk3
+    yay -S --noconfirm xsane
+#    yay -S --noconfirm nautilus
+#    yay -S --noconfirm urxvt-resize-font-git
 fi
 
 read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
@@ -123,4 +126,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   curl -O https://raw.githubusercontent.com/ktec/arch/master/setup/nvidia.sh
   chmod +x *.sh
   popd
+fi
+
+
+read -p "Would you like to install android stuff [y/N]? " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    aurman -S --noconfirm android-tools
+    aurman -S --noconfirm android-udev
 fi
