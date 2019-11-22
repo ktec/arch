@@ -143,6 +143,19 @@ cat /proc/asound/cards
 aplay -l
 
 
+KEYMAPS
+========
+
+$ localectl status
+
+   System Locale: LANG=en_GB.UTF-8
+                  LANGUAGE=en_GB:en
+                  LC_COLLATE=C
+       VC Keymap: en-latin1-nodeadkeys
+      X11 Layout: gb
+       X11 Model: pc104
+
+
 LIST OF INSTALLATIONS
 ======================
 
@@ -267,3 +280,35 @@ sudo pacman -Sy libnotify
 sudo pacman -Syyu --nocon
 sudo pacman -U /tmp/yaourt-tmp-keith/aur-arc-osx-icon-theme/arc-osx-icon-theme-2.1.tar.gz
 sudo pacman -U slimjet-18.0.5.0-1-x86_64.pkg.tar.xz
+
+
+bcwc-pcie-git r256.b0c7a6a-1
+bluez-alsa-git 1.4.0.r12.g8505bab-1
+bumblebee-git 3.2.1.r57.61c6161-1
+dmenu-git 4.9.5.gdb6093f-1
+epstool 3.09-1
+evhz-git r27.3b65648-1
+facetimehd-firmware 1.43.0-1
+gamin 0.1.10-9
+google-chrome 77.0.3865.90-1
+libglademm 2.6.7-5
+libldac-git 2.0.2.3.r0.gfbffba4-1
+libnm-gtk 1.8.19dev+21+geebf7f95-1
+networkmanager-dmenu-git r84.07d9d26-1
+networkmanager-fortisslvpn-git 1.4.rc1.r8.g2bcb08d-1
+networkmanager-l2tp 1.2.12-2
+notes 1.0.0-1
+openfortivpn 1.10.0-1
+package-query 1.9-3
+paman 0.9.4-6
+pasystray-gtk3-git 0.7.1.r0.g97724c9-1
+postman 7.11.0-1
+rhythmbox-git 3.4.3+5+g6c1ecdabe-1
+skypeforlinux-stable-bin 8.52.0.138-1
+slimjet-browser 22.0.4.0-1
+taglib-extras 1.0.1-7
+transmission-gtk-git 2.94.r451.geef479938-1
+urxvt-font-size-git 32-1
+visual-studio-code-bin 1.38.1-1
+xrdp 0.9.11-1
+yay 9.3.1-1

@@ -21,40 +21,49 @@ yay -S --noconfirm broadcom-wl
 read -p "Would you like to install some os utilities [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    yay -S --noconfirm compton
-    yay -S --noconfirm ctags
-    yay -S --noconfirm dunst
-    yay -S --noconfirm file-roller
-    yay -S --noconfirm gnome-calculator
-    yay -S --noconfirm gnome-keyring libsecret seahorse
-    yay -S --noconfirm gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
-    yay -S --noconfirm gtk2
-    yay -S --noconfirm gtk3
-    yay -S --noconfirm gvfs gvfs-nfs gvfs-smb
-    yay -S --noconfirm inotify-tools
-    yay -S --noconfirm iotop
-    yay -S --noconfirm lxappearance
-    yay -S --noconfirm network-manager-applet
-    yay -S --noconfirm networkmanager-dmenu-git
-    yay -S --noconfirm nfs-utils
-    yay -S --noconfirm ranger
-    yay -S --noconfirm rofi
-    yay -S --noconfirm rsync
-    yay -S --noconfirm screenfetch
-    yay -S --noconfirm sshfs
-    yay -S --noconfirm the_silver_searcher
-    yay -S --noconfirm thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
-    yay -S --noconfirm tree
-    yay -S --noconfirm ttf-dejavu
-    yay -S --noconfirm udisks2 udiskie
-    yay -S --noconfirm unzip
-    yay -S --noconfirm urxvt-font-size-git
-    yay -S --noconfirm w3m
-    yay -S --noconfirm wxgtk
-    yay -S --noconfirm wxgtk3
-    yay -S --noconfirm xsane
-#    yay -S --noconfirm nautilus
-#    yay -S --noconfirm urxvt-resize-font-git
+    APPS=(
+        compton
+        ctags
+        dunst
+        bash-completion
+        file-roller
+        gnome-calculator
+        gnome-keyring libsecret seahorse
+        gparted exfat-utils ntfs-3g udftools nilfs-utils gpart mtools
+        gtk2
+        gtk3
+        gvfs gvfs-nfs gvfs-smb
+        inotify-tools
+        iotop
+        lxappearance
+        network-manager-applet
+        networkmanager-dmenu-git
+        nfs-utils
+        ranger
+        rofi
+        rsync
+        screenfetch
+        sshfs
+        the_silver_searcher
+        thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
+        tree
+        ttf-dejavu
+        udisks2 udiskie
+        unzip
+        urxvt-font-size-git
+        w3m
+        wxgtk
+        wxgtk3
+        xsane
+    )
+
+#   nautilus
+#   urxvt-resize-font-git
+
+    for app in "${APPS[@]}"
+    do
+        yay -S --noconfirm $app
+    done
 fi
 
 read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
