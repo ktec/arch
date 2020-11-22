@@ -18,7 +18,15 @@ https://gist.github.com/ktec/73b874bbaf3d20fd7e9f75346a6888aa
 
 # Getting Started
 
-Create a bootable USB with Arch linux on it, reboot the machine and hold down "Alt" to bring up the boot menu. Now choose "EFI" to boot off the USB stick.Once you're in to a command prompt, now we need to get wifi working. Easiest way, is to plugin in a mobile, and use the USB tethering.
+## Create a bootable USB stick
+
+Create a bootable USB with Arch linux on it by checking the latest instructions here: https://wiki.archlinux.org/index.php/Installation_guide#Acquire_an_installation_image
+
+## Start the install
+
+Boot the machine and hold down "Alt" to bring up the boot menu. 
+
+Now choose "EFI" to boot off the USB stick.Once you're in to a command prompt, now we need to get wifi working. Easiest way, is to plugin in a mobile, and use the USB tethering.
 
 After that, follow these steps:
 

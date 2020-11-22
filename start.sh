@@ -15,26 +15,37 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   (
   echo o              # Clear all partitions
   echo y              # Confirm
+
   echo n              # Add a new partition
   echo                # Partition number (Accept default)
   echo                # First sector (Accept default)
   echo +550M          # Last sector
   echo ef00           # EFI Partition type
+
   echo n              # Add a new partition
   echo                # Partition number (Accept default)
   echo                # First sector (Accept default)
   echo +32G           # Parition Size
   echo 8304           # Linux root partition type
+
   echo n              # Add a new partition
   echo                # Partition number (Accept default)
   echo                # First sector (Accept default)
   echo +16G           # Parition Size
   echo 8200           # Linux swap type
+
+  echo n              # Add a new partition
+  echo                # Partition number (Accept default)
+  echo                # First sector (Accept default)
+  echo +128G           # Parition Size
+  echo 8304           # Linux root partition type
+
   echo n              # Add a new partition
   echo                # Partition number (Accept default)
   echo                # First sector (Accept default)
   echo                # Last sector (Accept default)
   echo 8302           # Linux swap type
+
   echo w              # Write changes
   echo yes            # Confirm
   ) | gdisk /dev/sda
@@ -43,9 +54,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   mkfs.vfat -F32 /dev/sda1
   echo "y" | mkfs.ext4 /dev/sda2
   echo "y" | mkfs.ext4 /dev/sda4
+  echo "y" | mkfs.ext4 /dev/sda5
   mount /dev/sda2 /mnt
   mkdir -p /mnt/boot && mount /dev/sda1 /mnt/boot
-  mkdir -p /mnt/home && mount /dev/sda4 /mnt/home
+  mkdir -p /mnt/var && mount /dev/sda4 /mnt/var
+  mkdir -p /mnt/home && mount /dev/sda5 /mnt/home
   mkswap /dev/sda3 && swapon /dev/sda3
 fi
 
