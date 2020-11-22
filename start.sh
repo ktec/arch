@@ -8,8 +8,8 @@
 # Use a more readable font
 # setfont sun12x22
 
-read -p "Would you repartition your drives [y/N]? " -n 1
-echo
+read -r -p "Would you repartition your drives [y/N]? "
+
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "Configure disks with GPT"
   (
@@ -62,9 +62,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   mkswap /dev/sda3 && swapon /dev/sda3
 fi
 
-read -p "Would you like to edit the mirror list [y/N]? " -n 1
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+read -r -p "Would you like to edit the mirror list [y/N]? "
+
+if [[ $input =~ ^[Yy]$ ]]; then
   vim /etc/pacman.d/mirrorlist
 fi
 
