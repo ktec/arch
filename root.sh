@@ -16,28 +16,9 @@ echo "*********************************************************"
 
 # echo "Enable networking using Network Manager"
 # systemctl disable dhcpcd
-# pacman -S networkmanager networkmanager-openvpn
-# systemctl enable NetworkManager.service
-# systemctl start wpa_supplicant.service
-
-# read -p "Would you like to connect to wifi [y/N]? " -n 1
-# echo
-# if [[ $REPLY =~ ^[Yy]$ ]]; then
-#   nmcli dev wifi rescan
-#   WIFIS=$(nmcli -t dev wifi list|cut -d':' -f2)
-
-#   echo "Which wifi would you like to connect to?"
-#   select WIFI in $WIFIS exit; do
-#     case $WIFI in
-#       exit) echo "exiting"
-#             exit 0 ;;
-#       cont) echo "continue"
-#             break ;;
-#          *) nmcli --ask dev wifi connect $WIFI;
-#             break ;;
-#     esac
-#   done
-# fi
+pacman -S networkmanager networkmanager-openvpn
+systemctl enable NetworkManager
+systemctl enable wpa_supplicant
 
 echo "Lets update Arch and install the linux headers"
 pacman -Syu
@@ -50,7 +31,9 @@ echo "Setup Localization"
 cat > /etc/locale.conf <<FILE
 LANG=en_GB.UTF-8
 LANGUAGE=en_GB:en
+LC_ALL=C
 LC_COLLATE=C
+LC_MESSAGES=""
 FILE
 
 sed -i '/#en_GB/s/^#//' /etc/locale.gen
