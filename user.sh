@@ -141,6 +141,6 @@ fi
 read -p "Would you like to install android stuff [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    aurman -S --noconfirm android-tools
-    aurman -S --noconfirm android-udev
+    yay -S --noconfirm android-tools
+    yay -S --noconfirm android-udev
 fi
