@@ -14,36 +14,40 @@ echo "*********************************************************"
 echo "**              START SYSTEM SET UP                    **"
 echo "*********************************************************"
 
-echo "Enable networking using Network Manager"
-systemctl disable dhcpcd
-pacman -S networkmanager networkmanager-openvpn
-systemctl enable NetworkManager.service
-systemctl start wpa_supplicant.service
+# echo "Enable networking using Network Manager"
+# systemctl disable dhcpcd
+# pacman -S networkmanager networkmanager-openvpn
+# systemctl enable NetworkManager.service
+# systemctl start wpa_supplicant.service
 
-read -p "Would you like to connect to wifi [y/N]? " -n 1
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  nmcli dev wifi rescan
-  WIFIS=$(nmcli -t dev wifi list|cut -d':' -f2)
+# read -p "Would you like to connect to wifi [y/N]? " -n 1
+# echo
+# if [[ $REPLY =~ ^[Yy]$ ]]; then
+#   nmcli dev wifi rescan
+#   WIFIS=$(nmcli -t dev wifi list|cut -d':' -f2)
 
-  echo "Which wifi would you like to connect to?"
-  select WIFI in $WIFIS exit; do
-    case $WIFI in
-      exit) echo "exiting"
-            exit 0 ;;
-      cont) echo "continue"
-            break ;;
-         *) nmcli --ask dev wifi connect $WIFI;
-            break ;;
-    esac
-  done
-fi
+#   echo "Which wifi would you like to connect to?"
+#   select WIFI in $WIFIS exit; do
+#     case $WIFI in
+#       exit) echo "exiting"
+#             exit 0 ;;
+#       cont) echo "continue"
+#             break ;;
+#          *) nmcli --ask dev wifi connect $WIFI;
+#             break ;;
+#     esac
+#   done
+# fi
 
 echo "Lets update Arch and install the linux headers"
 pacman -Syu
 pacman -S linux{,-headers}
 
-echo "Setup locale"
+echo "Setup Timezone"
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+hwclock --systohc
+
+echo "Setup Localization"
 cat > /etc/locale.conf <<FILE
 LANG=en_GB.UTF-8
 LANGUAGE=en_GB:en
@@ -56,6 +60,14 @@ locale-gen
 rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
 
 echo "Configure keyboard"
+loadkeys us
+
+cat > /etc/vconsole.conf <<FILE
+KEYMAP=us
+FILE
+
+timedatectl set-ntp true
+
 localectl set-keymap en-latin1-nodeadkeys
 # localectl set-x11-keymap de-latin1-nodeadkeys
 # https://wiki.archlinux.org/index.php/Apple_Keyboard

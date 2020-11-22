@@ -74,7 +74,7 @@ pacman-key --populate archlinux
 pacman-key --refresh-keys
 
 echo "Install base"
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel linux linux-firmware
 
 echo "Save file system table"
 genfstab -U -p /mnt >> /mnt/etc/fstab
