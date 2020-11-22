@@ -45,7 +45,6 @@ pacman -S linux{,-headers}
 
 echo "Setup Timezone"
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
-hwclock --systohc
 
 echo "Setup Localization"
 cat > /etc/locale.conf <<FILE
@@ -57,7 +56,6 @@ FILE
 sed -i '/#en_GB/s/^#//' /etc/locale.gen
 export LC_ALL='en_GB.UTF-8'
 locale-gen
-rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
 
 echo "Configure keyboard"
 loadkeys us

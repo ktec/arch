@@ -35,7 +35,7 @@ After that, follow these steps:
 ...
 # dhcpcd <your_interface_name>
 ...
-# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/setup.sh)
+# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/start.sh)
 ```
 
 ## Special Instructions

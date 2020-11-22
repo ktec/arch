@@ -3,6 +3,11 @@
 
 # To run this download the file and execute
 # You "could" try this:
+# 
+# ip link
+# ...
+# dhcpcd <your_interface_name>
+# ...
 # bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/start.sh)
 
 # Use a more readable font
@@ -62,11 +67,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   mkswap /dev/sda3 && swapon /dev/sda3
 fi
 
-read -r -p "Would you like to edit the mirror list [y/N]? "
+# read -r -p "Would you like to edit the mirror list [y/N]? "
 
-if [[ $input =~ ^[Yy]$ ]]; then
-  vim /etc/pacman.d/mirrorlist
-fi
+# if [[ $input =~ ^[Yy]$ ]]; then
+#   vim /etc/pacman.d/mirrorlist
+# fi
 
 echo "update pgp keys"
 dirmngr </dev/null
