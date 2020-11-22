@@ -6,7 +6,7 @@
 # bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/start.sh)
 
 # Use a more readable font
-setfont sun12x22
+# setfont sun12x22
 
 read -p "Would you repartition your drives [y/N]? " -n 1
 echo
