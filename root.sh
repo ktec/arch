@@ -17,7 +17,6 @@ echo "*********************************************************"
 echo "Enable networking using Network Manager"
 systemctl disable dhcpcd
 pacman -S networkmanager networkmanager-openvpn
-systemctl disable dhcpcd.service
 systemctl enable NetworkManager.service
 systemctl start wpa_supplicant.service
 
