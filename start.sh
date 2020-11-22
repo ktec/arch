@@ -65,7 +65,7 @@ fi
 read -p "Would you like to edit the mirror list [y/N]? " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  vi /etc/pacman.d/mirrorlist
+  vim /etc/pacman.d/mirrorlist
 fi
 
 echo "update pgp keys"

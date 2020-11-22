@@ -5,10 +5,10 @@
 # All code here is run as root
 # ------------------------------------------------------
 
-echo "Install terminus font"
-pacman -S --noconfirm terminus-font # A font we can read
-setfont ter-v32n
-echo 'FONT=ter-v32n' >> /etc/vconsole.conf
+# echo "Install terminus font"
+# pacman -S --noconfirm terminus-font # A font we can read
+# setfont ter-v32n
+# echo 'FONT=ter-v32n' >> /etc/vconsole.conf
 
 echo "*********************************************************"
 echo "**              START SYSTEM SET UP                    **"
