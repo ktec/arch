@@ -16,9 +16,9 @@ echo "*********************************************************"
 
 # echo "Enable networking using Network Manager"
 # systemctl disable dhcpcd
-pacman -S networkmanager networkmanager-openvpn
-systemctl enable NetworkManager
-systemctl enable wpa_supplicant
+# pacman -S networkmanager networkmanager-openvpn
+# systemctl enable NetworkManager
+# systemctl enable wpa_supplicant
 
 echo "Lets update Arch and install the linux headers"
 pacman -Syu
@@ -51,15 +51,6 @@ timedatectl set-ntp true
 
 localectl set-keymap en-latin1-nodeadkeys
 # localectl set-x11-keymap de-latin1-nodeadkeys
-# https://wiki.archlinux.org/index.php/Apple_Keyboard
-sudo tee /sys/module/hid_apple/parameters/iso_layout <<< 0
-setxkbmap -option apple:badmap
-
-echo "fix function keys for apple keyboard"
-cat > /etc/modprobe.d/hid_apple.conf <<FILE
-options hid_apple fnmode=1
-FILE
-
 
 cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<FILE
 Section "InputClass"
@@ -67,15 +58,8 @@ Section "InputClass"
   MatchIsKeyboard "on"
   Option "XkbLayout"  "gb,us"
   Option "XkbVariant" "nodeadkeys"
-  Option "XkbOptions" "apple:badmap"
 EndSection
 FILE
-
-echo "Correcting swapped keys and wrong keymaps for international (non-US) keyboards"
-cat > /etc/modprobe.d/keyboard-layout.conf <<FILE
-options hid_apple iso_layout=0
-FILE
-
 
 echo "Update hosts file"
 cat >> /etc/hosts <<FILE
@@ -110,15 +94,17 @@ FILE
 
 echo "Install bootloader"
 pacman -S --noconfirm intel-ucode
+# Install systemd-boot
 bootctl install
-BOOTUUID=$(blkid | grep sda2 | sed 's/.*PARTUUID="\(.*\)".*/PARTUUID=\1/g')
-SWAPUUID=$(blkid | grep sda3 | sed 's/.*UUID="\(.*\)".*/UUID=\1/g')
+# Get the IDs of root and swap partitions
+BOOTUUID=$(blkid | grep nvme0n1p2 | sed 's/.*PARTUUID="\(.*\)".*/PARTUUID=\1/g')
+SWAPUUID=$(blkid | grep nvme0n1p4 | sed 's/.*UUID="\(.*\)".*/UUID=\1/g')
 cat > /boot/loader/entries/arch.conf <<FILE
 title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options root=$BOOTUUID resume=$SWAPUUID rw quiet splash acpi_mash_gpe=0x17
+options root=$BOOTUUID resume=$SWAPUUID rw quiet splash
 FILE
 
 # Hibernation
@@ -166,7 +152,7 @@ FILE
 
 echo "Install some essentials"
 pacman -S --noconfirm dialog git sudo htop wget gvim acpi
-pacman -S --noconfirm wpa_supplicant
+# pacman -S --noconfirm wpa_supplicant
 pacman -S --noconfirm xbindkeys
 pacman -S --noconfirm acpid ntp dbus avahi cups cronie
 # pacman -S --noconfirm autocutsel
@@ -270,11 +256,11 @@ FILE
 echo "Set keyboard layout"
 localectl --no-convert set-x11-keymap gb pc104
 
-echo "Switch audio output from HDMI to PCH and Enable sound chipset powersaving"
-# cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE
-cat > /etc/modprobe.d/alsa-base.conf <<FILE
-options snd_hda_intel index=1,0 power_save=1
-FILE
+# echo "Switch audio output from HDMI to PCH and Enable sound chipset powersaving"
+# # cat > /etc/udev/rules.d/90-xhc_sleep.rules <<FILE
+# cat > /etc/modprobe.d/alsa-base.conf <<FILE
+# options snd_hda_intel index=1,0 power_save=1
+# FILE
 
 echo "Download and install brightness script"
 curl https://gist.githubusercontent.com/ktec/155d4599a79dea985d3bdefde6f87903/raw/7f7ccd0ac2f8b3ad5731b624bdeaa931a49d8cfb/brightness -o /usr/local/bin/brightness
@@ -300,7 +286,6 @@ SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", \
   RUN+="/bin/chgrp video %S%p/brightness", \
   RUN+="/bin/chmod g+w %S%p/brightness"
 FILE
-
 
 read -p "Would you like to hibernate on low battery?" -n 1
 echo
@@ -390,10 +375,10 @@ sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
 
 echo "Create user installation script"
 pushd /home/$USERNAME
-curl -O https://raw.githubusercontent.com/ktec/arch/master/user.sh
+curl -O https://raw.githubusercontent.com/ktec/arch/xps/user.sh
 chown -R $USERNAME:users user.sh
 chmod +x user.sh
 popd
 
 echo "Setup complete - now reboot!"
-reboot
+exit

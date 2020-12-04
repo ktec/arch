@@ -1,5 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Copyright (c) 2018 Keith Salisbury
+# This file:
+#
+#  - Arch Installation
+#
+# Usage:
+#
+#  LOG_LEVEL=7 ./install -f /tmp/x -d
+#
+# The MIT License (MIT)
+# Copyright (c) 2020 Keith Salisbury
+# You are not obligated to bundle the LICENSE file with your b3bp projects as long
+# as you leave these references intact in the header comments of your source files.
+
+# Enable xtrace if the DEBUG environment variable is set
+if [[ ${DEBUG-} =~ ^1|yes|true$ ]]; then
+  set -o xtrace         # Trace the execution of the script (debug)
+fi
+
+set -o errexit          # Exit on most errors (see the manual)
+set -o errtrace         # Make sure any error trap is inherited
+set -o nounset          # Disallow expansion of unset variables
+set -o pipefail         # Use last non-zero exit code in a pipeline
 
 # To run this download the file and execute
 # You "could" try this:
@@ -8,10 +30,17 @@
 # ...
 # dhcpcd <your_interface_name>
 # ...
-# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/master/start.sh)
+# bash <(curl -Ls https://raw.githubusercontent.com/ktec/arch/xps/start.sh)
 
 # Use a more readable font
 # setfont sun12x22
+
+read -r -p "Would you like to wipe the hard drive [y/N]? "
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "YES" | cryptsetup open --type plain /dev/nvme0n1 container --key-file /dev/random
+  dd if=/dev/zero of=/dev/mapper/container status=progress
+fi
 
 read -r -p "Would you repartition your drives [y/N]? "
 
@@ -36,14 +65,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo n              # Add a new partition
   echo                # Partition number (Accept default)
   echo                # First sector (Accept default)
-  echo +16G           # Parition Size
-  echo 8200           # Linux swap type
+  echo +128G          # Parition Size
+  echo 8304           # Linux root partition type
 
   echo n              # Add a new partition
   echo                # Partition number (Accept default)
   echo                # First sector (Accept default)
-  echo +128G           # Parition Size
-  echo 8304           # Linux root partition type
+  echo +16G           # Parition Size
+  echo 8200           # Linux swap type
 
   echo n              # Add a new partition
   echo                # Partition number (Accept default)
@@ -53,25 +82,26 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
   echo w              # Write changes
   echo yes            # Confirm
-  ) | gdisk /dev/sda
+  ) | gdisk /dev/nvme0n1
 
   echo "Create filesystems"
-  mkfs.vfat -F32 /dev/sda1
-  echo "y" | mkfs.ext4 /dev/sda2
-  echo "y" | mkfs.ext4 /dev/sda4
-  echo "y" | mkfs.ext4 /dev/sda5
-  mount /dev/sda2 /mnt
-  mkdir -p /mnt/boot && mount /dev/sda1 /mnt/boot
-  mkdir -p /mnt/var && mount /dev/sda4 /mnt/var
-  mkdir -p /mnt/home && mount /dev/sda5 /mnt/home
-  mkswap /dev/sda3 && swapon /dev/sda3
+  mkfs.vfat -F32 -nESP /dev/nvme0n1p1
+  echo "y" | mkfs.ext4 /dev/nvme0n1p2
+  echo "y" | mkfs.ext4 /dev/nvme0n1p3
+  mkswap /dev/nvme0n1p4 && swapon /dev/nvme0n1p4
+  echo "y" | mkfs.ext4 /dev/nvme0n1p5
+
+  mount /dev/nvme0n1p2 /mnt
+  mkdir -p /mnt/boot && mount /dev/nvme0n1p1 /mnt/boot
+  mkdir -p /mnt/var && mount /dev/nvme0n1p3 /mnt/var
+  mkdir -p /mnt/home && mount /dev/nvme0n1p5 /mnt/home
 fi
 
-# read -r -p "Would you like to edit the mirror list [y/N]? "
+read -r -p "Would you like to edit the mirror list [y/N]? "
 
-# if [[ $input =~ ^[Yy]$ ]]; then
-#   vim /etc/pacman.d/mirrorlist
-# fi
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  vim /etc/pacman.d/mirrorlist
+fi
 
 echo "update pgp keys"
 dirmngr </dev/null
@@ -85,14 +115,15 @@ echo "Save file system table"
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo "Download setup part 2"
-curl -O https://raw.githubusercontent.com/ktec/arch/master/root.sh
+curl -O https://raw.githubusercontent.com/ktec/arch/xps/root.sh
 mkdir -p /mnt/setup
 chmod +x root.sh && mv root.sh /mnt/setup
 
 echo "Now configure CHROOT"
-arch-chroot /mnt /setup/root.sh
+echo arch-chroot /mnt /setup/root.sh
 
-# umount -R /mnt
+echo "Now unmount the chroot"
+echo umount -R /mnt
 
 echo "Installation complete. Please reboot and log in."
-# systemctl reboot
+echo systemctl reboot
