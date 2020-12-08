@@ -1,20 +1,9 @@
-# Arch Linux for Macbook Pro 15" (Macbook Pro11,3)
-Setup for using Arch linux + i3wm with macbookpro
-
-IMPORTANT: This is work in progress, and as such is intended as reference material only for the time being.
+# Arch Linux for Dell XPS
+Setup for using Arch linux + dwm 
 
 ## Machine Specs
 
-MacBook Pro "Core i7" 2.6 15" Late 2013 (DG) 	2.6 GHz Core i7 (I7-4960HQ)
-
-Intro. 	October 22, 2013 	Disc. 	July 29, 2014
-Order 	ME874LL/A 	Model 	A1398 (EMC 2745)
-Family 	Retina Late 2013 15" 	ID 	MacBookPro11,3
-RAM 	16 GB* 	VRAM 	2 GB*
-Storage 	512 GB SSD 	Optical 	None*
-
-https://gist.github.com/ktec/73b874bbaf3d20fd7e9f75346a6888aa
-
+Dell XPS
 
 # Getting Started
 
