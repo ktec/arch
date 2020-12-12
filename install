@@ -74,12 +74,21 @@ banner() {
 }
 
 install() {
-	if yay -Qi $1 &> /dev/null; then
-		banner "The package "$1" is already installed" 6
+	if [ "$EUID" -ne 0 ]; then
+		if yay -Qi $1 &> /dev/null; then
+			banner "The package "$1" is already installed" 6
+		else
+			banner "Installing package "$1""
+			yay -S --noconfirm --needed $1
+		fi  
 	else
-		banner "Installing package "$1""
-		# yay -S --noconfirm --needed $1
-	fi  
+		if pacman -Qi $1 &> /dev/null; then
+			banner "The package "$1" is already installed" 6
+		else
+			banner "Installing package "$1""
+			pacman -S --noconfirm --needed $1
+		fi  
+	fi
 }
 
 install_many() {
@@ -185,13 +194,21 @@ function step1 {
 		vim /etc/pacman.d/mirrorlist
 	fi
 
-	echo "update pgp keys"
-	dirmngr </dev/null
-	pacman-key --populate archlinux
-	pacman-key --refresh-keys
+	if ask "keyservers to the /etc/pacman.d/gnupg folder for the use with pacman?"; then
+		echo '
+		keyserver hkp://pool.sks-keyservers.net:80
+		keyserver hkps://hkps.pool.sks-keyservers.net:443
+		keyserver hkp://ipv4.pool.sks-keyservers.net:11371' | sudo tee --append /etc/pacman.d/gnupg/gpg.conf
+		echo "####          Keyservers with ports have been added to /etc/pacman.d/gnupg/gpg.conf            ####"
+
+		echo "update pgp keys"
+		dirmngr </dev/null
+		pacman-key --populate archlinux
+		pacman-key --refresh-keys
+	fi
 
 	echo "Install base"
-	pacstrap /mnt base base-devel linux linux-firmware git
+	pacstrap /mnt base base-devel linux linux-firmware git xorg-server xorg-twm xorg-xinit
 
 	echo "Save file system table"
 	genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -218,9 +235,6 @@ function step2 {
 	# All code here is run as root
 	# ------------------------------------------------------
 
-	install_aur package-query
-	install_aur yay
-
 	# echo "Install terminus font"
 	# pacman -S --noconfirm terminus-font # A font we can read
 	# setfont ter-v32n
@@ -235,7 +249,6 @@ function step2 {
 		networkmanager
 		networkmanager-openvpn
 		network-manager-applet
-		networkmanager-dmenu-git
 		nm-connection-editor
 		wpa_supplicant
 	)
@@ -352,6 +365,7 @@ function step2 {
 	mkinitcpio -p linux
 
 	echo "Ensure the bootloader is updated after updating systemd"
+	mkdir -p /etc/pacman.d/hooks/ 
 	cat > /etc/pacman.d/hooks/systemd-boot.hook <<-FILE
 	[Trigger]
 	Type = Package
@@ -387,9 +401,6 @@ function step2 {
 			xbindkeys
 			xfce4-power-manager
 			xorg-apps
-			xorg-server
-			xorg-twm
-			xorg-xinit
 			xterm
 			cronie
 			dialog 
@@ -401,7 +412,7 @@ function step2 {
 		systemctl enable acpid
 		systemctl enable ntpd
 		systemctl enable avahi-daemon
-		systemctl enable org.cups.cupsd.service
+		systemctl enable cups
 		#systemctl enable systemd-timesyncd
 	fi
 
@@ -525,8 +536,9 @@ function step2 {
 	EndSection
 	FILE
 
-	echo "Set keyboard layout"
-	localectl --no-convert set-x11-keymap gb pc104
+	if ask "set the keyboard layout to pc104?"; then
+		localectl --no-convert set-x11-keymap gb pc104
+	fi
 
 	# echo "Switch audio output from HDMI to PCH and Enable sound chipset powersaving"
 	# # cat > /etc/udev/rules.d/90-xhc_sleep.rules <<-FILE
@@ -644,7 +656,15 @@ function step2 {
 
 	echo "Create user installation script"
 	pushd /home/$USERNAME
-	curl -O https://raw.githubusercontent.com/ktec/arch/xps/user.sh
+	cat > user.sh <<-FILE
+	#!/usr/bin/env bash
+	# To connect using NetworkManager:
+	# systemctl enable NetworkManager
+	# systemctl start NetworkManager
+	# nmcli –ask device wifi connect SSID-Name password
+
+	/install -s=3
+	FILE
 	chown -R $USERNAME:users user.sh
 	chmod +x user.sh
 	popd
@@ -660,6 +680,9 @@ function step2 {
 # user stuff
 function step3 {
 	# local MESSAGE="${@}"
+
+	install_aur package-query
+	install_aur yay
 
 	# OSX Requirement
 	# echo "Install Broadcom-Wl"
@@ -683,6 +706,7 @@ function step3 {
 			inotify-tools
 			iotop
 			lxappearance
+			networkmanager-dmenu-git
 			nfs-utils
 			ranger
 			rofi
