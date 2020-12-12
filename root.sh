@@ -277,7 +277,7 @@ options snd_hda_intel index=1,0 power_save=1
 FILE
 
 echo "Download and install brightness script"
-curl https://gist.githubusercontent.com/ktec/155d4599a79dea985d3bdefde6f87903/raw/7f7ccd0ac2f8b3ad5731b624bdeaa931a49d8cfb/brightness -o /usr/local/bin/brightness
+curl https://gist.githubusercontent.com/ktec/155d4599a79dea985d3bdefde6f87903/raw/baece1b4c576eef6fd66e118c5fc2fca8194a956/brightness -o /usr/local/bin/brightness
 chmod +x /usr/local/bin/brightness
 
 echo "Add rule to enable changing screen brightness without sudo"
