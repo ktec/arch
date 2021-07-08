@@ -179,7 +179,7 @@ function step1 {
 		echo "Create filesystems"
 		mkfs.vfat -F32 -nESP /dev/nvme0n1p1
 		echo "y" | mkfs.ext4 /dev/nvme0n1p2
-		echo "y" | mkfs.btrfs /dev/nvme0n1p3
+		echo "y" | mkfs.btrfs -f /dev/nvme0n1p3
 		mkswap /dev/nvme0n1p4
 		echo "y" | mkfs.ext4 /dev/nvme0n1p5
 
