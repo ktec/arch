@@ -179,13 +179,13 @@ function step1 {
 		echo "Create filesystems"
 		mkfs.vfat -F32 -nESP /dev/nvme0n1p1
 		echo "y" | mkfs.ext4 /dev/nvme0n1p2
-		echo "y" | mkfs.ext4 /dev/nvme0n1p3
+		echo "y" | mkfs.btrfs /dev/nvme0n1p3
 		mkswap /dev/nvme0n1p4
 		echo "y" | mkfs.ext4 /dev/nvme0n1p5
 
 		mount /dev/nvme0n1p2 /mnt
 		mkdir -p /mnt/boot && mount /dev/nvme0n1p1 /mnt/boot
-		mkdir -p /mnt/var && mount /dev/nvme0n1p3 /mnt/var
+		mkdir -p /mnt/var/lib/docker && mount /dev/nvme0n1p3 /mnt/var/lib/docker
 		swapon /dev/nvme0n1p4
 		mkdir -p /mnt/home && mount /dev/nvme0n1p5 /mnt/home
 	fi
