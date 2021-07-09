@@ -750,7 +750,7 @@ function step3 {
 			unzip
 			urxvt-font-size-git
 			w3m
-			wxgtk
+			wxgtk2
 			wxgtk3
 			xsane
 		)
