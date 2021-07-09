@@ -103,7 +103,7 @@ install_many() {
 
 install_aur() {
 	banner $1
-	git clone https://aur.archlinux.org/$1.git /tmp/$1
+	git -C /tmp/$1 pull || git clone https://github.com/<repo>.git /tmp/$1
 	pushd /tmp/$1
 	makepkg -si --noconfirm
 	popd
