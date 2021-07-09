@@ -284,7 +284,7 @@ function step2 {
 	loadkeys uk
 
 	cat > /etc/vconsole.conf <<-FILE
-	KEYMAP=us
+	KEYMAP=uk
 	FILE
 
 	timedatectl set-ntp true
