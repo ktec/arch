@@ -281,7 +281,7 @@ function step2 {
 	locale-gen
 
 	echo "Configure keyboard"
-	loadkeys us
+	loadkeys uk
 
 	cat > /etc/vconsole.conf <<-FILE
 	KEYMAP=us
