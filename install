@@ -770,7 +770,7 @@ function step3 {
 
 	if ask "install printing stuff"; then
 		list=(
-			canon-pixma-mg5500-complete
+			gutenprint foomatic-db-gutenprint-ppds
 			ghostscript
 			simple-scan
 		)
