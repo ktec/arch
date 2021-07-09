@@ -761,7 +761,7 @@ function step3 {
 	read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-			yay -S --noconfirm lm-sensors
+			yay -S --noconfirm i2c-tools
 			yay -S --noconfirm xfce4-sensors-plugin
 			echo """
 			Check out https://wiki.archlinux.org/index.php/lm_sensors for more details...
