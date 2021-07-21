@@ -280,17 +280,17 @@ function step2 {
 	export LC_ALL='en_GB.UTF-8'
 	locale-gen
 
-	echo "Configure keyboard"
+	echo "Configure keyboard for this session"
 	loadkeys uk
+	# persist keymap
+	# to search for a keymap: localectl list-keymaps | grep -i search_term
+	localectl set-keymap uk
 
 	cat > /etc/vconsole.conf <<-FILE
 	KEYMAP=uk
 	FILE
 
 	timedatectl set-ntp true
-
-	localectl set-keymap en-latin1-nodeadkeys
-	# localectl set-x11-keymap de-latin1-nodeadkeys
 
 	cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<-FILE
 	Section "InputClass"
