@@ -46,13 +46,15 @@ NeedsTargets
 Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /usr/bin/mkinitcpio -P'
 FILE
 
-cat > /etc/X11/xorg.conf.d/10-nvidia-brightness.conf <<FILE
-Section "Device"
-    Identifier     "Device0"
-    Driver         "nvidia"
-    VendorName     "NVIDIA Corporation"
-    BoardName      "[GeForce GT 750M Mac Edition]"
-    Option         "RegistryDwords" "EnableBrightnessControl=1"
+cat > /etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf <<FILE
+Section "OutputClass"
+    Identifier    "nvidia"
+    MatchDriver	 "nvidia-drm"
+    Driver       "nvidia"
+    VendorName   "NVIDIA Corporation"
+    Option       "AllowEmptyInitialConfiguration"
+    ModulePath   "/usr/lib/nvidia/xorg"
+    ModulePath   "/usr/lib/xorg/modules"
 EndSection
 FILE
 
