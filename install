@@ -269,35 +269,38 @@ function step2 {
 
 	echo "Setup Localization"
 	cat > /etc/locale.conf <<-FILE
-	LANG=en_GB.UTF-8
+	LANG=en_US.UTF-8
 	LANGUAGE=en_GB:en
-	LC_ALL=C
 	LC_COLLATE=C
-	LC_MESSAGES=""
 	FILE
 
-	sed -i '/#en_GB/s/^#//' /etc/locale.gen
-	export LC_ALL='en_GB.UTF-8'
+	sed -i -e '/^#en_GB/s/^#//' -e '/^#en_US.UTF-8/s/^#//' /etc/locale.gen
 	locale-gen
 
-	echo "Configure keyboard for this session"
-	loadkeys uk
-	# persist keymap
-	# to search for a keymap: localectl list-keymaps | grep -i search_term
-	localectl set-keymap uk
+	echo "Configure keyboard"
+	loadkeys us
 
 	cat > /etc/vconsole.conf <<-FILE
-	KEYMAP=uk
+	KEYMAP=us
 	FILE
 
 	timedatectl set-ntp true
 
+	# External keyboards are US layout; the laptop's own keyboard is UK
 	cat > /etc/X11/xorg.conf.d/00-keyboard.conf <<-FILE
 	Section "InputClass"
 	Identifier "system-keyboard"
 	MatchIsKeyboard "on"
-	Option "XkbLayout"  "gb,us"
-	Option "XkbVariant" "nodeadkeys"
+	Option "XkbLayout" "us"
+	EndSection
+	FILE
+
+	cat > /etc/X11/xorg.conf.d/99-laptop-keyboard.conf <<-FILE
+	Section "InputClass"
+	Identifier "Laptop keyboard"
+	MatchProduct "AT Translated"
+	MatchIsKeyboard "on"
+	Option "XkbLayout" "gb"
 	EndSection
 	FILE
 
@@ -337,8 +340,8 @@ function step2 {
 	# Install systemd-boot
 	bootctl install
 	# Get the IDs of root and swap partitions
-	BOOTUUID=$(blkid | grep nvme0n1p2 | sed 's/.*PARTUUID="\(.*\)".*/PARTUUID=\1/g')
-	SWAPUUID=$(blkid | grep nvme0n1p4 | sed 's/.*UUID="\(.*\)".*/UUID=\1/g')
+	BOOTUUID="PARTUUID=$(blkid -s PARTUUID -o value /dev/nvme0n1p2)"
+	SWAPUUID="UUID=$(blkid -s UUID -o value /dev/nvme0n1p4)"
 	cat > /boot/loader/entries/arch.conf <<-FILE
 	title Arch Linux
 	linux /vmlinuz-linux
@@ -380,25 +383,27 @@ function step2 {
 
 	if ask "install some essentials"; then
 		list=(
-			htop 
-			acpi
-			acpid
-			alacritty
-			arandr
-			avahi 
-			dbus 
-			cups 
-			dnsutils
-			keychain
-			nss-mdns
-			ntp 
-			openssh
-			powertop
-			python-dbus
-			sudo 
-			wget 
-			wxgtk
-			xbindkeys
+			htop 			# interactive process viewer
+			acpi			# shows battery status
+			acpid			# advanced configuration and power daemon
+			alacritty		# fast, cross-platform OpenGL terminal emulator
+			arandr			# visual front-end for xrandr
+			autorandr		# switch docked/mobile layouts; postswitch hooks set the DPI
+			avahi			# service discovery for linux
+			dbus			# freedesktop.org message bus system
+			cups			# the CUPS printing system
+			dnsutils		# highly portable implementation of the DNS protocol
+			keychain		# allow long-running ssh-agent process per system
+			nss-mdns		# provide host name resolution via mDNS
+			ntp				# network time protocol reference implementation
+			openssh			# connectivity tool for remote login with SSH
+			powertop		# diagnostic tool for power consumption and management
+			python-dbus		# python bindings for DBUS
+			sudo 			# run some commands as root
+			wget 			# retrieve files from the web
+			wxgtk			# common libraries and headers for wxWidgets
+			xbindkeys		# launch shell commands with keyboard or mouse under X
+			xsettingsd		# HiDPI for GTK and Chromium/Electron (instead of GDK_SCALE)
 			xfce4-power-manager
 			xorg-apps
 			xterm
@@ -413,6 +418,8 @@ function step2 {
 		systemctl enable ntpd
 		systemctl enable avahi-daemon
 		systemctl enable cups
+		# re-run autorandr after resume, in case the dock changed while asleep
+		systemctl enable autorandr.service
 		#systemctl enable systemd-timesyncd
 	fi
 
@@ -453,25 +460,25 @@ function step2 {
 
 		list=(
 			lightdm
-			arcolinux-lightdm-gtk-greeter
-			arcolinux-lightdm-gtk-greeter-settings
-			arcolinux-wallpapers-git
+			# arcolinux-lightdm-gtk-greeter
+			# arcolinux-lightdm-gtk-greeter-settings
+			# arcolinux-wallpapers-git
 			thunar
 			thunar-archive-plugin
 			thunar-volman
 			xfce4-terminal
-			arcolinux-xfce-git
-			arcolinux-local-xfce4-git
-			sway
+			# arcolinux-xfce-git
+			# arcolinux-local-xfce4-git
+			# sway
 			i3status
 			dmenu
 			feh
 			autotiling
 			alacritty
-			arcolinux-sway-git
-			arcolinux-config-sway-git
-			arcolinux-sway-dconf-git
-			arcolinux-logout-git
+			# arcolinux-sway-git
+			# arcolinux-config-sway-git
+			# arcolinux-sway-dconf-git
+			# arcolinux-logout-git
 		)
 
 		install_many ${list[@]}
@@ -630,13 +637,8 @@ function step2 {
 		echo "Use bluetoothctl"
 	fi
 
-	read -p "Would you like to setup a low battery alarm? [y/N]? " -n 1
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		cat > /etc/acpi/events/low_battery_warning <<-FILE
-		event=battery.*
-		action=/etc/acpi/actions/low_battery_warning.sh %e
-		FILE
-	fi
+	# Low battery: battery-notify.timer (dotfiles) warns at 20%/10%, and
+	# UPower's CriticalPowerAction hibernates at 2%.
 
 	read -p "Would you like to prevent suspend when docked? [y/N]? " -n 1
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -752,20 +754,23 @@ function step3 {
 			w3m
 			wxgtk2
 			wxgtk3
+			maim
 			xsane
 		)
 
 		install_many ${list[@]}
 	fi
 
-	read -p "Would you like to install tools and drivers for monitoring temperatures, voltage, and fans? [y/N]? " -n 1
-	echo
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-			yay -S --noconfirm i2c-tools
-			yay -S --noconfirm xfce4-sensors-plugin
-			echo """
-			Check out https://wiki.archlinux.org/index.php/lm_sensors for more details...
-			"""
+	if ask "install tools and drivers for monitoring temperatures, voltage, and fans"; then
+		list=(
+			i2c-tools
+			xfce4-sensors-plugin
+		)
+
+		install_many ${list[@]}
+		echo """
+		Check out https://wiki.archlinux.org/index.php/lm_sensors for more details...
+		"""
 	fi
 
 	if ask "install printing stuff"; then
@@ -778,45 +783,47 @@ function step3 {
 		install_many ${list[@]}
 	fi
 
-	read -p "Would you like to install pulseaudio stuff? [y/N]? " -n 1
-	echo
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-			yay -S --noconfirm pulseaudio-alsa
-			yay -S --noconfirm pulseaudio-bluetooth
-			yay -S --noconfirm pavucontrol
+	if ask "install audio stuff"; then
+		list=(
+			pulseaudio-alsa
+			pulseaudio-bluetooth
+			pavucontrol
+		)
+
+		install_many ${list[@]}
 	fi
 
 	read -p "Would you like to setup a new SSH key [y/N]? " -n 1
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-			pushd $HOME
-			mkdir .ssh && chmod 700 .ssh
-			ssh-keygen -t ed25519
-			eval "$(ssh-agent -s)"
-			ssh-add
-			popd
+		pushd $HOME
+		mkdir .ssh && chmod 700 .ssh
+		ssh-keygen -t ed25519
+		eval "$(ssh-agent -s)"
+		ssh-add
+		popd
 	fi
 
 	read -p "Would you like to install ktec dotfiles [y/N]? " -n 1
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-			pushd $HOME
-			echo "Setting up dotfiles. This should move to a dotfiles.git repo..."
-			git clone -b arch --bare https://github.com/ktec/dotfiles.git .git
-			git config core.bare false
-			git remote remove origin
-			git remote add -f origin https://github.com/ktec/dotfiles.git
-			git fetch -p && git reset --hard origin/arch
-			source ~/.bashrc
-			popd
+		pushd $HOME
+		echo "Setting up dotfiles. This should move to a dotfiles.git repo..."
+		git clone -b arch+dwm --bare https://github.com/ktec/dotfiles.git .git
+		git config core.bare false
+		git remote remove origin
+		git remote add -f origin https://github.com/ktec/dotfiles.git
+		git fetch -p && git reset --hard origin/arch+dwm
+		source ~/.bashrc
+		popd
 	fi
 
 	read -p "Would you like to install asdf [y/N]? " -n 1
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-			pushd $HOME
-			git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
-			popd
+		pushd $HOME
+		git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
+		popd
 	fi
 
 	read -p "Would you like to install some helpful installer scripts [y/N]? " -n 1

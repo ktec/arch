@@ -13,15 +13,17 @@ fi
 
 pacman -S --noconfirm nvidia
 
-echo "Update bootloader"
-sed -i '/^options/s/$/\ nvidia-drm\ modeset=1/' /boot/loader/entries/arch.conf
-
-echo "Update intramfs"
-sed -i '/^MODULES/s/)$/\ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-mkinitcpio -p linux
+# X runs on the Intel GPU; nvidia is only used for compute (CUDA/ollama).
+# Keep nvidia OUT of the initramfs: loaded there it refuses to freeze on
+# hibernate resume ("resume failed (-5)"). And no nvidia-drm option on the
+# kernel command line: module options need a dot, modprobe.d is the place.
+echo "Disable nvidia-drm modesetting"
+cat > /etc/modprobe.d/nvidia.conf <<FILE
+options nvidia-drm modeset=0
+FILE
 
 echo "Create a blacklist file to prevent nouveau drivers from loading at boot"
-cat /etc/modprobe.d/nouveau.conf <<FILE
+cat > /etc/modprobe.d/nouveau.conf <<FILE
 blacklist nouveau
 options nouveau modeset=0
 FILE
@@ -46,15 +48,13 @@ NeedsTargets
 Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /usr/bin/mkinitcpio -P'
 FILE
 
-cat > /etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf <<FILE
-Section "OutputClass"
-    Identifier    "nvidia"
-    MatchDriver	 "nvidia-drm"
-    Driver       "nvidia"
-    VendorName   "NVIDIA Corporation"
-    Option       "AllowEmptyInitialConfiguration"
-    ModulePath   "/usr/lib/nvidia/xorg"
-    ModulePath   "/usr/lib/xorg/modules"
+echo "Drive the display from the Intel GPU"
+cat > /etc/X11/xorg.conf.d/10-intel-primary.conf <<FILE
+Section "Device"
+    Identifier  "Intel Graphics"
+    Driver      "modesetting"
+    BusID       "PCI:0:2:0"
+    Option      "TearFree" "true"
 EndSection
 FILE
 
