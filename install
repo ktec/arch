@@ -212,6 +212,8 @@ function step1 {
 
 	echo "Save file system table"
 	genfstab -U -p /mnt >> /mnt/etc/fstab
+	# ESP readable by root only (it holds the boot random seed; bootctl warns otherwise)
+	sed -i '/[[:space:]]\/boot[[:space:]]/s/fmask=0022,dmask=0022/fmask=0077,dmask=0077/' /mnt/etc/fstab
 
 	echo "Now configure CHROOT"
 	cp ${SCRIPT_NAME} /mnt/ && chmod +x /mnt/${SCRIPT_NAME}
@@ -254,10 +256,9 @@ function step2 {
 	)
 	install_many ${list[@]}
 
-	# systemctl disable dhcpcd
-	# systemctl enable NetworkManager
-	# systemctl enable wpa_supplicant
-	systemctl enable systemd-networkd
+	# NetworkManager only: enabling systemd-networkd as well (with no config)
+	# makes systemd-networkd-wait-online time out, adding 2 minutes to every boot
+	systemctl enable NetworkManager
 	systemctl enable systemd-resolved
 
 	echo "Lets update Arch and install the linux headers"
@@ -498,20 +499,15 @@ function step2 {
 	# RUN+="/bin/sh -c '/bin/echo disabled > /sys$env{DEVPATH}/power/wakeup'"
 	# FILE
 
-	echo "Load powertop autotune settings at boot"
-	# For more effective power management it is recommended to follow
-	# https://wiki.archlinux.org/index.php/Power_management
-	cat > /etc/systemd/system/powertop.service <<-FILE
-	[Unit]
-	Description=Powertop tunings
-
-	[Service]
-	ExecStart=/usr/bin/powertop --auto-tune
-	RemainAfterExit=true
-
-	[Install]
-	WantedBy=multi-user.target
+	echo "Power management with TLP"
+	# TLP switches settings between AC and battery; balanced on AC keeps the fans quiet.
+	# (powertop --auto-tune would fight TLP over the same settings, so it's not used.)
+	pacman -S --noconfirm --needed tlp
+	mkdir -p /etc/tlp.d
+	cat > /etc/tlp.d/10-quiet-ac.conf <<-FILE
+	PLATFORM_PROFILE_ON_AC=balanced
 	FILE
+	systemctl enable tlp.service
 
 	# Maybe we want sound?
 	echo "Lets get sound working"

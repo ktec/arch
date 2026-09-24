@@ -22,6 +22,22 @@ cat > /etc/modprobe.d/nvidia.conf <<FILE
 options nvidia-drm modeset=0
 FILE
 
+# Let the idle GPU power off (runtime D3). The driver only does this by
+# itself on Ampere and newer; Turing (GTX 1650 Ti) needs 0x02. Measured on
+# battery: 13.4 W -> 9.5 W idle. Anything holding /dev/nvidia* (e.g. ollama)
+# keeps it awake, so start such services on demand.
+echo "Enable NVIDIA runtime power management"
+cat > /etc/modprobe.d/nvidia-pm.conf <<FILE
+options nvidia "NVreg_DynamicPowerManagement=0x02"
+FILE
+cat > /etc/udev/rules.d/80-nvidia-pm.rules <<'FILE'
+# Enable runtime PM for NVIDIA VGA/3D controllers on driver bind, disable on unbind
+ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="auto"
+ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="auto"
+ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
+ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"
+FILE
+
 echo "Create a blacklist file to prevent nouveau drivers from loading at boot"
 cat > /etc/modprobe.d/nouveau.conf <<FILE
 blacklist nouveau
